@@ -9,7 +9,7 @@
 This repository contains the full analysis pipeline, intermediate results, figures, and LaTeX source for the paper:
 
 > **Khosravi A, Khosravi A, Łangowski K, Sieczczyński M, Pastuszak K, Supernat A, Żaczek AJ.**
-> *Classical Machine Learning Outperforms and Excels in Calibration Compared to Single-Cell Large Language Models for Cell-Type Annotation at Scale.* **BMC Bioinformatics**, 2026 (under review).
+> *Classical Machine Learning Outperforms and Excels in Calibration Compared to Single-Cell Large Language Models for Cell-Type Annotation at Scale.*.
 
 The headline finding is simple: across six diverse atlases (TNBC, Indonesian PBMC, brain, multi-tissue tumour microenvironment, human and pig pancreas), classical Logistic Regression on highly variable genes restricted to scGPT's vocabulary **matches or beats every scGPT-based pipeline we tested** — including frozen embeddings with stronger non-linear probes (XGBoost, Random Forest) and full end-to-end fine-tuning of scGPT itself — in both predictive accuracy (Macro F1) and statistical calibration (Expected Calibration Error).
 
