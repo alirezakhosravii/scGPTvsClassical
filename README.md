@@ -194,7 +194,7 @@ If you use this code or the released CSVs / figures, please cite:
   author  = {Khosravi, Alireza and Khosravi, Arshia and {\L}angowski, Kamil
              and Sieczczy{\'n}ski, Micha{\l} and Pastuszak, Krzysztof
              and Supernat, Anna and {\.Z}aczek, Anna J.},
-  journal = {BMC Bioinformatics},
+  journal = 
   year    = {2026},
   note    = {Under review. Code: \url{https://github.com/alirezakhosravii/scGPTvsClassical}}
 }
