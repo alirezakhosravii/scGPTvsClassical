@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the accompanying paper."
+title: "scGPTvsClassical: A calibration-aware benchmark of scGPT against classical machine learning for single-cell cell-type annotation"
+type: software
+authors:
+  - family-names: Khosravi
+    given-names: Alireza
+    affiliation: "Medical University of Gdansk"
+  - family-names: Khosravi
+    given-names: Arshia
+    affiliation: "Medical University of Gdansk"
+  - family-names: Langowski
+    given-names: Kamil
+    affiliation: "Medical University of Gdansk"
+  - family-names: Sieczczynski
+    given-names: Michal
+    affiliation: "Medical University of Gdansk"
+  - family-names: Pastuszak
+    given-names: Krzysztof
+    affiliation: "Medical University of Gdansk; Gdansk University of Technology"
+  - family-names: Supernat
+    given-names: Anna
+    affiliation: "Medical University of Gdansk"
+    email: abednarz@gumed.edu.pl
+  - family-names: Zaczek
+    given-names: Anna J.
+    affiliation: "Medical University of Gdansk"
+repository-code: "https://github.com/alirezakhosravii/scGPTvsClassical"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Classical Machine Learning Outperforms and Excels in Calibration Compared to Single-Cell Large Language Models for Cell-Type Annotation at Scale"
+  authors:
+    - family-names: Khosravi
+      given-names: Alireza
+    - family-names: Khosravi
+      given-names: Arshia
+    - family-names: Langowski
+      given-names: Kamil
+    - family-names: Sieczczynski
+      given-names: Michal
+    - family-names: Pastuszak
+      given-names: Krzysztof
+    - family-names: Supernat
+      given-names: Anna
+    - family-names: Zaczek
+      given-names: Anna J.
+  year: 2026
+  journal: "BMC Bioinformatics (under review)"

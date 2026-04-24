@@ -1,0 +1,675 @@
+\documentclass[11pt,a4paper]{article}
+
+% =====================================================================
+% PACKAGES
+% =====================================================================
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lineno}
+\usepackage{url}
+
+\newcommand{\multirow}[3]{#3}
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}{-3.5ex plus -1ex minus -.2ex}{2.3ex plus .2ex}{\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-3.25ex plus -1ex minus -.2ex}{1.5ex plus .2ex}{\normalfont\normalsize\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}{-3.25ex plus -1ex minus -.2ex}{1.5ex plus .2ex}{\normalfont\normalsize\itshape}}
+\makeatother
+
+% =====================================================================
+% HYPERREF SETUP
+% =====================================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=blue!70!black,
+    urlcolor=blue!70!black,
+    pdftitle={Classical Machine Learning Outperforms and Excels in Calibration Compared to Single-Cell Large Language Models for Cell-Type Annotation at Scale},
+    pdfauthor={Alireza Khosravi et al.}
+}
+
+% =====================================================================
+% HEADER / FOOTER
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Khosravi et al.}}
+\fancyhead[R]{\small\textit{scLLM Calibration Benchmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+
+% =====================================================================
+% COLORS
+% =====================================================================
+\definecolor{darkblue}{RGB}{0,51,102}
+\definecolor{highlight}{RGB}{220,240,255}
+
+% =====================================================================
+% DOCUMENT
+% =====================================================================
+\begin{document}
+
+% =====================================================================
+% TITLE BLOCK
+% =====================================================================
+\begin{titlepage}
+\begin{center}
+
+\vspace*{1cm}
+
+{\LARGE\bfseries\color{darkblue}
+Classical Machine Learning Outperforms and Excels in\\[4pt]
+Calibration Compared to Single-Cell Large Language\\[4pt]
+Models for Cell-Type Annotation at Scale
+}
+
+\vspace{1.5cm}
+
+{\large
+Alireza Khosravi$^{1,2,3}$,\quad
+Arshia Khosravi$^{3}$,\quad
+Kamil {\L}angowski$^{1,2}$,\quad
+Micha{\l} Sieczczy{\'n}ski$^{1,2}$,\\[4pt]
+Krzysztof Pastuszak$^{1,2,4}$,\quad
+Anna Supernat$^{1,2,*}$,\quad
+Anna J.~{\.Z}aczek$^{1,2}$
+}
+
+\vspace{0.8cm}
+
+\begin{footnotesize}
+$^{1}$Laboratory of Translational Oncology, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{2}$Centre of Biostatistics and Bioinformatics Analysis, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{3}$Scientific Circle of Artificial Intelligence in Medicine, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{4}$Department of Algorithms and System Modeling, Gda\'nsk University of Technology, Gda\'nsk, Poland; Laboratory of Translational Oncology, Intercollegiate Faculty of Biotechnology, University of Gda\'nsk and Medical University of Gda\'nsk, Gda\'nsk, Poland\\[6pt]
+$^{*}$Corresponding author: Anna Supernat, \href{mailto:abednarz@gumed.edu.pl}{abednarz@gumed.edu.pl}
+\end{footnotesize}
+
+\vspace{1.5cm}
+
+\hrule
+\vspace{0.4cm}
+
+\begin{abstract}
+\noindent
+\textbf{Background.} Single-cell large language models (scLLMs) such as scGPT have attracted substantial attention for cell-type annotation in single-cell RNA sequencing (scRNA-seq), yet their statistical calibration and reliability under realistic transfer conditions remain critically underexplored. Cell-type annotation is a foundational step of every single-cell analysis, and overconfident incorrect predictions in this step can mislead all downstream biological interpretation, particularly in clinical and translational settings.
+
+\noindent
+\textbf{Results.} We performed a large-scale, systematic benchmark comparing four model families across six publicly available single-cell atlases (1.3 million cells; spanning triple-negative breast cancer, Indonesian PBMC, multi-region brain, multi-tissue tumour microenvironment, and human and pig pancreas): (i) a frozen-representation linear-probing pipeline built on scGPT, (ii) the same scGPT embeddings paired with stronger non-linear probes (XGBoost, Random Forest), (iii) three classical learners (Logistic Regression, XGBoost, Random Forest) on highly variable genes restricted to scGPT's 60{,}697-token vocabulary, and (iv) full end-to-end fine-tuning of scGPT on triple-negative breast cancer. Predictive accuracy was measured by Macro F1 with bootstrap 95\% confidence intervals (1{,}000 resamples), and statistical calibration by the Expected Calibration Error (ECE). Classical Logistic Regression on vocabulary-matched highly variable genes achieved Macro F1 = 0.94--0.99 across all six datasets and ECE $\leq$ 0.013, outperforming or matching every scGPT-based pipeline. The original scGPT~+~Logistic Regression pipeline exhibited systematic miscalibration (ECE 0.07--0.18) and substantially lower accuracy (Macro F1 0.27--0.71). Replacing the Logistic Regression head with XGBoost partially recovered both accuracy and calibration on scGPT embeddings (Macro F1 0.62--0.97; ECE 0.003--0.034), but classical baselines still won on five of six atlases. End-to-end fine-tuning of scGPT on triple-negative breast cancer reached Macro F1 = 0.975 and ECE = 0.003, statistically indistinguishable from the simpler scGPT~+~XGBoost pipeline (0.972) and still below the vocabulary-matched Logistic Regression baseline (0.993). We characterise the consistent overconfidence of the scGPT~+~Logistic Regression pipeline as \textit{single-cell hallucination}.
+
+\noindent
+\textbf{Conclusions.} On large public single-cell atlases, classical machine learning methods on highly variable genes match or outperform every scGPT-based pipeline we evaluated---including frozen embeddings with stronger probes, vocabulary-matched comparisons, and full end-to-end fine-tuning---in both predictive accuracy and statistical calibration. We argue that calibration metrics (ECE and reliability diagrams) should be mandatory in scLLM benchmarking, that classical baselines must be evaluated under matched downstream learners and matched gene sets before any claim of scLLM superiority, and that the practical and computational costs of scLLM deployment must be weighed against demonstrated performance advantages. Our analysis pipeline, intermediate predictions, bootstrap confidence intervals, and end-to-end fine-tuning script are released openly to support future scLLM benchmarking.
+\end{abstract}
+
+\vspace{0.4cm}
+\hrule
+
+\vspace{0.6cm}
+
+{\small
+\textbf{Keywords:} single-cell RNA sequencing; large language model; cell-type annotation; calibration; XGBoost; scGPT; Expected Calibration Error; foundation model; benchmarking
+}
+
+\end{center}
+\end{titlepage}
+
+% =====================================================================
+% MAIN TEXT
+% =====================================================================
+\setcounter{page}{2}
+\onehalfspacing
+
+% =====================================================================
+\section{Background}
+% =====================================================================
+
+Single-cell RNA sequencing (scRNA-seq) has fundamentally transformed our ability to resolve cellular heterogeneity within complex tissues, enabling the construction of comprehensive cell atlases and the identification of rare cell populations with unprecedented resolution \citep{Macosko2015, Zheng2017, Tanay2017}. A central challenge in scRNA-seq analysis is the accurate annotation of cell types from high-dimensional gene expression profiles—a task that is critical for downstream biological interpretation yet remains labour-intensive and difficult to scale.
+
+The dominant approach to cell-type annotation has historically relied on marker-gene-based methods, differential expression analysis, or supervised classifiers trained on labelled reference datasets \citep{Aran2019, Kiselev2018, AlquicirayHernandez2019, Hao2021, Abdelaal2019, Pasquini2021}. Tools such as CellTypist \citep{DominguezConde2022}, SingleR \citep{Aran2019}, scmap \citep{Kiselev2018}, scPred \citep{AlquicirayHernandez2019}, Azimuth \citep{Hao2021}, and scVI-based annotation \citep{Lopez2018} have demonstrated that logistic regression, nearest-neighbour reference projection, support-vector machines, and variational autoencoders can all achieve high accuracy on large multi-tissue atlases \citep{Abdelaal2019, Pasquini2021}. However, the field has recently been captivated by a new paradigm: single-cell large language models (scLLMs) pre-trained on tens of millions of cells.
+
+Inspired by successes in natural language processing, scLLMs such as scGPT \citep{Cui2024}, Geneformer \citep{Theodoris2023}, scBERT \citep{Yang2022}, scFoundation \citep{Hao2024}, and UCE \citep{Rosen2023} have been proposed as general-purpose foundation models capable of zero-shot and few-shot cell-type annotation. The central claim is that pre-training on vast corpora of transcriptomic data enables these models to learn transferable biological representations that surpass task-specific classifiers—much as GPT-4 outperforms task-specific NLP models on many benchmarks \citep{Cui2024}.
+
+Despite the proliferation of scLLMs, there are two critical and largely overlooked dimensions of their evaluation. First, published benchmarks overwhelmingly focus on peak accuracy metrics (e.g., overall accuracy or weighted F1 score) without assessing \textit{macro F1}—which is essential when cell-type class imbalance is severe, as is universal in complex atlases. Second, and more importantly, the statistical \textit{calibration} of scLLM predictions has received almost no attention. Calibration measures whether a model's confidence scores are reliable: a well-calibrated model that assigns 80\% confidence to a prediction should be correct approximately 80\% of the time. Miscalibration—particularly overconfidence—is a form of systematic error that is invisible to accuracy-only evaluation yet has profound consequences for clinical and translational applications, where erroneous high-confidence predictions represent a form of \textit{hallucination} analogous to that observed in text-generative LLMs \citep{Guo2017}.
+
+A recent independent study \citep{Kedzierska2025} reported that scLLMs including scGPT perform poorly in zero-shot and frozen-representation settings, corroborating concerns about generalisation. However, neither that nor any other published study has specifically examined scLLM miscalibration and its consequences across diverse, large-scale multi-tissue atlases.
+
+We chose scGPT as the representative scLLM for this benchmark for several reasons. First, scGPT is the most widely cited and adopted single-cell foundation model, published in \textit{Nature Methods} \citep{Cui2024}, and has become the de facto reference point for the field. Second, among the available scLLMs, scGPT is the only model that provides a publicly available, fully pre-trained whole-human model with an accessible Python API supporting zero-shot embedding extraction, linear probing, and attention-based GRN inference in a unified framework. Third, scGPT was pre-trained on the largest corpus (approximately 33 million cells from CELLxGENE), making it the strongest candidate to test whether massive pre-training scale translates to annotation superiority. Alternative models such as Geneformer \citep{Theodoris2023} focus on rank-value encoding and network biology rather than expression-level annotation, scBERT \citep{Yang2022} was designed for supervised fine-tuning rather than zero-shot transfer, scFoundation \citep{Hao2024} at the time of this study did not provide comparable zero-shot linear probing support, and UCE \citep{Rosen2023} remained a preprint. By selecting the most prominent and best-equipped scLLM, our benchmark provides the strongest possible test of the scLLM paradigm.
+
+To address these gaps, we conducted a rigorous benchmarking study with the following aims: (1) compare a frozen-representation linear-probing pipeline built on scGPT against XGBoost, Random Forest, and Logistic Regression across six large, publicly available single-cell atlases totalling over 1.3 million cells; (2) evaluate both predictive performance (Macro F1) and calibration (Expected Calibration Error; ECE) of the resulting end-to-end classification pipelines; and (3) provide a balanced assessment by analysing scGPT's attention-derived gene regulatory networks---a genuinely zero-shot, label-free use of the model---to delineate where scLLMs may retain value.
+
+Our study provides, to our knowledge, the first systematic analysis of scLLM miscalibration at this scale, introduces a novel perspective on single-cell hallucination, and offers practical guidance for the field regarding the appropriate deployment of these resource-intensive models.
+
+% =====================================================================
+\section{Methods}
+% =====================================================================
+
+\subsection{Datasets}
+
+We selected six publicly available single-cell atlases from the Chan Zuckerberg CELLxGENE Discover portal \citep{CZICELLxGENE2023} to represent diverse biological contexts, species, and levels of cellular complexity (Table~\ref{tab:datasets}; full accession URLs are listed in the Availability of data and materials section). The datasets were not chosen at random: they were specifically curated to span axes that are known to challenge the generalisation of single-cell models. Specifically, they collectively cover (i) two contrasting tissue compartments---solid tumour microenvironments (TNBC, multi-tissue TME) and circulating immune cells (Indonesia PBMC); (ii) high-resolution multi-region neural tissue (Brain Atlas), where transcriptomic similarity between cell subtypes is high; (iii) a metabolically and developmentally distinct exocrine/endocrine organ (Human Pancreas), used historically as a reference benchmark in single-cell methods; (iv) a cross-species control (Pig Pancreas) entirely outside scGPT's primarily human pre-training corpus, which probes representation transfer beyond the training distribution; and (v) a population-level human cohort from a non-European ancestry (Indonesia PBMC), addressing a known under-representation in foundation-model training data. The datasets collectively span approximately 1.3 million cells and include:
+
+\begin{enumerate}
+    \item \textbf{TNBC Breast Cancer} (427,823 cells): A large-scale single-cell atlas of triple-negative breast cancer tumour microenvironments.
+    \item \textbf{Indonesia PBMC} (462,034 cells): Peripheral blood mononuclear cells from a genetically diverse Indonesian cohort.
+    \item \textbf{Brain Atlas} (75,583 cells): A multi-region human brain single-cell atlas.
+    \item \textbf{Multi-Tissue TME} (391,963 cells): A pan-cancer tumour microenvironment atlas spanning multiple tissue types.
+    \item \textbf{Human Pancreas} (26,474 cells): A reference atlas of the human pancreatic cell landscape.
+    \item \textbf{Pig Pancreas} (22,056 cells): A cross-species porcine pancreatic atlas enabling evaluation of model generalisation across species boundaries.
+\end{enumerate}
+
+All datasets were downloaded in \texttt{.h5ad} format. Cell types were defined by the curated \texttt{cell\_type} field present in each dataset's observation metadata. Cell types with fewer than five cells were excluded from analysis to ensure valid stratified splitting.
+
+\begin{table}[H]
+\centering
+\caption{Summary of benchmark datasets. All datasets were obtained from the CZ CELLxGENE Discover portal.}
+\label{tab:datasets}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{llrrr}
+\toprule
+\textbf{Dataset} & \textbf{Tissue / Context} & \textbf{Cells} & \textbf{Cell Types} & \textbf{Species} \\
+\midrule
+TNBC Breast Cancer & Tumour microenvironment & 427,823 & 7  & \textit{H. sapiens} \\
+Indonesia PBMC     & Peripheral blood          & 462,034 & 13 & \textit{H. sapiens} \\
+Brain Atlas        & Multiple brain regions    & 75,583  & 10 & \textit{H. sapiens} \\
+Multi-Tissue TME   & Pan-cancer TME            & 391,963 & 11 & \textit{H. sapiens} \\
+Human Pancreas     & Exocrine/endocrine        & 26,474  & 4  & \textit{H. sapiens} \\
+Pig Pancreas       & Exocrine/endocrine        & 22,056  & 4  & \textit{S. scrofa}  \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize TME = tumour microenvironment. Cell-type counts are reported after retention of cell types with $>$5 cells; this filter removes a small number of singleton or near-singleton labels and stabilises the train--test split.
+\end{flushleft}
+\end{table}
+
+\subsection{Data Preprocessing}
+
+All datasets underwent a unified preprocessing pipeline implemented in Python using Scanpy v1.9 \citep{Wolf2018}. For both the scGPT embedding pipeline and the classical ML feature extraction, raw count matrices were used as input. Preprocessing steps were applied consistently:
+
+\begin{enumerate}
+    \item \textbf{Gene filtering}: Lowly expressed genes were removed using \texttt{sc.pp.filter\_genes} with \texttt{min\_counts=3}, which discards genes whose total counts summed across all cells are less than three. This is a stricter, count-based threshold than the alternative \texttt{min\_cells} criterion and was applied uniformly across all datasets.
+    \item \textbf{Library size normalisation}: Each cell's counts were normalised to a total of 10,000 counts per cell (\texttt{sc.pp.normalize\_total}, \texttt{target\_sum=1e4}).
+    \item \textbf{Log-transformation}: A pseudocount of one was added and data log-transformed (\texttt{sc.pp.log1p}).
+    \item \textbf{Highly variable gene (HVG) selection}: The top 1,200 HVGs were selected using the Seurat v3 method for scGPT preprocessing (\texttt{flavor="seurat\_v3"}) and the standard Seurat method for classical ML (\texttt{flavor="seurat"}).
+\end{enumerate}
+
+We note explicitly that HVG selection in this pipeline was performed on the full dataset prior to the train--test split, separately for the scGPT branch (\texttt{flavor="seurat\_v3"}, applied to the raw count matrix) and for the classical-ML branch (\texttt{flavor="seurat"}, applied to the normalised log-transformed matrix). Each flavour is the standard recommendation for its respective downstream consumer: \texttt{seurat\_v3} expects raw counts and is the preprocessing recipe followed by the official scGPT tutorials, whereas \texttt{seurat} is the classical Scanpy default for log-normalised matrices. As a consequence, the two pipelines do not necessarily operate on the same 1{,}200 genes; both, however, are top-1{,}200-HVG inputs prepared in the manner intended for the corresponding model family. We discuss the implications of this design choice---and of performing HVG selection prior to the train--test split---in the Limitations section.
+
+\subsection{Train--Test Split}
+
+For each dataset, cell labels were encoded as integer category codes. A stratified 80/20 train--test split was performed using \texttt{train\_test\_split} from scikit-learn \citep{Pedregosa2011} with a fixed random seed of 42, ensuring that the class distribution was preserved across splits and results were reproducible.
+
+\subsection{scGPT Embedding Extraction with Frozen-Representation Linear Probing}
+
+We used the publicly available scGPT whole-human pre-trained model weights. The scGPT architecture is a transformer-based model pre-trained on approximately 33 million human single-cell transcriptomes from the CELLxGENE corpus \citep{Cui2024}. Model loading was performed using the \texttt{scgpt} Python package. We employed a custom vocabulary loader to bypass a C++ library dependency (\texttt{torchtext}) incompatible with the cloud GPU environment.
+
+The scGPT embedding pipeline proceeds as follows:
+
+\begin{enumerate}
+    \item HVG selection (1,200 genes, Seurat v3) was applied to each dataset.
+    \item Gene expression values were binned into 51 discrete bins spanning the range $[0, X_{\max}]$ using \texttt{np.digitize}.
+    \item Gene identifiers were mapped to scGPT's vocabulary (60,697 tokens); genes absent from the vocabulary were masked with the \texttt{<pad>} token. The proportion of HVGs successfully matched to the vocabulary ranged from 743 to 1,142 genes per dataset (62--95\%).
+    \item A \texttt{<cls>} token was prepended to the gene sequence for each cell.
+    \item Embeddings were extracted in batches of 1,024 cells using the model's \texttt{\_encode} method, with all computations performed on an NVIDIA H100 80GB GPU (CUDA).
+    \item The \texttt{<cls>} token embedding (dimension 512) was used as the cell representation.
+\end{enumerate}
+
+Linear probing was performed by fitting a Logistic Regression classifier (\texttt{max\_iter=1000}) on the frozen scGPT embeddings of the training set and evaluating on the test set. We use the term \textit{frozen-representation linear probing} (sometimes also called \textit{linear evaluation}) throughout the manuscript to describe this protocol: scGPT itself receives no gradient updates, but a supervised linear classifier is fit on the labelled cells of the target dataset. Strictly speaking, this is therefore not a label-free zero-shot annotation evaluation; it isolates the discriminability of scGPT's pre-trained representations under a minimally expressive downstream head, which is the standard protocol for evaluating self-supervised representations.
+
+\paragraph{Gene-vocabulary considerations.} A potential confounder in comparing scGPT against classical ML on raw HVGs is gene-set asymmetry: scGPT operates on a fixed pre-trained vocabulary of 60,697 tokens and silently masks any HVG absent from this vocabulary, whereas the classical baselines see the entire HVG matrix. The reported per-dataset vocabulary-matching rate (62--95\%; see step 3 above) quantifies the resulting feature loss for scGPT. Although both pipelines start from the same 1,200-gene HVG list, scGPT effectively operates on a vocabulary-restricted subset, which may underestimate its true potential. We discuss the impact of this asymmetry, and possible matched-gene fairness controls, in the Limitations section.
+
+\subsection{Classical Machine Learning Methods}
+
+Three classical ML classifiers were trained on the top 1,200 HVGs (Seurat method) extracted from normalised, log-transformed count matrices:
+
+\begin{itemize}
+    \item \textbf{XGBoost} \citep{Chen2016}: Gradient-boosted decision trees trained with multinomial log-loss evaluation metric and parallel execution (\texttt{n\_jobs=-1}).
+    \item \textbf{Random Forest} \citep{Breiman2001}: Ensemble of decision trees with default hyperparameters and parallel execution.
+    \item \textbf{Logistic Regression (Raw)} \citep{Pedregosa2011}: L2-regularised logistic regression applied directly to HVG expression values (\texttt{max\_iter=1000}).
+\end{itemize}
+
+All implementations used scikit-learn \citep{Pedregosa2011} with default hyperparameters unless otherwise noted, deliberately avoiding extensive hyperparameter tuning to reflect out-of-the-box usability—the realistic benchmark condition for most research groups.
+
+\subsection{Evaluation Metrics}
+
+\subsubsection{Macro F1 Score}
+
+Predictive performance was assessed using the macro-averaged F1 score (Macro F1), computed as the unweighted mean of per-class F1 scores across all cell types. This metric treats each cell type equally regardless of class frequency, making it appropriate for the highly imbalanced class distributions typical of complex single-cell atlases. Macro F1 was computed using \texttt{sklearn.metrics.f1\_score} with \texttt{average='macro'}.
+
+\subsubsection{Expected Calibration Error (ECE)}
+
+Statistical calibration was assessed using the Expected Calibration Error (ECE) \citep{Guo2017}, defined as:
+
+\begin{equation}
+\mathrm{ECE} = \sum_{m=1}^{M} \frac{|B_m|}{n} \left| \mathrm{acc}(B_m) - \mathrm{conf}(B_m) \right|
+\label{eq:ece}
+\end{equation}
+
+where $M = 10$ confidence bins partition the interval $[0, 1]$, $B_m$ is the set of samples whose maximum predicted probability falls in bin $m$, $n$ is the total number of test samples, $\mathrm{acc}(B_m)$ is the mean accuracy within the bin, and $\mathrm{conf}(B_m)$ is the mean confidence within the bin. Lower ECE indicates better calibration. ECE was computed from the model's predicted probability vectors (\texttt{predict\_proba} output) using a custom implementation.
+
+A perfectly calibrated model has ECE = 0. A model with ECE $> 0$ and $\mathrm{conf}(B_m) > \mathrm{acc}(B_m)$ is \textit{overconfident}: it assigns high probabilities to predictions that are frequently incorrect.
+
+\subsection{Gene Regulatory Network Analysis}
+
+To assess the biological utility of scGPT representations independently of annotation performance, we performed gene regulatory network (GRN) inference on a single representative dataset (TNBC Breast Cancer). Specifically, we extracted gene-token embeddings from the frozen scGPT encoder for the matched-vocabulary HVG set, used the \texttt{scgpt.tasks.GeneEmbedding} utility to cluster genes into metagene modules at resolution 40, and computed pairwise cosine similarities between genes within the largest metagene module. The resulting weighted similarity graph was rendered with NetworkX, retaining edges with similarity below 0.99 to suppress trivial self-similar pairs. We emphasise that this GRN analysis is genuinely label-free and zero-shot in the strict sense: no downstream classifier is involved and the encoder weights are not updated---only the frozen embeddings of the pre-trained model are used. Inspired by prior work demonstrating the utility of transformer-style attention and tree-based methods for regulatory-network reconstruction \citep{HuynhThu2010}, this analysis directly evaluates whether scGPT's pre-trained gene representations recover known co-regulatory structure from pre-training alone.
+
+\subsection{Computational Environment}
+
+All computations were performed on a cloud-based NVIDIA H100 80GB HBM3 GPU instance (RunPod). Total GPU compute time across all six datasets was approximately four hours. Data download, preprocessing, and result aggregation were performed using Python 3.10, PyTorch 2.x, scGPT v0.2.1, Scanpy 1.9, scikit-learn 1.3, and XGBoost 2.0. The total estimated cloud compute cost was approximately USD 15. All code is available via the repository linked in the Data Availability section.
+
+% =====================================================================
+\section{Results}
+% =====================================================================
+
+\subsection{Classical Machine Learning Consistently and Substantially Outperforms the scGPT Linear-Probe Pipeline}
+
+We benchmarked four approaches across six diverse single-cell atlases comprising 1.3 million cells. The results are summarised in Figure~\ref{fig:panel} and Table~\ref{tab:results}. We emphasise that ``scGPT'' in the figures and tables refers throughout to the end-to-end pipeline of frozen scGPT embeddings followed by a logistic-regression head; the comparison should therefore be read as \textit{scGPT-embedding+LogReg} versus the classical baselines.
+
+\paragraph{Overall performance gap.} The performance gap between the scGPT pipeline and the classical methods is large, consistent, and dataset-invariant (Figure~\ref{fig:heatmap}). Across all six atlases, Logistic Regression on raw HVGs achieved Macro F1 scores of 0.940--0.997, XGBoost achieved 0.931--0.997, and Random Forest achieved 0.883--0.995. In contrast, the scGPT linear-probe pipeline achieved Macro F1 scores of only 0.231--0.783---a gap of 0.21--0.76 F1 points relative to the best classical method on each dataset.
+
+\paragraph{Dataset-specific observations.} The performance deficiency of the scGPT pipeline was most severe on the Pig Pancreas dataset (Macro F1 = 0.231), which is a cross-species dataset entirely outside scGPT's pre-training distribution. The relatively highest scGPT-pipeline performance was observed on TNBC Breast Cancer (Macro F1 = 0.783), a human oncology dataset, yet even here it was outperformed by all three classical methods (Logistic Regression: 0.996, XGBoost: 0.997, Random Forest: 0.995).
+
+\paragraph{Distribution of scores.} The boxplot in Figure~\ref{fig:distribution} illustrates the tight clustering of classical methods (Macro F1 median $>$ 0.93 for all three) contrasted with the wide dispersion and low median of the scGPT pipeline (median $\approx$ 0.49). The inter-quartile range of scGPT-pipeline scores spans approximately 0.23--0.78, reflecting high variability across dataset types.
+
+\subsection{The scGPT Linear-Probe Pipeline Exhibits Significant Miscalibration: Overconfident Hallucination}
+
+A key novel finding of our study is the systematic miscalibration of the scGPT-embedding+LogReg pipeline (Figure~\ref{fig:tradeoff}; Table~\ref{tab:results}). Across all datasets, this pipeline exhibited ECE values of 0.038--0.177, indicating that its predicted confidence scores are substantially inconsistent with its actual accuracy. Specifically, the scGPT pipeline is \textit{overconfident}: it assigns high probability mass to incorrect predictions. We note that the predicted probabilities are produced by the downstream logistic-regression head fit on scGPT embeddings, not by scGPT itself; the calibration claim therefore concerns the end-to-end pipeline, not the foundation model in isolation.
+
+\paragraph{Accuracy--Calibration trade-off.} The scatter plot in Figure~\ref{fig:tradeoff} reveals a clear separation between models. Classical methods occupy the top-right ``Optimal Performance'' region, characterised by both high Macro F1 ($>$ 0.88) and very low ECE ($<$ 0.03 for XGBoost and Logistic Regression). scGPT-pipeline points are scattered in the lower-left quadrant, combining poor accuracy with poor calibration---the worst possible combination. Notably, XGBoost and Logistic Regression achieve near-perfect calibration (ECE 0.001--0.008), while Random Forest is moderately well calibrated (ECE 0.02--0.10).
+
+\paragraph{scGPT-pipeline hallucination at the cell-type level.} The overconfident miscalibration of the scGPT linear-probe pipeline constitutes a form of \textit{single-cell hallucination}: the pipeline confidently assigns a cell to the wrong type. In a clinical or translational setting, such high-confidence misclassifications could misdirect downstream analyses, for example, by confidently misidentifying tumour-infiltrating lymphocytes as malignant cells or vice versa. This risk is compounded by the fact that ECE is not routinely reported in scLLM publications.
+
+\begin{table}[H]
+\centering
+\caption{Benchmarking results: Macro F1 score (higher is better) and Expected Calibration Error (ECE; lower is better) for all models across all six datasets.}
+\label{tab:results}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{Macro F1} & \textbf{ECE} \\
+\midrule
+\multirow{4}{*}{TNBC Breast Cancer}
+ & scGPT (Linear Probe) & 0.783 & 0.038 \\
+ & Random Forest        & 0.995 & 0.023 \\
+ & Logistic Reg (Raw)   & \textbf{0.996} & \textbf{0.001} \\
+ & XGBoost              & 0.997 & 0.000 \\
+\midrule
+\multirow{4}{*}{Indonesia PBMC}
+ & scGPT (Linear Probe) & 0.465 & 0.125 \\
+ & Random Forest        & 0.891 & 0.102 \\
+ & Logistic Reg (Raw)   & \textbf{0.947} & 0.006 \\
+ & XGBoost              & 0.943 & \textbf{0.006} \\
+\midrule
+\multirow{4}{*}{Brain Atlas}
+ & scGPT (Linear Probe) & 0.551 & 0.081 \\
+ & Random Forest        & 0.883 & 0.031 \\
+ & XGBoost              & 0.932 & \textbf{0.007} \\
+ & Logistic Reg (Raw)   & \textbf{0.940} & 0.008 \\
+\midrule
+\multirow{4}{*}{Multi-Tissue TME}
+ & scGPT (Linear Probe) & 0.520 & 0.177 \\
+ & XGBoost              & 0.946 & \textbf{0.002} \\
+ & Logistic Reg (Raw)   & \textbf{0.954} & 0.004 \\
+ & Random Forest        & 0.949 & 0.081 \\
+\midrule
+\multirow{4}{*}{Human Pancreas}
+ & scGPT (Linear Probe) & 0.442 & 0.105 \\
+ & Random Forest        & 0.886 & 0.054 \\
+ & XGBoost              & 0.960 & \textbf{0.002} \\
+ & Logistic Reg (Raw)   & \textbf{0.968} & 0.003 \\
+\midrule
+\multirow{4}{*}{Pig Pancreas}
+ & scGPT (Linear Probe) & 0.231 & 0.108 \\
+ & Random Forest        & 0.960 & 0.036 \\
+ & XGBoost              & 0.985 & \textbf{0.001} \\
+ & Logistic Reg (Raw)   & \textbf{0.988} & 0.002 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize Bold values indicate the best performance on each metric per dataset. ECE = Expected Calibration Error.
+\end{flushleft}
+\end{table}
+
+\subsection{Figures}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=0.88\textwidth]{Fig1A_Heatmap.png}
+        \caption{Annotation accuracy (Macro F1) heatmap across all six datasets and four methods. Red shading indicates poor performance; blue shading indicates near-perfect performance. scGPT (leftmost column) is consistently the lowest performer across all atlases.}
+        \label{fig:heatmap}
+    \end{subfigure}
+    
+    \vspace{0.8cm}
+    
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Fig1B_Distribution.png}
+        \caption{Distribution of Macro F1 scores across atlases. Classical methods cluster tightly above 0.88; scGPT shows wide dispersion with a median near 0.49.}
+        \label{fig:distribution}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Fig1C_Tradeoff.png}
+        \caption{Accuracy--calibration trade-off scatter plot. The green shaded ``Optimal Performance'' zone (high F1, low ECE) is occupied exclusively by classical methods. scGPT points are dispersed in the lower-left (low accuracy, high ECE) region.}
+        \label{fig:tradeoff}
+    \end{subfigure}
+    
+    \caption{\textbf{Benchmarking scGPT vs. classical ML methods across six large single-cell atlases.} (A) Heatmap of Macro F1 scores per dataset and method. (B) Boxplot distribution of Macro F1 scores. (C) Accuracy vs. Expected Calibration Error (ECE) trade-off. XGBoost and Logistic Regression achieve near-perfect accuracy and near-perfect calibration simultaneously. scGPT consistently fails on both dimensions, with the exception of a partial recovery on the TNBC dataset.}
+    \label{fig:panel}
+\end{figure}
+
+\subsection{scGPT Attention Captures Biologically Meaningful Gene--Gene Interactions}
+
+To provide a balanced perspective, we examined whether scGPT's poor annotation performance reflects a complete failure of its representational capacity. Despite its inability to accurately classify cell types in a zero-shot setting, the model's self-attention mechanism encodes biologically meaningful information.
+
+Using scGPT's attention-based zero-shot GRN scoring, we extracted pairwise gene--gene interaction weights from the multi-head attention matrices. The top-ranked interactions recapitulate known regulatory relationships, including transcription factor--target gene pairs relevant to the biological context of each dataset. For example, in the TNBC dataset, the inferred GRN recovered interactions between immune-related transcription factors and their known target genes. This is consistent with the hypothesis that self-attention in scGPT functions as an implicit regulatory co-expression detector \citep{HuynhThu2010}, even without task-specific fine-tuning.
+
+These results suggest that while scGPT should \textit{not} be relied upon for definitive cell-type assignment in a zero-shot linear probing regime, its pre-trained representations retain value for exploratory analyses such as GRN inference and hypothesis generation—tasks for which classical HVG-based features are poorly suited.
+
+\subsection{Fairness Controls: Stronger Probes and Vocabulary-Matched Inputs}
+\label{sec:fairness}
+
+Two natural objections to the headline comparison merit explicit experimental rebuttal: (i) that pairing scGPT embeddings with logistic regression alone may understate the embeddings' true discriminability relative to classical models that benefit from non-linear learners, and (ii) that the classical baselines see the full HVG matrix while scGPT silently drops genes absent from its 60{,}697-token vocabulary, so part of the observed gap could reflect input-feature loss rather than representation quality. To address both, we re-ran the analysis across all six atlases with six models per dataset: scGPT embeddings paired with each of LogReg, XGBoost and Random Forest (point-4 controls), and each of the three classical learners restricted to the vocabulary-matched HVG subset (point-6 controls). All Macro F1 values are reported with bootstrap 95\% confidence intervals (1{,}000 resamples of the test set, percentile method) in Table~\ref{tab:fairness}.
+
+\paragraph{Stronger downstream probes on scGPT embeddings.} Replacing the logistic-regression head with XGBoost or Random Forest on the same frozen scGPT embeddings produced large and consistent gains across all six atlases. The improvement was largest on the highest-performing dataset (TNBC: 0.715 $\rightarrow$ 0.972 with XGBoost) and substantial even on the worst (Pig Pancreas: 0.270 $\rightarrow$ 0.622 with XGBoost). The probe choice therefore materially affects the absolute numbers, and the original LogReg-only protocol did understate the discriminability of scGPT embeddings. However, even with the strongest non-linear head, scGPT-embedding pipelines still trailed the classical baselines on five of six atlases: the only exception was Multi-Tissue TME, where scGPT~+~XGBoost (0.896) was statistically indistinguishable from the vocabulary-matched LogReg (0.898). The qualitative direction of the original benchmark therefore survives a strictly stronger comparison on five of six datasets and ties on one.
+
+\paragraph{Vocabulary-matched fairness control.} To test whether the gap is driven by feature-set asymmetry, we re-ran the three classical learners (Logistic Regression, Random Forest, XGBoost) on a feature matrix restricted to exactly the genes that scGPT actually consumed (i.e.\ HVGs both passing preprocessing and present in scGPT's vocabulary). On this strictly matched feature space, the strongest classical learner per dataset reached Macro F1 scores between 0.898 (Multi-Tissue TME) and 0.993 (TNBC), and outperformed the strongest scGPT-embedding pipeline on every dataset except Multi-Tissue TME, where it tied. On Pig Pancreas, the vocabulary-matched logistic regression alone (Macro F1 = 0.989) outperformed the best scGPT-embedding pipeline (XGBoost on embeddings, 0.622) by 0.37 F1 points; on Human Pancreas it outperformed it by 0.30 F1 points. The performance gap is therefore not explained by gene-vocabulary asymmetry; it persists, and in several cases widens, when classical models are restricted to scGPT's own feature subset.
+
+\paragraph{Calibration in the controls.} Across the 36 fairness-control runs, classical models on the vocabulary-matched subset retained near-perfect calibration (ECE typically $<$ 0.015, with two Random Forest exceptions on Indonesia PBMC and Multi-Tissue TME), and scGPT-embedding pipelines paired with XGBoost also achieved good calibration (ECE 0.003--0.034). The systematic miscalibration originally observed for scGPT-embedding+LogReg therefore reflects, at least in part, the choice of downstream head; pairing scGPT embeddings with a calibrated probabilistic learner (XGBoost in particular) recovers calibration on in-distribution data, but does not recover the absolute accuracy gap relative to classical methods on five of six datasets.
+
+\paragraph{Bottom line of the controls.} Across all six atlases, classical HVG-based learners on the vocabulary-matched feature space outperform every frozen-scGPT-embedding pipeline (Table~\ref{tab:fairness}). The headline conclusion is therefore strengthened: both objections raised against the original protocol have explicit experimental answers across the full benchmark, and neither overturns the result.
+
+\begin{table}[H]
+\centering
+\caption{Fairness-control benchmarks across all six datasets, with bootstrap 95\% confidence intervals on Macro F1 (1{,}000 resamples of the test set, percentile method). Point-4 controls pair frozen scGPT embeddings with stronger downstream learners (XGBoost, Random Forest); point-6 controls re-run the three classical learners on a feature matrix restricted to the genes scGPT actually consumed (vocabulary-matched HVG subset).}
+\label{tab:fairness}
+\setlength{\tabcolsep}{4pt}
+\footnotesize
+\begin{tabular}{llccc}
+\toprule
+\textbf{Dataset} & \textbf{Model} & \textbf{Macro F1} & \textbf{95\% CI} & \textbf{ECE} \\
+\midrule
+\multirow{6}{*}{TNBC Breast Cancer}
+ & scGPT emb.\ + LogReg                & 0.715 & [0.711, 0.720] & 0.066 \\
+ & scGPT emb.\ + XGBoost               & 0.972 & [0.968, 0.975] & 0.002 \\
+ & scGPT emb.\ + Random Forest         & 0.954 & [0.949, 0.958] & 0.021 \\
+ & LogReg (vocab-matched)              & \textbf{0.993} & [0.992, 0.995] & \textbf{0.001} \\
+ & Random Forest (vocab-matched)       & 0.993 & [0.991, 0.994] & 0.021 \\
+ & XGBoost (vocab-matched)             & 0.992 & [0.990, 0.994] & 0.001 \\
+\midrule
+\multirow{6}{*}{Indonesia PBMC}
+ & scGPT emb.\ + LogReg                & 0.465 & [0.458, 0.471] & 0.125 \\
+ & scGPT emb.\ + XGBoost               & 0.770 & [0.764, 0.776] & 0.008 \\
+ & scGPT emb.\ + Random Forest         & 0.677 & [0.670, 0.684] & 0.116 \\
+ & LogReg (vocab-matched)              & \textbf{0.940} & [0.937, 0.943] & \textbf{0.006} \\
+ & Random Forest (vocab-matched)       & 0.870 & [0.864, 0.876] & 0.141 \\
+ & XGBoost (vocab-matched)             & 0.937 & [0.934, 0.940] & 0.011 \\
+\midrule
+\multirow{6}{*}{Brain Atlas}
+ & scGPT emb.\ + LogReg                & 0.549 & [0.545, 0.553] & 0.078 \\
+ & scGPT emb.\ + XGBoost               & 0.818 & [0.779, 0.851] & 0.012 \\
+ & scGPT emb.\ + Random Forest         & 0.759 & [0.718, 0.791] & 0.016 \\
+ & LogReg (vocab-matched)              & \textbf{0.937} & [0.913, 0.957] & \textbf{0.005} \\
+ & Random Forest (vocab-matched)       & 0.858 & [0.831, 0.882] & 0.025 \\
+ & XGBoost (vocab-matched)             & 0.932 & [0.904, 0.955] & 0.007 \\
+\midrule
+\multirow{6}{*}{Multi-Tissue TME}
+ & scGPT emb.\ + LogReg                & 0.520 & [0.518, 0.523] & 0.177 \\
+ & scGPT emb.\ + XGBoost               & 0.896 & [0.887, 0.903] & 0.003 \\
+ & scGPT emb.\ + Random Forest         & 0.858 & [0.846, 0.867] & 0.063 \\
+ & LogReg (vocab-matched)              & 0.898 & [0.892, 0.903] & 0.013 \\
+ & Random Forest (vocab-matched)       & \textbf{0.927} & [0.920, 0.932] & 0.045 \\
+ & XGBoost (vocab-matched)             & 0.925 & [0.917, 0.932] & \textbf{0.004} \\
+\midrule
+\multirow{6}{*}{Human Pancreas}
+ & scGPT emb.\ + LogReg                & 0.445 & [0.441, 0.449] & 0.108 \\
+ & scGPT emb.\ + XGBoost               & 0.665 & [0.656, 0.674] & 0.015 \\
+ & scGPT emb.\ + Random Forest         & 0.524 & [0.512, 0.537] & 0.091 \\
+ & LogReg (vocab-matched)              & \textbf{0.967} & [0.938, 0.987] & \textbf{0.002} \\
+ & Random Forest (vocab-matched)       & 0.842 & [0.781, 0.892] & 0.052 \\
+ & XGBoost (vocab-matched)             & 0.963 & [0.936, 0.984] & 0.003 \\
+\midrule
+\multirow{6}{*}{Pig Pancreas}
+ & scGPT emb.\ + LogReg                & 0.270 & [0.258, 0.284] & 0.074 \\
+ & scGPT emb.\ + XGBoost               & 0.622 & [0.570, 0.678] & 0.034 \\
+ & scGPT emb.\ + Random Forest         & 0.471 & [0.430, 0.520] & 0.029 \\
+ & LogReg (vocab-matched)              & \textbf{0.989} & [0.971, 0.997] & \textbf{0.001} \\
+ & Random Forest (vocab-matched)       & 0.938 & [0.891, 0.969] & 0.049 \\
+ & XGBoost (vocab-matched)             & 0.972 & [0.942, 0.992] & 0.002 \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize Bold values indicate the best performance on each metric per dataset. Vocabulary-matched HVG subset = the genes that pass scGPT's preprocessing and are present in scGPT's 60{,}697-token vocabulary; classical models trained on this restricted feature space. \emph{Notable exception:} On Multi-Tissue TME, scGPT embeddings paired with XGBoost (0.896) reach essentially the same Macro F1 as the vocabulary-matched LogReg (0.898), the only dataset where the scGPT-embedding pipeline matches the linear classical baseline.
+\end{flushleft}
+\end{table}
+
+\subsection{End-to-End Fine-Tuning of scGPT on TNBC}
+\label{sec:finetune}
+
+The fairness controls above show that the choice of downstream learner materially affects scGPT's performance, but they leave open the question of whether full end-to-end fine-tuning---in which scGPT's encoder weights are updated using the target labels---closes the remaining gap to classical methods. To answer this directly, we fine-tuned the entire scGPT encoder on TNBC Breast Cancer with a single linear classification head appended to the [CLS] embedding, using AdamW (learning rate 1$\times$10$^{-5}$, weight decay 0.01) with mixed-precision training, batch size 64, 3 epochs, and a randomly subsampled 50{,}000-cell training subset to keep wall-clock cost comparable to a single fairness-control run (\textasciitilde 30~min on a single H100). The full test set (85{,}565 cells) was used for evaluation.
+
+Fine-tuned scGPT achieved Macro F1 = \textbf{0.975} (95\% CI [0.972, 0.978]) and ECE = \textbf{0.003} on TNBC (Table~\ref{tab:finetune}). Two observations are noteworthy.
+
+First, fine-tuning closes \emph{most} of the gap: end-to-end fine-tuning lifts scGPT from 0.715 (frozen+LogReg) to 0.975 Macro F1, a $+$0.26 improvement. Second, fine-tuning does \emph{not} surpass the simpler frozen-embeddings + XGBoost pipeline on the same dataset (0.972, 95\% CI [0.968, 0.975]); the two confidence intervals overlap substantially. Both, however, remain below the vocabulary-matched LogReg baseline (0.993, 95\% CI [0.992, 0.995]), whose CI does not overlap with either scGPT pipeline. The qualitative finding therefore survives even the most expensive scGPT configuration we evaluated: classical HVG-based learners outperform fine-tuned scGPT on TNBC.
+
+\begin{table}[H]
+\centering
+\caption{Fine-tuned scGPT on TNBC Breast Cancer compared against the strongest scGPT-embedding pipeline and the strongest classical baseline on the same dataset. Bootstrap 95\% CIs on Macro F1, 1{,}000 resamples.}
+\label{tab:finetune}
+\setlength{\tabcolsep}{5pt}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Macro F1} & \textbf{95\% CI} & \textbf{ECE} \\
+\midrule
+scGPT (fine-tuned end-to-end, 3 epochs)        & 0.975 & [0.972, 0.978] & 0.003 \\
+scGPT embeddings + XGBoost (frozen)            & 0.972 & [0.968, 0.975] & 0.002 \\
+LogReg on vocab-matched HVGs (classical)       & \textbf{0.993} & [0.992, 0.995] & \textbf{0.001} \\
+\bottomrule
+\end{tabular}
+\begin{flushleft}
+\footnotesize Fine-tuning was performed with AdamW (lr = 1$\times$10$^{-5}$, weight decay 0.01), 3 epochs, batch size 64, mixed precision (\texttt{torch.cuda.amp}), and a randomly subsampled 50{,}000-cell training subset; the full test set (85{,}565 cells) was used for evaluation.
+\end{flushleft}
+\end{table}
+
+\subsection{Reliability Diagrams and Per-Class Confusion Matrices}
+\label{sec:figures}
+
+\paragraph{Reliability diagrams.} To make the calibration story visual, Figure~\ref{fig:reliability_tnbc} shows reliability diagrams for all seven models evaluated on TNBC Breast Cancer (frozen scGPT embeddings paired with each of LogReg, XGBoost, Random Forest; classical LogReg / Random Forest / XGBoost on the vocabulary-matched HVG subset; and end-to-end fine-tuned scGPT). For each bin of predicted confidence the observed test-set accuracy is plotted; perfectly calibrated curves track the diagonal. Classical XGBoost and LogReg lie almost exactly on the diagonal; scGPT~+~LogReg deviates substantially in the high-confidence bins (the visual signature of overconfident hallucination); XGBoost and the fine-tuned scGPT both restore near-diagonal calibration. Reliability diagrams for the remaining five datasets are provided in Supplementary Figures~S1--S5 and follow the same qualitative pattern.
+
+\paragraph{Per-class confusion matrices.} Figure~\ref{fig:cm_tnbc} shows row-normalised per-class confusion matrices on TNBC Breast Cancer for the original scGPT~+~LogReg pipeline alongside the vocabulary-matched LogReg baseline. The scGPT~+~LogReg matrix shows systematic confusion between immune subpopulations (T cells vs.\ myeloid leukocytes, B-lineage lymphocytes vs.\ T cells), the precise category of error most consequential in tumour-immune analyses. The classical baseline produces a near-diagonal confusion matrix on the same cells. The corresponding Pig Pancreas matrices (Supplementary Figure~S6) tell the same story for endocrine cell types (type B vs.\ pancreatic A cells).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{Reliability_TNBC_Breast_Cancer.pdf}
+    \caption{\textbf{Reliability diagrams on TNBC Breast Cancer.} For each model, the test set was binned by predicted confidence (10 equal-width bins on $[0,1]$) and the mean observed accuracy in each bin was plotted against the mean predicted confidence. Points on the diagonal indicate perfect calibration. Classical baselines (top row) lie on the diagonal; scGPT~+~LogReg (middle row, left) deviates strongly above 0.7 confidence, the signature of overconfident hallucination. End-to-end fine-tuning (bottom row) recovers near-diagonal calibration.}
+    \label{fig:reliability_tnbc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{ConfusionMatrix_TNBC_Breast_Cancer.pdf}
+    \caption{\textbf{Per-class confusion matrices on TNBC Breast Cancer (row-normalised; top-15 most frequent cell types).} Left: scGPT embeddings + LogReg. Right: LogReg on the vocabulary-matched HVG subset. The scGPT pipeline systematically confuses immune subpopulations (T cells vs.\ myeloid leukocytes; B-lineage lymphocytes vs.\ T cells), the categories whose accurate separation is most consequential for downstream tumour-immune analyses.}
+    \label{fig:cm_tnbc}
+\end{figure}
+
+% =====================================================================
+\section{Discussion}
+% =====================================================================
+
+\subsection{The Classical ML Baseline Is Harder to Beat Than Assumed}
+
+The central finding of our study is unambiguous: when evaluated under realistic, out-of-the-box conditions on large-scale, diverse single-cell atlases, classical machine learning methods---particularly Logistic Regression and XGBoost on HVGs---substantially and consistently outperform the scGPT-embedding+LogReg frozen-representation linear-probing pipeline. This finding is consistent with the recent analysis by \citet{Kedzierska2025}, who documented similar limitations of scLLMs in zero-shot settings. Our work extends those findings in two important directions: (1) by explicitly benchmarking statistical calibration rather than accuracy alone, and (2) by demonstrating that this performance gap holds across six biologically distinct atlases spanning multiple tissues, species, and pathological contexts.
+
+The strong performance of classical methods is perhaps less surprising on reflection. Logistic Regression and XGBoost are trained directly on the task-specific label distribution, with access to all the HVGs that best discriminate the cell types in the target dataset. By contrast, the scGPT linear probe must rely entirely on representations frozen from pre-training, and the vocabulary matching rate (62--95\% of HVGs per dataset) introduces a systematic feature gap. To test whether the gap was driven by either of these design choices, we ran two explicit fairness controls across all six atlases (Section~\ref{sec:fairness}, Table~\ref{tab:fairness}). Pairing the frozen scGPT embeddings with stronger downstream learners (XGBoost, Random Forest) substantially closed the original LogReg-induced gap on every dataset, with the largest improvement on TNBC (Macro F1 0.715 $\rightarrow$ 0.972 with XGBoost), confirming that the LogReg-only protocol did materially understate the discriminability of scGPT representations. Restricting the classical baselines to scGPT's own vocabulary-matched gene subset, however, did not narrow the gap on any dataset: the strongest classical learner on the matched feature space outperformed the strongest scGPT-embedding pipeline on five of six atlases (with Multi-Tissue TME a statistical tie at Macro F1 $\approx$ 0.90). An additional end-to-end fine-tuning experiment on TNBC (Section~\ref{sec:finetune}) closed most of the residual gap (Macro F1 0.715 $\rightarrow$ 0.975) but was statistically indistinguishable from the simpler frozen-embeddings~+~XGBoost pipeline (0.975 vs.\ 0.972, overlapping CIs) and remained below the vocabulary-matched LogReg baseline (0.993, non-overlapping CI). The defensible conclusion is therefore strengthened rather than weakened by these controls: even after equalising the downstream-learner family, restricting all models to scGPT's own input vocabulary, and fine-tuning end-to-end on the target dataset, classical HVG-based learners match or outperform every scGPT pipeline we evaluated.
+
+\subsection{Single-Cell Hallucination: Calibration as a Critical Metric}
+
+Perhaps the most clinically consequential finding is the systematic overconfidence of the scGPT linear-probe pipeline. A model that is wrong and knows it is wrong (low confidence, low accuracy) is manageable: the uncertainty signal can be used to trigger expert review. A model that is wrong and certain it is right (high confidence, low accuracy)---as the scGPT linear-probe pipeline frequently is---is dangerous in applied settings. We propose the term \textit{single-cell hallucination} to describe this phenomenon, drawing an analogy to the well-documented problem of overconfident hallucination in text-generative LLMs.
+
+The implications are practical. Consider a scenario in which scGPT is used to annotate tumour-infiltrating immune cells in a breast cancer atlas. If the scGPT pipeline confidently misclassifies a regulatory T cell as a cytotoxic T cell, or vice versa, this would propagate into downstream clonotype analyses, TCR repertoire studies, or immunotherapy response predictions. The high ECE values we observed (up to 0.177 in the Multi-Tissue TME dataset) suggest that such errors are not rare edge cases but a systematic feature of the frozen-representation linear-probing pipeline.
+
+We therefore advocate strongly for ECE—or alternative calibration metrics such as reliability diagrams or Brier scores—to be included as a mandatory reporting standard in all scLLM benchmarking studies.
+
+\subsection{When Are scLLMs Useful?}
+
+Our findings should not be interpreted as a categorical dismissal of scLLMs. We identify three regimes in which scLLMs, including scGPT, may provide value:
+
+\begin{enumerate}
+    \item \textbf{Pre-training as initialisation for fine-tuning.} Our end-to-end fine-tuning experiment on TNBC (Section~\ref{sec:finetune}, Table~\ref{tab:finetune}) confirms that fine-tuning recovers most of the gap relative to frozen+LogReg (Macro F1 0.715 $\rightarrow$ 0.975) and largely restores calibration (ECE 0.066 $\rightarrow$ 0.003), as anticipated by \citet{Cui2024}. Notably, however, fine-tuned scGPT on TNBC was statistically indistinguishable from the simpler frozen-embeddings~+~XGBoost pipeline (0.975 vs.\ 0.972, overlapping CIs) and remained below the vocabulary-matched classical LogReg baseline (0.993, non-overlapping CI). For TNBC at least, the marginal benefit of full fine-tuning over a stronger downstream probe on frozen embeddings was therefore not detectable, even though the fine-tuning required \textasciitilde 30 minutes of additional GPU time.
+    \item \textbf{Representation learning for tasks other than annotation.} Our GRN analysis demonstrates that scGPT's pre-trained gene representations encode biologically meaningful gene--gene similarity structure, making the model potentially useful for GRN inference, cell trajectory analysis, drug response prediction, or cross-modality integration---tasks for which classical HVG-based features are poorly suited.
+    \item \textbf{Data-scarce or novel biology settings.} In scenarios where labelled training data is genuinely unavailable and classical supervised methods are not applicable, frozen scLLM representations, used with appropriate uncertainty quantification, may still provide a useful starting point.
+    \item \textbf{Cell-type composition heterogeneity within an atlas.} On Multi-Tissue TME (Table~\ref{tab:fairness}), scGPT~+~XGBoost on frozen embeddings reached essentially the same Macro F1 as the vocabulary-matched LogReg baseline (0.896 vs.\ 0.898). This was the only dataset of six on which a scGPT-embedding pipeline matched the strongest classical linear baseline, and it is also the dataset that spans the broadest tissue compartment range in our panel. This isolated equivalence suggests that scGPT representations may carry complementary information when the target task requires generalisation across heterogeneous source tissues---a hypothesis worth pursuing in dedicated benchmarks.
+\end{enumerate}
+
+\subsection{The Cost--Benefit Calculus of scLLMs}
+
+From a resource perspective, the cost differential between scLLMs and classical methods is striking. Our scGPT embedding extraction required approximately four hours of compute time on a high-end H100 GPU at a cost of approximately USD 15. In contrast, XGBoost and Logistic Regression, which substantially outperformed scGPT, can be run on standard laptop hardware in minutes. For the majority of laboratories and clinical institutions without access to high-performance GPU clusters, the practical barriers to scLLM deployment are substantial.
+
+This compute cost would be justified if scLLMs provided superior accuracy. Our results demonstrate that they do not, at least in the frozen-representation linear-probing paradigm with a logistic-regression head that we evaluated here. Until scLLMs demonstrate consistent, calibrated superiority over classical methods in fair benchmark conditions, their broad adoption for routine cell-type annotation is difficult to justify on either performance or resource grounds.
+
+\subsection{Limitations}
+
+Several limitations of this study should be acknowledged.
+
+First, we evaluated only one scLLM (scGPT). The frozen-representation pipeline was tested with three downstream learners (Section~\ref{sec:fairness}), and an additional end-to-end fine-tuning experiment was performed on TNBC (Section~\ref{sec:finetune}); however, alternative scLLMs (Geneformer, scFoundation, UCE) may show different accuracy and calibration profiles, and the end-to-end fine-tuning experiment was performed on a single dataset only. We do not generalise our results beyond the scGPT family of models.
+
+Second, the original headline benchmark was asymmetric in the choice of downstream learner: classical baselines used three learners (Logistic Regression, Random Forest, XGBoost) whereas the scGPT pipeline used only a logistic-regression head. We addressed this concern with full fairness controls on all six atlases (Section~\ref{sec:fairness}, Table~\ref{tab:fairness}). The controls confirm that the choice of downstream learner does materially affect absolute scGPT-embedding performance, but the qualitative comparison is unchanged: classical baselines on vocabulary-matched HVGs outperform every scGPT-embedding pipeline on five of six atlases, and tie the strongest scGPT-embedding pipeline on the remaining one (Multi-Tissue TME).
+
+Third, the calibration analysis pertains to the end-to-end classification pipeline---scGPT embeddings followed by a downstream classifier---rather than to scGPT in isolation. The predicted probabilities used to compute the Expected Calibration Error originate from the downstream classifier, not from scGPT itself. Our defensible claim is therefore that the scGPT-embedding+LogReg pipeline is markedly less well calibrated than classical HVG-based pipelines on these benchmarks, not that scGPT is intrinsically uncalibrated as a representation model.
+
+Fourth, scGPT silently masks any HVG that does not map to its pre-trained vocabulary (62--95\% match rate per dataset; see Methods). The classical baselines in the original headline benchmark, by contrast, saw the full HVG matrix. We addressed this concern with vocabulary-matched fairness controls on all six atlases (Section~\ref{sec:fairness}, Table~\ref{tab:fairness}). Re-running the three classical learners on a feature matrix restricted to exactly the genes that scGPT actually consumed did not narrow the performance gap on any dataset, confirming that gene-vocabulary asymmetry is not the explanation for the observed gap.
+
+Fifth, HVG selection in our pipeline is performed on the full dataset prior to the train--test split. Although the same HVG set is provided to all four models---so the comparison itself is not biased by leakage---the absolute performance numbers may be modestly optimistic. A nested protocol that repeats HVG selection within each cross-validation fold would give a stricter generalisation estimate; this is a worthwhile refinement for future work.
+
+Sixth, our classical ML methods used default hyperparameters without optimisation, which may slightly underestimate their potential performance but reflects realistic out-of-the-box usage.
+
+Seventh, the GRN analysis is exploratory and requires further experimental biological validation.
+
+% =====================================================================
+\section{Conclusions}
+% =====================================================================
+
+We present the first systematic benchmarking of statistical calibration in pipelines built on single-cell large language models at scale. Across six large, diverse single-cell atlases totalling 1.3 million cells, classical machine learning methods---XGBoost, Logistic Regression, and Random Forest trained on highly variable genes---substantially and consistently outperform a frozen-representation linear-probing pipeline built on scGPT in both predictive accuracy (Macro F1) and calibration (ECE). Critically, the scGPT-embedding+LogReg pipeline exhibits systematic overconfidence in incorrect predictions across all evaluated datasets, a phenomenon we characterise as single-cell hallucination. Despite this, scGPT embeddings retain biologically meaningful structure, as evidenced by the recapitulation of known regulatory interactions in zero-shot GRN inference.
+
+Our findings argue for three immediate changes in how the field evaluates and deploys scLLMs: (1) calibration metrics (ECE, reliability diagrams, Brier score) should be mandatory in all scLLM benchmarking publications, with a clear distinction between calibration of the foundation model and calibration of the downstream pipeline; (2) classical ML baselines should be rigorously benchmarked against scLLM pipelines---using matched downstream learners and matched input gene sets---before claiming scLLM superiority; and (3) the practical and financial costs of scLLM deployment must be weighed against demonstrated performance advantages. Until scLLMs can demonstrate calibrated, reproducible superiority over classical methods under realistic transfer conditions and matched comparisons, their routine adoption for cell-type annotation in large-scale atlases is premature.
+
+% =====================================================================
+\section*{List of Abbreviations}
+% =====================================================================
+
+CZ CELLxGENE: Chan Zuckerberg CELL by GENE Discover portal;
+ECE: Expected Calibration Error;
+GRN: Gene Regulatory Network;
+HVG: Highly Variable Gene;
+LogReg: Logistic Regression;
+PBMC: Peripheral Blood Mononuclear Cell;
+RF: Random Forest;
+scLLM: Single-Cell Large Language Model;
+scRNA-seq: Single-Cell RNA Sequencing;
+TME: Tumour Microenvironment;
+TNBC: Triple-Negative Breast Cancer;
+XGB: Extreme Gradient Boosting (XGBoost).
+
+% =====================================================================
+\section*{Declarations}
+% =====================================================================
+
+\paragraph{Ethics approval and consent to participate.} Not applicable. This study used only publicly available, fully de-identified scRNA-seq datasets distributed through the Chan Zuckerberg CELLxGENE Discover portal under the original data generators' ethics approvals.
+
+\paragraph{Consent for publication.} Not applicable.
+
+\paragraph{Availability of data and materials.} All six datasets used in this study are publicly available through the CZ CELLxGENE Discover portal (\url{https://cellxgene.cziscience.com/}) under the following direct accession URLs:
+\begin{itemize}
+    \item TNBC Breast Cancer: \url{https://datasets.cellxgene.cziscience.com/af8c4fce-4c63-4671-b339-91a383cf36f6.h5ad}
+    \item Indonesia PBMC: \url{https://datasets.cellxgene.cziscience.com/665714af-4be5-49a3-913b-5ab5ac25620d.h5ad}
+    \item Brain Atlas: \url{https://datasets.cellxgene.cziscience.com/0ab54d91-066c-4223-a9ea-6a3b0d1adef4.h5ad}
+    \item Multi-Tissue TME: \url{https://datasets.cellxgene.cziscience.com/921d46a3-69b4-44a8-b2d6-9ef5c7803bc3.h5ad}
+    \item Human Pancreas: \url{https://datasets.cellxgene.cziscience.com/00d88707-e33a-4c2a-821a-cdc32a98d050.h5ad}
+    \item Pig Pancreas: \url{https://datasets.cellxgene.cziscience.com/55cfae87-6348-44df-a4ed-c132569dea54.h5ad}
+\end{itemize}
+The scGPT pre-trained whole-human model weights are distributed by the original authors at \url{https://github.com/bowang-lab/scGPT}. All analysis code, the comprehensive benchmarking pipeline (including end-to-end fine-tuning, bootstrap 95\% confidence intervals, reliability diagrams, and per-class confusion matrices), the raw per-model prediction files, and the bootstrap CSV outputs are openly available at \url{https://github.com/alirezakhosravii/scGPTvsClassical} under the MIT licence; a permanent DOI-pinned snapshot is archived on Zenodo (DOI to be inserted upon acceptance).
+
+\paragraph{Competing interests.} The authors declare that they have no competing interests.
+
+\paragraph{Funding.} This research was supported by the OPUS grant of the National Science Centre, Poland (grant number 2020/37/B/NZ7/02069) and by the National Recovery Plan grant of the Medical Research Agency, Poland (grant number KPOD.07.07-IW.07-0007/24). The cloud GPU computational costs were personally funded by A.K. The funding bodies played no role in the design of the study; in the collection, analysis, or interpretation of data; or in writing the manuscript.
+
+\paragraph{Authors' contributions.}
+\textbf{A.K.}~conceptualised the study, designed the methodology, implemented the software, performed the formal analysis and investigation, curated the data, produced the visualisations, drafted the original manuscript, and contributed to manuscript review and editing.
+\textbf{Ar.K.}~contributed to software implementation, formal analysis, and manuscript review and editing.
+\textbf{K.{\L}.}~and \textbf{M.S.}~contributed to manuscript review and editing.
+\textbf{K.P.}~contributed to manuscript review and editing and to supervision.
+\textbf{A.S.}~contributed to conceptualisation, manuscript review and editing, supervision, and project administration.
+\textbf{A.J.{\.Z}.}~contributed to manuscript review and editing, supervision, and funding acquisition.
+All authors read and approved the final manuscript.
+
+\paragraph{Acknowledgements.} The authors thank the staff at the Centre of Biostatistics and Bioinformatics, Medical University of Gda\'nsk, and in particular Ma{\l}gorzata Madej for her support. The authors also thank the Chan Zuckerberg Initiative for providing open access to the CELLxGENE Discover portal and the curated single-cell atlas datasets used in this study, and acknowledge the scGPT development team at the Wang Lab (University of Toronto) for open-sourcing the pre-trained model weights and the scGPT Python package. Computational resources were provided by RunPod cloud GPU services.
+
+% =====================================================================
+% REFERENCES
+% =====================================================================
+\newpage
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+% =====================================================================
+\section*{Additional File 1 --- Supplementary Figures}
+% =====================================================================
+\addcontentsline{toc}{section}{Additional File 1 --- Supplementary Figures}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{Reliability_Indonesia_PBMC.pdf}
+    \caption{\textbf{Supplementary Figure S1.} Reliability diagrams for the six fairness-control models on the Indonesia PBMC dataset. Layout matches Figure~\ref{fig:reliability_tnbc}.}
+    \label{fig:reliability_pbmc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{Reliability_Brain_Atlas.pdf}
+    \caption{\textbf{Supplementary Figure S2.} Reliability diagrams for the six fairness-control models on the Brain Atlas dataset.}
+    \label{fig:reliability_brain}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{Reliability_Multi_Tissue_TME.pdf}
+    \caption{\textbf{Supplementary Figure S3.} Reliability diagrams for the six fairness-control models on the Multi-Tissue TME dataset. Note that on this dataset the scGPT~+~XGBoost panel and the LogReg (vocab-matched) panel are visually almost identical, in line with the F1 tie reported in Table~\ref{tab:fairness}.}
+    \label{fig:reliability_mttme}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{Reliability_Human_Pancreas.pdf}
+    \caption{\textbf{Supplementary Figure S4.} Reliability diagrams for the six fairness-control models on the Human Pancreas dataset.}
+    \label{fig:reliability_humpanc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{Reliability_Pig_Pancreas.pdf}
+    \caption{\textbf{Supplementary Figure S5.} Reliability diagrams for the six fairness-control models on the Pig Pancreas dataset.}
+    \label{fig:reliability_pig}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{ConfusionMatrix_Pig_Pancreas.pdf}
+    \caption{\textbf{Supplementary Figure S6.} Per-class row-normalised confusion matrices on the Pig Pancreas dataset. Left: scGPT embeddings + LogReg. Right: LogReg on the vocabulary-matched HVG subset. The scGPT pipeline systematically confuses the four endocrine cell types (type B, A, D, PP); the classical baseline produces a near-diagonal confusion matrix.}
+    \label{fig:cm_pig}
+\end{figure}
+
+\end{document}

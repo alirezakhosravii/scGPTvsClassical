@@ -1,0 +1,302 @@
+% =====================================================================
+% REFERENCES — scLLM Calibration Benchmark Paper
+% Khosravi et al.
+% =====================================================================
+
+% ----- CORE scLLMs -----
+
+@article{Cui2024,
+  author    = {Cui, Haotian and Wang, Chloe and Maan, Hassaan and Pang, Kuan and Luo, Fengning and Duan, Nan and Wang, Bo},
+  title     = {{scGPT}: toward building a foundation model for single-cell multi-omics using generative {AI}},
+  journal   = {Nature Methods},
+  volume    = {21},
+  pages     = {1470--1480},
+  year      = {2024},
+  doi       = {10.1038/s41592-024-02201-0},
+  url       = {https://www.nature.com/articles/s41592-024-02201-0}
+}
+
+@article{Yang2022,
+  author    = {Yang, Fan and Wang, Wenchuan and Wang, Fang and Fang, Yuan and Tang, Duyu and Huang, Junzhou and Lu, Hui and Yao, Jianhua},
+  title     = {{scBERT} as a large-scale pretrained deep language model for cell type annotation of single-cell {RNA-seq} data},
+  journal   = {Nature Machine Intelligence},
+  volume    = {4},
+  pages     = {852--866},
+  year      = {2022},
+  doi       = {10.1038/s42256-022-00534-z},
+  url       = {https://www.nature.com/articles/s42256-022-00534-z}
+}
+
+@article{Theodoris2023,
+  author    = {Theodoris, Christina V. and Xiao, Ling and Chopra, Anant and Chaffin, Mark D. and Al Sayed, Ziad R. and Hill, Matthew C. and Mantineo, Helene and Brydon, Elizabeth M. and Zeng, Zexian and Liu, X. Shirley and Ellinor, Patrick T.},
+  title     = {Transfer learning enables predictions in network biology},
+  journal   = {Nature},
+  volume    = {618},
+  pages     = {616--624},
+  year      = {2023},
+  doi       = {10.1038/s41586-023-06139-9},
+  url       = {https://www.nature.com/articles/s41586-023-06139-9}
+}
+
+@article{Hao2024,
+  author    = {Hao, Minsheng and Gong, Jing and Zeng, Xin and Liu, Chengyu and Guo, Yucheng and Cheng, Xingyi and Wang, Taifeng and Ma, Jianzhu and Zhang, Xuegong and Song, Le},
+  title     = {Large-scale foundation model on single-cell transcriptomics},
+  journal   = {Nature Methods},
+  volume    = {21},
+  pages     = {1481--1491},
+  year      = {2024},
+  doi       = {10.1038/s41592-024-02305-7},
+  url       = {https://www.nature.com/articles/s41592-024-02305-7}
+}
+
+@article{Rosen2023,
+  author    = {Rosen, Yanay and Roohani, Yusuf and Agrawal, Ayush and Samotorcan, Leon and {Quake}, Stephen R. and Leskovec, Jure},
+  title     = {Universal Cell Embeddings: A Foundation Model for Cell Biology},
+  journal   = {bioRxiv},
+  year      = {2023},
+  doi       = {10.1101/2023.11.28.568918},
+  url       = {https://www.biorxiv.org/content/10.1101/2023.11.28.568918v2}
+}
+
+% ----- scRNA-seq TECHNOLOGY -----
+
+@article{Macosko2015,
+  author    = {Macosko, Evan Z. and Basu, Anindita and Satija, Rahul and Nemesh, James and Shekhar, Karthik and Goldman, Melissa and Tirosh, Itay and Bialas, Allison R. and Kamitaki, Nolan and Martersteck, Emily M. and Trombetta, John J. and Weitz, David A. and Sanes, Joshua R. and Shalek, Alex K. and Regev, Aviv and McCarroll, Steven A.},
+  title     = {Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets},
+  journal   = {Cell},
+  volume    = {161},
+  number    = {5},
+  pages     = {1202--1214},
+  year      = {2015},
+  doi       = {10.1016/j.cell.2015.05.002},
+  url       = {https://www.cell.com/fulltext/S0092-8674(15)00549-8}
+}
+
+@article{Zheng2017,
+  author    = {Zheng, Grace X. Y. and Terry, Jessica M. and Belgrader, Phillip and Ryvkin, Paul and Bent, Zachary W. and Wilson, Ryan and Ziraldo, Solongo B. and Wheeler, Tobias D. and McDermott, Geoff P. and Zhu, Junjie and Gregory, Mark T. and Shuga, Joe and Montesclaros, Luz and Underwood, Jason G. and Masquelier, Donald A. and Nishimura, Stefanie Y. and Schnall-Levin, Michael and Wyatt, Paul W. and Hindson, Christopher M. and Bharadwaj, Rajiv and Wong, Alexander and Ness, Kevin D. and Beppu, Lan W. and Deeg, H. Joachim and McFarland, Christopher and Loeb, Keith R. and Valente, William J. and Ericson, Nolan G. and Stevens, Emily A. and Radich, Jerald P. and Mikkelsen, Tarjei S. and Hindson, Benjamin J. and Bielas, Jason H.},
+  title     = {Massively parallel digital transcriptional profiling of single cells},
+  journal   = {Nature Communications},
+  volume    = {8},
+  pages     = {14049},
+  year      = {2017},
+  doi       = {10.1038/ncomms14049},
+  url       = {https://www.nature.com/articles/ncomms14049}
+}
+
+@article{Tanay2017,
+  author    = {Tanay, Amos and Regev, Aviv},
+  title     = {Scaling single-cell genomics from phenomenology to mechanism},
+  journal   = {Nature},
+  volume    = {541},
+  pages     = {331--338},
+  year      = {2017},
+  doi       = {10.1038/nature21350},
+  url       = {https://www.nature.com/articles/nature21350}
+}
+
+% ----- CLASSICAL ML -----
+
+@inproceedings{Chen2016,
+  author    = {Chen, Tianqi and Guestrin, Carlos},
+  title     = {{XGBoost}: A Scalable Tree Boosting System},
+  booktitle = {Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+  pages     = {785--794},
+  year      = {2016},
+  doi       = {10.1145/2939672.2939785},
+  url       = {https://arxiv.org/abs/1603.02754}
+}
+
+@article{Breiman2001,
+  author    = {Breiman, Leo},
+  title     = {Random Forests},
+  journal   = {Machine Learning},
+  volume    = {45},
+  pages     = {5--32},
+  year      = {2001},
+  doi       = {10.1023/A:1010933404324},
+  url       = {https://link.springer.com/article/10.1023/A:1010933404324}
+}
+
+@article{Pedregosa2011,
+  author    = {Pedregosa, Fabian and Varoquaux, Ga{\"e}l and Gramfort, Alexandre and Michel, Vincent and Thirion, Bertrand and Grisel, Olivier and Blondel, Mathieu and Prettenhofer, Peter and Weiss, Ron and Dubourg, Vincent and Vanderplas, Jake and Passos, Alexandre and Cournapeau, David and Brucher, Matthieu and Perrot, Matthieu and Duchesnay, {\'E}douard},
+  title     = {Scikit-learn: {Machine Learning in Python}},
+  journal   = {Journal of Machine Learning Research},
+  volume    = {12},
+  pages     = {2825--2830},
+  year      = {2011},
+  url       = {https://jmlr.org/papers/v12/pedregosa11a.html}
+}
+
+% ----- CALIBRATION -----
+
+@inproceedings{Guo2017,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  title     = {On Calibration of Modern Neural Networks},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning (ICML)},
+  volume    = {70},
+  pages     = {1321--1330},
+  year      = {2017},
+  url       = {https://proceedings.mlr.press/v70/guo17a/guo17a.pdf}
+}
+
+% ----- BIOINFORMATICS TOOLS -----
+
+@article{Wolf2018,
+  author    = {Wolf, F. Alexander and Angerer, Philipp and Theis, Fabian J.},
+  title     = {{SCANPY}: large-scale single-cell gene expression data analysis},
+  journal   = {Genome Biology},
+  volume    = {19},
+  pages     = {15},
+  year      = {2018},
+  doi       = {10.1186/s13059-017-1382-0},
+  url       = {https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1382-0}
+}
+
+@article{McInnes2018,
+  author    = {McInnes, Leland and Healy, John and Melville, James},
+  title     = {{UMAP}: Uniform Manifold Approximation and Projection for Dimension Reduction},
+  journal   = {arXiv preprint arXiv:1802.03426},
+  year      = {2018},
+  url       = {https://arxiv.org/abs/1802.03426}
+}
+
+@article{HuynhThu2010,
+  author    = {Huynh-Thu, V{\^{a}}n Anh and Irrthum, Alexandre and Wehenkel, Louis and Geurts, Pierre},
+  title     = {Inferring Regulatory Networks from Expression Data Using Tree-Based Methods},
+  journal   = {PLOS ONE},
+  volume    = {5},
+  number    = {9},
+  pages     = {e12776},
+  year      = {2010},
+  doi       = {10.1371/journal.pone.0012776},
+  url       = {https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0012776}
+}
+
+% ----- ANNOTATION TOOLS -----
+
+@article{DominguezConde2022,
+  author    = {Dom{\'i}nguez Conde, C. and Xu, C. and Jarvis, L. B. and Rainbow, D. B. and Wells, S. B. and Gomes, T. and Howlett, S. K. and Suchanek, O. and Polanski, K. and King, H. W. and Mamanova, L. and Huang, N. and Szabo, P. A. and Richardson, L. and Bolt, L. and Fasouli, E. S. and Mahbubani, K. T. and Prete, M. and Tuck, L. and Richoz, N. and Tuong, Z. K. and Campos, L. and Mousa, H. S. and Needham, E. J. and Pritchard, S. and Li, T. and Elmentaite, R. and Park, J. and Rahmani, E. and Chen, D. and Menon, D. K. and Bayraktar, O. A. and James, L. K. and Meyer, K. B. and Yosef, N. and Clatworthy, M. R. and Sims, P. A. and Farber, D. L. and Saeb-Parsy, K. and Zambon, M. and Noseda, M. and Haniffa, M. and Sungnak, W. and Gaya, D. R. and Sco{\^{o}}se, M. and Nejentsev, S. and Haber, A. L. and Villani, A.-C. and Lun, A. and Horowitz, A. and Elowitz, M. and Teichmann, S. A.},
+  title     = {Cross-tissue immune cell analysis reveals tissue-specific features in humans},
+  journal   = {Science},
+  volume    = {376},
+  number    = {6594},
+  pages     = {eabl5197},
+  year      = {2022},
+  doi       = {10.1126/science.abl5197},
+  url       = {https://www.science.org/doi/10.1126/science.abl5197}
+}
+
+@article{Lopez2018,
+  author    = {Lopez, Romain and Regier, Jeffrey and Cole, Michael B. and Jordan, Michael I. and Yosef, Nir},
+  title     = {Deep generative modeling for single-cell transcriptomics},
+  journal   = {Nature Methods},
+  volume    = {15},
+  pages     = {1053--1058},
+  year      = {2018},
+  doi       = {10.1038/s41592-018-0229-2},
+  url       = {https://www.nature.com/articles/s41592-018-0229-2}
+}
+
+@article{Korsunsky2019,
+  author    = {Korsunsky, Ilya and Millard, Nathan and Fan, Jean and Slowikowski, Kamil and Zhang, Fan and Wei, Kevin and Baglaenko, Yuriy and Brenner, Michael and Loh, Po-Ru and Raychaudhuri, Soumya},
+  title     = {Fast, sensitive and accurate integration of single-cell data with Harmony},
+  journal   = {Nature Methods},
+  volume    = {16},
+  pages     = {1289--1296},
+  year      = {2019},
+  doi       = {10.1038/s41592-019-0619-0},
+  url       = {https://www.nature.com/articles/s41592-019-0619-0}
+}
+
+% ----- CELL-TYPE ANNOTATION (REFERENCE-BASED CLASSIFIERS) -----
+
+@article{Aran2019,
+  author    = {Aran, Dvir and Looney, Agnieszka P. and Liu, Leqian and Wu, Esther and Fong, Valerie and Hsu, Austin and Chak, Suzanna and Naikawadi, Ram P. and Wolters, Paul J. and Abate, Adam R. and Butte, Atul J. and Bhattacharya, Mallar},
+  title     = {Reference-based analysis of lung single-cell sequencing reveals a transitional profibrotic macrophage},
+  journal   = {Nature Immunology},
+  volume    = {20},
+  pages     = {163--172},
+  year      = {2019},
+  doi       = {10.1038/s41590-018-0276-y},
+  url       = {https://www.nature.com/articles/s41590-018-0276-y}
+}
+
+@article{Kiselev2018,
+  author    = {Kiselev, Vladimir Yu. and Yiu, Andrew and Hemberg, Martin},
+  title     = {{scmap}: projection of single-cell {RNA-seq} data across data sets},
+  journal   = {Nature Methods},
+  volume    = {15},
+  pages     = {359--362},
+  year      = {2018},
+  doi       = {10.1038/nmeth.4644},
+  url       = {https://www.nature.com/articles/nmeth.4644}
+}
+
+@article{AlquicirayHernandez2019,
+  author    = {Alquicira-Hernandez, Jose and Sathe, Anuja and Ji, Hanlee P. and Nguyen, Quan and Powell, Joseph E.},
+  title     = {{scPred}: accurate supervised method for cell-type classification from single-cell {RNA-seq} data},
+  journal   = {Genome Biology},
+  volume    = {20},
+  pages     = {264},
+  year      = {2019},
+  doi       = {10.1186/s13059-019-1862-5},
+  url       = {https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1862-5}
+}
+
+@article{Hao2021,
+  author    = {Hao, Yuhan and Hao, Stephanie and Andersen-Nissen, Erica and Mauck III, William M. and Zheng, Shiwei and Butler, Andrew and Lee, Maddie J. and Wilk, Aaron J. and Darby, Charlotte and Zager, Michael and others},
+  title     = {Integrated analysis of multimodal single-cell data},
+  journal   = {Cell},
+  volume    = {184},
+  number    = {13},
+  pages     = {3573--3587},
+  year      = {2021},
+  doi       = {10.1016/j.cell.2021.04.048},
+  url       = {https://www.cell.com/cell/fulltext/S0092-8674(21)00583-3}
+}
+
+@article{Abdelaal2019,
+  author    = {Abdelaal, Tamim and Michielsen, Lieke and Cats, Davy and Hoogduin, Dylan and Mei, Hailiang and Reinders, Marcel J. T. and Mahfouz, Ahmed},
+  title     = {A comparison of automatic cell identification methods for single-cell {RNA} sequencing data},
+  journal   = {Genome Biology},
+  volume    = {20},
+  pages     = {194},
+  year      = {2019},
+  doi       = {10.1186/s13059-019-1795-z},
+  url       = {https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1795-z}
+}
+
+@article{Pasquini2021,
+  author    = {Pasquini, Giovanni and Rojo Arias, Jesus Eduardo and Schäfer, Patrick and Busskamp, Volker},
+  title     = {Automated methods for cell type annotation on {scRNA-seq} data},
+  journal   = {Computational and Structural Biotechnology Journal},
+  volume    = {19},
+  pages     = {961--969},
+  year      = {2021},
+  doi       = {10.1016/j.csbj.2021.01.015},
+  url       = {https://www.csbj.org/article/S2001-0370(21)00020-X/fulltext}
+}
+
+% ----- DATA RESOURCES -----
+
+@article{CZICELLxGENE2023,
+  author    = {{CZI Single-Cell Biology Program} and Abdulla, Shibla and Aevermann, Brian and Assis, Pedro and Badajoz, Seve and Bell, Sidney M. and Bezzi, Emanuele and Cakir, Batuhan and Chaffer, Jim and Chambers, Signe and Cherry, J. Michael and others},
+  title     = {{CZ CELL$\times$GENE Discover}: A single-cell data platform for scalable exploration, analysis and modeling of aggregated data},
+  journal   = {bioRxiv},
+  year      = {2023},
+  doi       = {10.1101/2023.10.30.563174},
+  url       = {https://www.biorxiv.org/content/10.1101/2023.10.30.563174v1}
+}
+
+% ----- BENCHMARK / LIMITATION STUDIES -----
+
+@article{Kedzierska2025,
+  author    = {Kedzierska, Kayla Z. and Crawford, Lauren and Amini, Ava P. and Lu, Alex X.},
+  title     = {Zero-shot evaluation reveals limitations of single-cell foundation models},
+  journal   = {Genome Biology},
+  volume    = {26},
+  pages     = {103},
+  year      = {2025},
+  doi       = {10.1186/s13059-025-03574-x},
+  url       = {https://link.springer.com/article/10.1186/s13059-025-03574-x}
+}

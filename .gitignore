@@ -1,0 +1,66 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Virtual envs ---
+.venv/
+venv/
+env/
+.python-version
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Notebook scratch outputs ---
+notebooks/scratch/
+notebooks/*-checkpoint.ipynb
+
+# --- Data: never commit raw or intermediate data ---
+data/raw/
+data/processed/
+data/embeddings/
+*.h5ad
+*.h5
+*.npz
+*.pkl
+*.npy
+# Allow small CSV result tables that are explicitly published
+!results/*.csv
+
+# --- Models / checkpoints ---
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# --- Logs ---
+logs/
+*.log
+
+# --- LaTeX build artefacts ---
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
