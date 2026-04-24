@@ -139,7 +139,7 @@ scGPTvsClassical/
 │       └── ConfusionMatrix_Pig_Pancreas.pdf
 │
 ├── paper/
-│   ├── main.tex            ← BMC Bioinformatics manuscript
+│   ├── main.tex            
 │   ├── references.bib
 │   └── main.pdf            ← compiled PDF (28 pages)
 │
