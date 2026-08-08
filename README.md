@@ -4,6 +4,8 @@ Reproducibility repository for:
 
 > **An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation**
 
+Permanent revision snapshot: `scientific-reports-revision-2026-08-09`.
+
 This revision compares official frozen scGPT cell embeddings with normalized expression of the same training-selected, scGPT-vocabulary-matched genes. Logistic Regression, Random Forest, and XGBoost are paired with both representations across six public atlases.
 
 > [!IMPORTANT]
