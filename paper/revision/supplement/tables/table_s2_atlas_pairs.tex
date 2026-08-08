@@ -1,0 +1,30 @@
+\begin{landscape}\scriptsize\setlength{\tabcolsep}{4pt}
+\begin{longtable}{lllcccc}
+\caption{Paired within-atlas Macro F1 differences for matched expression minus frozen scGPT embeddings.}\label{tab:s2}\\
+\toprule Dataset & Comparison & Pipelines & Difference & 95\% CI & $P_{boot}(>0)$ & Draws \\
+\midrule\endfirsthead\toprule Dataset & Comparison & Pipelines & Difference & 95\% CI & $P_{boot}(>0)$ & Draws \\
+\midrule\endhead\bottomrule\endlastfoot
+TNBC & Logistic Regression & Matched expr. + LR vs scGPT emb. + LR & 0.013 & 0.011--0.014 & 1.000 & 5,000 \\
+TNBC & Random Forest & Matched expr. + RF vs scGPT emb. + RF & 0.020 & 0.018--0.022 & 1.000 & 5,000 \\
+TNBC & XGBoost & Matched expr. + XGB vs scGPT emb. + XGB & 0.012 & 0.010--0.013 & 1.000 & 5,000 \\
+Indonesia PBMC & Logistic Regression & Matched expr. + LR vs scGPT emb. + LR & 0.027 & 0.024--0.030 & 1.000 & 5,000 \\
+Indonesia PBMC & Random Forest & Matched expr. + RF vs scGPT emb. + RF & 0.017 & 0.013--0.020 & 1.000 & 5,000 \\
+Indonesia PBMC & XGBoost & Matched expr. + XGB vs scGPT emb. + XGB & 0.019 & 0.017--0.022 & 1.000 & 5,000 \\
+Indonesia PBMC & Best observed pipeline & Matched expr. + LR vs scGPT emb. + XGB & 0.020 & 0.017--0.023 & 1.000 & 5,000 \\
+Brain atlas & Logistic Regression & Matched expr. + LR vs scGPT emb. + LR & 0.075 & 0.044--0.111 & 1.000 & 5,000 \\
+Brain atlas & Random Forest & Matched expr. + RF vs scGPT emb. + RF & -0.062 & -0.096---0.028 & 0.000 & 5,000 \\
+Brain atlas & XGBoost & Matched expr. + XGB vs scGPT emb. + XGB & 0.021 & -0.001--0.044 & 0.968 & 5,000 \\
+Multi-tissue TME & Logistic Regression & Matched expr. + LR vs scGPT emb. + LR & 0.036 & 0.030--0.042 & 1.000 & 5,000 \\
+Multi-tissue TME & Random Forest & Matched expr. + RF vs scGPT emb. + RF & 0.057 & 0.049--0.069 & 1.000 & 5,000 \\
+Multi-tissue TME & XGBoost & Matched expr. + XGB vs scGPT emb. + XGB & 0.051 & 0.039--0.065 & 1.000 & 5,000 \\
+Human pancreas & Logistic Regression & Matched expr. + LR vs scGPT emb. + LR & 0.261 & 0.239--0.277 & 1.000 & 5,000 \\
+Human pancreas & Random Forest & Matched expr. + RF vs scGPT emb. + RF & 0.208 & 0.155--0.250 & 1.000 & 5,000 \\
+Human pancreas & XGBoost & Matched expr. + XGB vs scGPT emb. + XGB & 0.109 & 0.061--0.164 & 1.000 & 5,000 \\
+Human pancreas & Best observed pipeline & Matched expr. + LR vs scGPT emb. + XGB & 0.109 & 0.064--0.166 & 1.000 & 5,000 \\
+Pig pancreas & Logistic Regression & Matched expr. + LR vs scGPT emb. + LR & 0.392 & 0.374--0.411 & 1.000 & 5,000 \\
+Pig pancreas & Random Forest & Matched expr. + RF vs scGPT emb. + RF & 0.351 & 0.306--0.386 & 1.000 & 5,000 \\
+Pig pancreas & XGBoost & Matched expr. + XGB vs scGPT emb. + XGB & 0.126 & 0.085--0.182 & 1.000 & 5,000 \\
+Pig pancreas & Best observed pipeline & Matched expr. + LR vs scGPT emb. + XGB & 0.128 & 0.087--0.184 & 1.000 & 5,000 \\
+\end{longtable}
+\noindent\footnotesize Each draw resampled the joint true-label and paired-prediction state, preserving pairing. $P_{boot}(>0)$ is the descriptive fraction of bootstrap differences above zero, not a frequentist $P$ value.
+\end{landscape}

@@ -1,0 +1,89 @@
+\section{Results}
+
+\subsection{A corrected factorial benchmark replaced the original comparison}
+
+The six atlases contained 1,405,933 cells; every source label exceeded the prespecified five-cell threshold (Table~\ref{tab:datasets}). For each atlas, we generated one stratified 80/20 cell-level partition with random seed 42. All gene filtering and Seurat v3 highly variable gene selection were then performed using the training partition only. Genes were matched to the released scGPT vocabulary, and the same final gene set was used to generate the official frozen scGPT embeddings and the normalized log-expression representation. Twenty-one TNBC cells, three brain cells, and 1,381 multi-tissue TME cells had zero total input across the shared gene set and were excluded identically from both representations; 1,404,528 cells remained, including 280,912 test cells.
+
+The controlled design crossed two representations with three downstream classifiers. The scGPT branch used 512-dimensional cell embeddings returned by the official scGPT 0.2.5 helper. The matched branch used library-size-normalized and log-transformed expression of the exact same training-selected, vocabulary-compatible genes. Logistic Regression, Random Forest, and XGBoost were fit with the same settings on both representations. XGBoost received dense arrays so that a zero count remained a numerical zero rather than a sparse missing value. This design produced 36 primary pipelines and replaced the original custom-wrapper, unmatched-feature, and fine-tuning results.
+
+\input{tables/table1_datasets}
+
+\subsection{Matched expression produced the highest observed Macro F1 in all six atlases}
+
+Figure~\ref{fig:atlas} presents the complete accuracy and ECE matrices. The strongest matched-expression pipeline achieved higher observed Macro F1 than the strongest frozen-scGPT pipeline in each atlas (Table~\ref{tab:atlas_primary}). The absolute difference was smallest in TNBC, where Matched expression + XGBoost reached 0.992 compared with 0.980 for scGPT embeddings + XGBoost. Differences were 0.020 in Indonesia PBMC, 0.021 in the brain atlas, and 0.051 in the multi-tissue TME atlas. They were larger in pancreas: 0.983 versus 0.874 in human and 0.993 versus 0.865 in pig. Thus, the earlier numerical impression that multi-tissue TME was effectively tied did not survive the corrected official pipeline; matched-expression XGBoost reached 0.416 compared with 0.365 for scGPT embeddings + XGBoost.
+
+The cell-bootstrap intervals quantify uncertainty conditional on each fitted training partition. On TNBC and Indonesia PBMC, the intervals around the strongest pipelines were narrow because the test sets contained 85,561 and 92,407 cells. Brain and pancreas intervals were wider because their class-specific test counts were smaller. The paired cell-bootstrap file supplied with the revision retains the same test resample for the two representations, avoiding the loss of information that occurs when two marginal intervals are compared. Because these resamples treat cells as exchangeable, they are not interpreted as population-level biological uncertainty; donor-resampling results are reported separately below.
+
+Classifier choice materially changed performance within each representation. XGBoost was the strongest frozen-scGPT head in all six atlases, demonstrating that the discriminative information in the frozen embeddings was not adequately characterized by a linear probe alone. The best matched classifier depended on the dataset: XGBoost was strongest for TNBC, brain, and multi-tissue TME, whereas Logistic Regression was strongest for Indonesia PBMC and both pancreas atlases. Random Forest was rarely strongest and was particularly weak for matched expression in the brain atlas. These results rule out language that treats either ``scGPT'' or ``classical models'' as a single estimator. Every comparison below refers to a specified representation--classifier pipeline.
+
+\input{tables/table2_atlas}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth]{Figure_1_Atlas_Benchmark.pdf}
+\caption{Controlled within-atlas benchmark across six datasets. Heatmaps report Macro F1 and equal-width 10-bin ECE for official frozen scGPT embeddings and matched normalized expression features, each coupled to Logistic Regression, Random Forest, or XGBoost. All feature selection was learned from the training partition.}
+\label{fig:atlas}
+\end{figure}
+
+\subsection{Calibration depended on the complete representation and classifier pipeline}
+
+The calibration results did not reduce to one universal ordering. Among the strongest pipelines displayed in Table~\ref{tab:atlas_primary}, scGPT embeddings + XGBoost had lower equal-width ECE in TNBC, Indonesia PBMC, and multi-tissue TME, whereas the strongest matched pipeline had lower ECE in brain, human pancreas, and pig pancreas. In contrast, the matched pipeline had lower Brier score and NLL in all six datasets. For example, in Indonesia PBMC the scGPT XGBoost ECE was 0.004 versus 0.009 for matched Logistic Regression, but its Brier score was 0.112 versus 0.072 and its NLL was 0.200 versus 0.133. In multi-tissue TME, ECE favoured scGPT XGBoost (0.010 versus 0.023), while both proper scoring rules favoured matched XGBoost. A statement that one representation was simply ``better calibrated'' would therefore conceal metric-specific behavior.
+
+The downstream learner also changed probability quality while the representation remained fixed. Random Forest often had substantially higher ECE than Logistic Regression or XGBoost, including 0.104 for matched expression in within-atlas Indonesia PBMC and 0.030 for matched expression in brain. XGBoost generally produced low confidence ECE for frozen scGPT embeddings, even when discrimination remained below the matched alternative. This confirms the reviewers' central point: predicted probabilities are generated by the downstream head and cannot be interpreted as intrinsic probabilities of the pretrained encoder.
+
+Complete equal-width, adaptive, and classwise ECE values, Brier scores, NLL values, and cell-bootstrap intervals are reported in Supplementary Table S1. Reliability plots for all atlases show the number of cells in each confidence bin and Wilson 95\% intervals for observed accuracy (Supplementary Figures S1--S6). Empty bins are retained with count zero rather than silently omitted. Together, these outputs show where a small aggregate ECE is supported by large populated bins and where estimates depend on a limited range of confidences.
+
+\subsection{Five donor-held-out folds tested generalization to unseen individuals}
+
+The Indonesia PBMC metadata contained a one-to-one mapping between \texttt{donor\_id} and \texttt{sample\_id} for 199 donors. We used five-fold stratified group cross-validation, assigning every cell from a donor wholly to one outer fold. Test folds contained 38--42 donors and 90,015--93,930 cells; no donor appeared in both training and test data. Gene filtering, highly variable gene selection, vocabulary matching, both representations, and every classifier were recomputed independently in every fold.
+
+The strongest frozen-scGPT pipeline was scGPT embeddings + XGBoost, with pooled out-of-fold Macro F1 of 0.934 and fold mean $0.934\pm0.005$ (Figure~\ref{fig:donor}; Table~\ref{tab:donor}). The strongest matched pipeline by Macro F1 was Matched expression + Logistic Regression, with pooled Macro F1 of 0.956 and fold mean $0.956\pm0.003$. Its observed paired difference from scGPT embeddings + XGBoost was 0.02236. A 5,000-draw paired donor bootstrap gave a 95\% interval of 0.02066--0.02423, and the difference was positive in every bootstrap draw. When representation comparisons were matched by classifier, matched expression also exceeded scGPT embeddings for Logistic Regression, Random Forest, and XGBoost, with paired differences of 0.02870, 0.01279, and 0.02099, respectively.
+
+The relative results were stable across outer folds. Matched expression + Logistic Regression ranged from 0.954 to 0.960 Macro F1, while scGPT embeddings + XGBoost ranged from 0.929 to 0.940. Matched expression + XGBoost was close to matched Logistic Regression and produced the lowest NLL (0.125) and Brier score (0.071) in pooled predictions. The distinction matters: Logistic Regression had the highest pooled Macro F1, whereas XGBoost produced the best proper probability scores. The donor-held-out analysis therefore reproduces the matched-expression advantage without requiring a claim that one classifier dominates every metric.
+
+\input{tables/table3_donor}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth]{Figure_2_Donor_Heldout_Performance.pdf}
+\caption{Five donor-held-out folds on Indonesia PBMC. Points are fold-specific Macro F1 values; diamonds and error bars show mean $\pm$ standard deviation across folds. All 199 donors contribute to exactly one test fold.}
+\label{fig:donor}
+\end{figure}
+
+\subsection{Donor resampling produced wider uncertainty than cell resampling}
+
+For every donor-held-out pipeline, the donor-cluster Macro F1 interval was wider than the interval obtained by independently resampling cells. For Matched expression + Logistic Regression, the donor interval was 0.954--0.958 compared with 0.955--0.958 under cell resampling. For scGPT embeddings + Random Forest, the corresponding intervals were 0.907--0.916 and 0.910--0.913. Across all six pipelines, donor-interval widths were approximately 1.7--3.1 times the cell-bootstrap widths. The point estimates and model ordering remained stable, but treating cells as independent overstated precision.
+
+Donor-level reliability plots used the same ten confidence bins as the within-atlas plots but calculated accuracy uncertainty by resampling donors and carrying all their cells together (Supplementary Figure S7). This analysis directly connects dependence in the data to uncertainty in calibration curves. It also clarifies the scope of the within-atlas intervals: cell bootstraps describe variation among observed test cells for a fixed training set, whereas donor bootstraps better approximate variation across biological sampling units in the cohort for which donor identifiers were available.
+
+\subsection{Matched expression remained stronger throughout the tested label-scarcity range}
+
+To test a setting in which pretraining might be expected to help, we reduced the number of labelled training cells within each outer donor fold to 10, 25, 50, 100, 250, or 500 cells per class. Sampling was performed without replacement using five seeds, and test donors were unchanged. Logistic Regression and XGBoost were evaluated on both representations, producing 600 fitted scarcity experiments.
+
+Performance increased with the label budget for all pipelines (Figure~\ref{fig:scarcity}; Table~\ref{tab:secondary}). With Logistic Regression and ten labelled cells per class, mean Macro F1 was 0.679 for scGPT embeddings and 0.856 for matched expression, a difference of 0.177. At 100 labels per class, the values were 0.817 and 0.913; at 500, they were 0.863 and 0.915. XGBoost showed smaller but consistently positive matched-expression differences, from 0.026 at ten labels per class to 0.042 at 500. No tested classifier, label budget, outer fold, and aggregated setting established a crossover in favour of frozen scGPT embeddings.
+
+Calibration under scarcity depended strongly on the classifier. Logistic Regression on scGPT embeddings was under-confident at small sample sizes, with mean ECE 0.537 at ten labels per class, and improved gradually as the budget increased. XGBoost produced lower ECE for both representations at the smallest budgets but lower Macro F1 than matched Logistic Regression. These results concern supervised adaptation within one PBMC cohort. They do not evaluate zero-shot use, previously unseen label categories, external-atlas transfer, or extremely rare populations whose labels cannot support stratified sampling.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth]{Figure_3_Label_Scarcity.pdf}
+\caption{Donor-held-out label-scarcity analysis. Curves show mean Macro F1 $\pm$ standard deviation across five outer donor folds after averaging five within-fold sampling seeds at each label budget. Test donors remain fixed within each outer fold.}
+\label{fig:scarcity}
+\end{figure}
+
+\subsection{Temperature scaling improved probability quality without changing predictions}
+
+Temperature scaling was evaluated for the two Logistic Regression pipelines. For each outer fold, one scalar temperature was optimized on logits from an inner group split containing training donors only and was then applied once to the untouched outer-test donors. The mean fitted temperature was 0.806 for scGPT embeddings, indicating that the unscaled probabilities were too diffuse, and 1.233 for matched expression, indicating modest over-confidence.
+
+For scGPT embeddings + Logistic Regression, mean ECE decreased from 0.0240 to 0.0030 and mean NLL from 0.2151 to 0.2065 (Figure~\ref{fig:temperature}; Table~\ref{tab:secondary}). The Brier score decreased from 0.1165 to 0.1152. For matched expression + Logistic Regression, ECE decreased from 0.0102 to 0.0022, NLL from 0.1379 to 0.1340, and Brier score from 0.0730 to 0.0725. Macro F1 was unchanged for both pipelines because scalar temperature scaling preserves the ordering of class logits.
+
+These results show that a substantial component of the observed ECE can be corrected without modifying the encoder, expression representation, classifier coefficients, or predicted classes. They do not erase the discrimination difference between representations. Rather, they demonstrate why annotation studies should report the representation, classifier, fitting protocol, and calibration procedure together.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth]{Figure_4_Temperature_Scaling.pdf}
+\caption{Held-out-donor temperature scaling. Paired points show calibration metrics before and after scaling. A scalar temperature was fitted using only outer-training donors and applied to the corresponding outer-test donors.}
+\label{fig:temperature}
+\end{figure}
+
+\input{tables/table4_secondary}

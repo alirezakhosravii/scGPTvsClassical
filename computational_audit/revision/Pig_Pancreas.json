@@ -1,0 +1,60 @@
+{
+  "dataset": "Pig_Pancreas",
+  "path": "/vol/data/Pig_Pancreas.h5ad",
+  "file_size_bytes": 279176540,
+  "shape": [
+    22056,
+    15487
+  ],
+  "raw_present": true,
+  "raw_shape": [
+    22056,
+    15487
+  ],
+  "n_cell_types": 4,
+  "n_cell_types_more_than_five_cells": 4,
+  "cell_type_counts": {
+    "type B pancreatic cell": 19018,
+    "pancreatic A cell": 1852,
+    "pancreatic D cell": 1075,
+    "pancreatic PP cell": 111
+  },
+  "feature_name_present": true,
+  "obs_columns": [
+    "mt_frac",
+    "n_counts",
+    "n_genes",
+    "sample",
+    "size_factors",
+    "doublet_score",
+    "louvain_anno_broad",
+    "assay_ontology_term_id",
+    "cell_type_ontology_term_id",
+    "development_stage_ontology_term_id",
+    "disease_ontology_term_id",
+    "self_reported_ethnicity_ontology_term_id",
+    "is_primary_data",
+    "sex_ontology_term_id",
+    "tissue_ontology_term_id",
+    "donor_id",
+    "suspension_type",
+    "tissue_type",
+    "cell_type",
+    "assay",
+    "disease",
+    "sex",
+    "tissue",
+    "self_reported_ethnicity",
+    "development_stage",
+    "observation_joinid"
+  ],
+  "var_columns": [
+    "pig_gene_names",
+    "feature_is_filtered",
+    "feature_name",
+    "feature_reference",
+    "feature_biotype",
+    "feature_length",
+    "feature_type"
+  ]
+}

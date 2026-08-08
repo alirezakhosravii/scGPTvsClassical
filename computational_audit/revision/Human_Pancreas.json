@@ -1,0 +1,63 @@
+{
+  "dataset": "Human_Pancreas",
+  "path": "/vol/data/Human_Pancreas.h5ad",
+  "file_size_bytes": 1364641258,
+  "shape": [
+    26474,
+    30172
+  ],
+  "raw_present": true,
+  "raw_shape": [
+    26474,
+    30172
+  ],
+  "n_cell_types": 4,
+  "n_cell_types_more_than_five_cells": 4,
+  "cell_type_counts": {
+    "type B pancreatic cell": 11923,
+    "pancreatic A cell": 11541,
+    "pancreatic D cell": 2889,
+    "pancreatic PP cell": 121
+  },
+  "feature_name_present": true,
+  "obs_columns": [
+    "sample",
+    "louvain_anno_broad",
+    "louvain_anno_fine",
+    "donor_id",
+    "BMI",
+    "HbA1c",
+    "insulin_content",
+    "glucose_SI",
+    "assay_ontology_term_id",
+    "cell_type_ontology_term_id",
+    "development_stage_ontology_term_id",
+    "disease_ontology_term_id",
+    "self_reported_ethnicity_ontology_term_id",
+    "is_primary_data",
+    "sex_ontology_term_id",
+    "tissue_ontology_term_id",
+    "n_genes",
+    "n_counts",
+    "mt_frac",
+    "size_factors",
+    "suspension_type",
+    "tissue_type",
+    "cell_type",
+    "assay",
+    "disease",
+    "sex",
+    "tissue",
+    "self_reported_ethnicity",
+    "development_stage",
+    "observation_joinid"
+  ],
+  "var_columns": [
+    "feature_is_filtered",
+    "feature_name",
+    "feature_reference",
+    "feature_biotype",
+    "feature_length",
+    "feature_type"
+  ]
+}

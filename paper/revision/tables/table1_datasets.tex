@@ -1,0 +1,26 @@
+\begin{table}[p]
+\centering
+\caption{Public atlases and analysis partitions in the corrected benchmark. Source cells are counted before shared-input quality control.}
+\label{tab:datasets}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{threeparttable}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Dataset & Source & Excluded & Retained & Train & Test & Classes & Genes \\
+\midrule
+TNBC & 427,823 & 21 & 427,802 & 342,241 & 85,561 & 7 & 1,165 \\
+Indonesia PBMC & 462,034 & 0 & 462,034 & 369,627 & 92,407 & 13 & 1,135 \\
+Brain atlas & 75,583 & 3 & 75,580 & 60,464 & 15,116 & 10 & 939 \\
+Multi-tissue TME & 391,963 & 1,381 & 390,582 & 312,461 & 78,121 & 11 & 1,067 \\
+Human pancreas & 26,474 & 0 & 26,474 & 21,179 & 5,295 & 4 & 1,149 \\
+Pig pancreas & 22,056 & 0 & 22,056 & 17,644 & 4,412 & 4 & 1,104 \\
+\midrule
+Total & 1,405,933 & 1,405 & 1,404,528 & 1,123,616 & 280,912 & -- & -- \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item No cell was removed by the prespecified rare-label filter. Excluded cells had zero total counts across the training-selected genes that could be matched to the scGPT vocabulary. ``Genes'' is the final vocabulary-matched feature count. The displayed train and test counts refer to the primary stratified 80/20 within-atlas split; the donor-held-out experiment used separate fold-specific partitions.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

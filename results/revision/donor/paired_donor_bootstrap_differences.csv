@@ -1,0 +1,5 @@
+model_a,model_b,difference_a_minus_b,donor_boot_ci_low,donor_boot_ci_high,probability_difference_gt_zero,n_bootstrap
+Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.028700833602052778,0.026786106333025188,0.030816321422006392,1.0,5000
+Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,0.01278603013657964,0.010328746081101972,0.01539225083231913,1.0,5000
+Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.020987216286406984,0.01933134657860847,0.022839779794939535,1.0,5000
+Matched HVGs plus Logistic Regression,scGPT embeddings plus XGBoost,0.022357992629123857,0.02065582886938553,0.0242301708758189,1.0,5000

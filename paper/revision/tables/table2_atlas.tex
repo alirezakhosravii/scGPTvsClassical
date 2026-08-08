@@ -1,0 +1,30 @@
+\begin{table}[p]
+\centering
+\caption{Strongest frozen-scGPT and matched-expression pipelines in each within-atlas benchmark. Selection is based on observed Macro F1 within each representation.}
+\label{tab:atlas_primary}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{threeparttable}
+\begin{tabular}{lllccccc}
+\toprule
+Dataset & Representation & Classifier & Macro F1 & 95\% CI & ECE & Brier & NLL \\
+\midrule
+TNBC & scGPT embeddings & XGB & 0.980 & 0.979--0.981 & 0.001 & 0.036 & 0.069 \\
+ & Matched expression & XGB & \textbf{0.992} & 0.991--0.992 & 0.002 & \textbf{0.015} & \textbf{0.030} \\
+Indonesia PBMC & scGPT embeddings & XGB & 0.936 & 0.933--0.938 & \textbf{0.004} & 0.112 & 0.200 \\
+ & Matched expression & LR & \textbf{0.956} & 0.953--0.958 & 0.009 & \textbf{0.072} & \textbf{0.133} \\
+Brain atlas & scGPT embeddings & XGB & 0.931 & 0.904--0.953 & 0.008 & 0.021 & 0.060 \\
+ & Matched expression & XGB & \textbf{0.952} & 0.929--0.970 & \textbf{0.005} & \textbf{0.019} & \textbf{0.043} \\
+Multi-tissue TME & scGPT embeddings & XGB & 0.365 & 0.359--0.372 & \textbf{0.010} & 0.644 & 1.442 \\
+ & Matched expression & XGB & \textbf{0.416} & 0.404--0.430 & 0.023 & \textbf{0.614} & \textbf{1.368} \\
+Human pancreas & scGPT embeddings & XGB & 0.874 & 0.817--0.920 & 0.005 & 0.016 & 0.035 \\
+ & Matched expression & LR & \textbf{0.983} & 0.962--0.999 & \textbf{0.001} & \textbf{0.003} & \textbf{0.005} \\
+Pig pancreas & scGPT embeddings & XGB & 0.865 & 0.810--0.907 & 0.011 & 0.043 & 0.087 \\
+ & Matched expression & LR & \textbf{0.993} & 0.989--0.997 & \textbf{0.002} & \textbf{0.004} & \textbf{0.011} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item CI, 5,000-draw cell bootstrap confidence interval; ECE, equal-width 10-bin expected calibration error; Brier, multiclass Brier score; NLL, negative log-likelihood; LR, Logistic Regression; XGB, XGBoost. Bold indicates the better value within a dataset and metric among the two displayed pipelines. Complete results for all 36 pipelines are reported in Supplementary Table S1.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,79 @@
+\section{Methods}
+
+\subsection{Study design}
+
+We designed the revision as a factorial comparison between two input representations and three supervised classifiers. The first representation was the frozen cell embedding returned by the official scGPT embedding interface. The second was normalized expression of exactly the genes supplied to that interface, hereafter ``matched expression''. Each representation was paired with Logistic Regression, Random Forest, and XGBoost. Consequently, classifier effects could be distinguished from representation effects without giving the matched-expression pipelines a larger gene set. The primary endpoint was Macro F1. Accuracy and balanced accuracy were secondary discrimination measures; equal-width, adaptive, and classwise expected calibration error (ECE), multiclass Brier score, and negative log-likelihood (NLL) characterized probability quality. The analysis plan was expanded in response to peer review to include donor-held-out validation, donor-cluster uncertainty, label scarcity, and post-hoc temperature scaling.
+
+The study used only public, de-identified data and no outcome was used to tune a representation or classifier hyperparameter. Hyperparameters were fixed before the complete benchmark was aggregated. Within-atlas analyses used one prespecified split to retain comparability across all six datasets. The Indonesia PBMC cohort was then used for five biologically grouped outer folds, providing a separate assessment of generalization to unseen donors and variability between partitions.
+
+\subsection{Single-cell datasets and target labels}
+
+Six curated AnnData objects were obtained from CZ CELL$\times$GENE Discover \citep{CZICELLxGENE2023}: untreated triple-negative breast cancer (TNBC), Indonesia peripheral blood mononuclear cells (PBMC) \citep{Fachrul2026}, an amyotrophic lateral sclerosis brain atlas \citep{Takeuchi2025}, a multi-tissue tumour microenvironment (TME) atlas \citep{Guimaraes2024}, human pancreatic islets, and pig pancreatic islets \citep{Tritschler2022}. Stable collection and dataset identifiers are listed in the Data availability statement. Together, the source matrices contained 1,405,933 cells. The benchmark used the portal-provided \texttt{cell\_type} annotation as the target and raw integer counts from \texttt{adata.raw}. Labels represented by five or fewer cells would have been removed before partitioning because they could not support the stratified primary split; no source label met this exclusion criterion. A total of 1,405 cells had no non-zero count in the final shared input space, leaving 1,404,528 cells (Table~\ref{tab:datasets}).
+
+The six datasets span immune, neural, tumour, stromal, and endocrine compartments and contain 4--13 target classes. They were chosen to reproduce the biological breadth of the original submission while supporting a uniform, auditable input representation. The labels are nevertheless mostly broad cell categories; the benchmark is not a test of fine cell states or harmonization between independently defined ontologies. The Indonesia object contained 462,034 cells, 13 classes, and 199 non-missing values of \texttt{donor\_id}; \texttt{donor\_id} and \texttt{sample\_id} had a one-to-one mapping. Donor identity, rather than sequencing batch, was therefore used as the grouping unit.
+
+\subsection{Within-atlas partitioning and feature selection}
+
+For each atlas, cells were divided into 80\% training and 20\% test partitions by stratified random sampling with seed 42. All subsequent gene filtering and feature selection were restricted to the training partition. Starting from raw counts, genes with fewer than three total training counts were excluded, and the 1,200 highest-ranked variable genes were selected with the Seurat v3 variance-stabilizing procedure as implemented in Scanpy \citep{Stuart2019,Wolf2018}. Gene symbols were compared with the vocabulary of the released whole-human scGPT checkpoint. Exact matches were used first; an upper-case symbol was used when the original symbol was absent and the upper-case symbol was present. Duplicates introduced by mapping were removed by retaining the higher-ranked gene. This produced 939--1,165 genes per atlas.
+
+The same ordered set of vocabulary-matched genes was used for both representations. A cell with zero total count across this set could not yield a meaningful scGPT input and was excluded from both branches before either model was fitted. The zero-input filter was therefore representation-neutral. The final train and test counts in Table~\ref{tab:datasets} reflect this shared filter. No test label, test count statistic, or test-derived highly variable gene rank entered training feature selection.
+
+\subsection{Official frozen scGPT representation}
+
+Frozen embeddings were generated with scGPT 0.2.5 from source commit \texttt{cebd6fa}, using the authors' public whole-human checkpoint and the official \texttt{scgpt.tasks.embed\_data} function \citep{Cui2024}. The input was the raw-count matrix restricted to the fold-specific matched genes, with gene symbols supplied in \texttt{feature\_name}. We used \texttt{max\_length=1200}, batch size 256, the fast transformer path, and an NVIDIA H100 80 GB GPU. The helper performed the checkpoint-defined value preprocessing and returned one 512-dimensional, unit-normalized cell vector. The encoder weights were never updated, and each downstream classifier was trained only on the training cell vectors.
+
+Before the full run, a 512-cell GPU smoke test verified the package version, CUDA execution, output dimensions, finite values, and unit norms. The three checkpoint files were recorded by SHA-256: \texttt{args.json}, \texttt{c18e075e018140cb8b2d9029387b9de26607a5ce6a8ccabd6ead70cd76b95d60}; \texttt{vocab.json}, \texttt{acca93d114ca62c3f0f50debbd23e8c87f0714f4737764454f6b2b13f2e8580f}; and \texttt{best\_model.pt}, \texttt{6cb5d451ab5c4b33eb673adbe4fddc61d2389df1b89b7651a9fe2e557572b922}. These identifiers distinguish the evaluated checkpoint and extraction path from custom wrappers or later releases.
+
+\subsection{Matched-expression representation}
+
+For the matched branch, the same raw counts and gene order were library-size normalized to 10,000 counts per cell and transformed with $\log(1+x)$. This common preprocessing preserves expression zeros and is widely used for supervised single-cell analysis \citep{Wolf2018,Hao2021}. The resulting matrix contained no gene unavailable to scGPT and no gene selected from the test set. Thus, comparisons estimate the effect of replacing direct matched expression with the frozen embedding, conditional on the same initial measurements and downstream learner.
+
+\subsection{Downstream classifiers}
+
+We fitted three multi-class classifiers without dataset-specific tuning. Logistic Regression used $L_2$ regularization with $C=1$, the \texttt{lbfgs} solver, tolerance $10^{-4}$, and at most 3,000 iterations. A convergence warning was treated as an error. Random Forest used 200 trees, Gini splits, square-root feature sampling, and bootstrap sampling. XGBoost used 200 boosting rounds, maximum depth 6, learning rate 0.1, the multi-class soft-probability objective, histogram tree construction, and CUDA acceleration \citep{Breiman2001,Chen2016}. Seeds were fixed in the executable analysis. All models returned a probability vector over the same alphabetically encoded class set.
+
+Sparse matrices require special care in XGBoost because an absent sparse entry can be interpreted as missing rather than as a measured zero. Both XGBoost training and test matrices were therefore materialized as dense 32-bit arrays, ensuring identical zero semantics for scGPT and matched-expression inputs. Logistic Regression and Random Forest retained numerically equivalent sparse or dense views as supported by their implementations. Scikit-learn 1.9.0 and XGBoost 3.2.0 were used \citep{Pedregosa2011,Chen2016}.
+
+\subsection{Five-fold donor-held-out evaluation}
+
+We evaluated all six pipelines on Indonesia PBMC with \texttt{StratifiedGroupKFold} using five folds, shuffling, and seed 20260803. Groups were the 199 donors and strata were the 13 cell labels. Every cell from a donor was assigned to one test fold, giving 38--42 test donors per fold. Group overlap was checked programmatically before fitting, and every training and test partition was required to contain all classes. The five test folds form an exact, non-overlapping partition of all 462,034 cells.
+
+Gene filtering, Seurat v3 ranking, vocabulary matching, representation construction, and classifier fitting were repeated inside each outer fold. Fold-specific gene sets therefore used only outer-training donors. Out-of-fold probabilities were reassembled in original-cell order only after all folds had completed. We report pooled out-of-fold metrics and the mean and sample standard deviation of fold metrics. This evaluates generalization to unseen donors within a shared cohort; it does not emulate transfer to a laboratory, technology, or label ontology absent from training \citep{Roberts2017}.
+
+\subsection{Label-scarcity experiment}
+
+Within every outer donor fold, we subsampled the training cells to 10, 25, 50, 100, 250, or 500 labelled cells per class without replacement. Each budget was sampled with five seeds (20260811--20260815), independently within every class, while the outer-test donors and fold-specific representations remained unchanged. Logistic Regression and XGBoost were fitted to both representations, yielding $5\ \text{folds}\times6\ \text{budgets}\times5\ \text{seeds}\times2\ \text{representations}\times2\ \text{classifiers}=600$ fits. For each fold and setting, seed-level results were averaged before the mean and standard deviation across outer folds were calculated. The design changes the amount of label supervision but not cohort or target ontology, and is therefore described as label scarcity rather than zero-shot transfer.
+
+\subsection{Temperature scaling}
+
+Post-hoc calibration was tested for Logistic Regression on each representation \citep{Guo2017}. Within each outer fold, a second five-fold stratified group split was constructed from outer-training donors only, using seed $20260903+f$, where $f$ is the outer-fold index. The first candidate split whose classifier-fit and calibration partitions both contained every class was used. The classifier was fitted on the inner-fit donors. One positive temperature $T$ was then selected on the inner-calibration donors by minimizing multiclass NLL,
+\begin{equation}
+T^{*}=\arg\min_{T>0}-\frac{1}{n}\sum_{i=1}^{n}\log\left[\operatorname{softmax}\left(\mathbf{z}_{i}/T\right)_{y_i}\right],
+\end{equation}
+where $\mathbf{z}_i$ denotes the Logistic Regression logits. Optimization was performed over $\log T\in[-5,5]$ with a bounded scalar optimizer. The fitted temperature was applied once to logits for the untouched outer-test donors. Uncalibrated and calibrated probabilities were evaluated on identical cells. Because $T$ is a positive scalar, it preserves the ordering of logits and hence predicted classes.
+
+\subsection{Performance and calibration measures}
+
+Macro F1 was the unweighted mean of the class-specific F1 values and was selected to avoid dominance by abundant classes. Accuracy and balanced accuracy were also retained. For a test set of $n$ cells, top-label equal-width ECE with ten bins was
+\begin{equation}
+\operatorname{ECE}=\sum_{b=1}^{10}\frac{|B_b|}{n}\left|\operatorname{acc}(B_b)-\operatorname{conf}(B_b)\right|,
+\end{equation}
+where $B_b$ contains cells whose maximum predicted probability falls in confidence interval $b$, $\operatorname{acc}(B_b)$ is the observed fraction correct, and $\operatorname{conf}(B_b)$ is mean maximum probability \citep{Naeini2015,Guo2017}. The adaptive version replaced equal-width bins with ten equally populated rank groups. Classwise ECE applied ten equal-width bins independently to the predicted probability of each class and averaged the class-specific errors. Because ECE depends on a binning choice and only summarizes selected aspects of calibration, it was not interpreted in isolation \citep{Vaicenavicius2019,SilvaFilho2023}.
+
+For one-hot target vector $\mathbf{e}_{y_i}$ and predicted vector $\mathbf{p}_i$, the multiclass Brier score was
+\begin{equation}
+\operatorname{Brier}=\frac{1}{n}\sum_{i=1}^{n}\lVert\mathbf{p}_i-\mathbf{e}_{y_i}\rVert_2^2,
+\end{equation}
+and NLL was $-n^{-1}\sum_i\log p_{i,y_i}$. Both are strictly proper scoring rules that assess the complete probability vector, although their values reflect discrimination as well as calibration \citep{Brier1950,Gneiting2007}. Probabilities were clipped below at $10^{-12}$ and renormalized before scoring.
+
+\subsection{Bootstrap intervals and reliability diagrams}
+
+All intervals are percentile intervals from 5,000 bootstrap replicates. Within each primary atlas, we resampled the joint state comprising the true label and the predictions of the compared pipelines, preserving paired predictions and the original test-set size. Macro F1 was recalculated from the resulting confusion matrix. These cell-bootstrap intervals condition on the fitted models, training partition, and observed test-cell population; they do not represent independent biological replication or training-split variability.
+
+For donor-held-out out-of-fold predictions, the primary uncertainty analysis sampled 199 donors with replacement and carried all cells of every selected donor together. Donor-specific confusion matrices and score contributions were combined using bootstrap multiplicities. We also calculated a cell-level comparison by multinomial resampling of the pooled confusion matrix. Paired differences used the same donor weights for both pipelines in each draw. The reported bootstrap probability that a difference is positive is the fraction of replicates above zero; it is a descriptive bootstrap quantity, not a frequentist $P$ value.
+
+Reliability diagrams used the ten equal-width top-label confidence bins defined above and displayed the number of cells in every bin. Within-atlas bin-accuracy intervals were Wilson 95\% intervals. Donor-held-out bin intervals were percentile intervals from the donor bootstrap. An empty bin was retained with count zero and no accuracy estimate. This combination exposes whether an apparent calibration gap arises in a highly populated confidence region or from a small number of cells.
+
+\subsection{Computational audit and reproducibility}
+
+The complete workflow was executed in Python 3.11.10 with PyTorch 2.5.1 and CUDA 12.4, Scanpy 1.11.5, scikit-learn 1.9.0, and XGBoost 3.2.0. Random seeds, data identifiers, direct data download endpoints, checkpoint hashes, split assertions, preprocessing, metrics, bootstrap code, and figure generation are included with the submission. Every prediction archive records the model name, class names, test indices, true labels, and full probability matrix. Aggregate analyses assert exact cell coverage and alignment across pipelines before paired calculations. Raw public datasets and pretrained weights are not redistributed; scripts retrieve them from their original providers. No custom scGPT wrapper, end-to-end fine-tuning, gene-network analysis, or results derived from those earlier workflows is retained in the corrected numerical record.

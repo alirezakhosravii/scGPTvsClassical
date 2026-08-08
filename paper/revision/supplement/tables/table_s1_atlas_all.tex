@@ -1,0 +1,57 @@
+\begin{landscape}
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{longtable}{llccccccccc}
+\caption{Complete within-atlas results for all 36 representation--classifier pipelines.}\label{tab:s1}\\
+\toprule Dataset & Pipeline & Macro F1 & 95\% CI & Accuracy & Bal. acc. & ECE & Adapt. & Classwise & Brier & NLL \\
+\midrule\endfirsthead
+\multicolumn{11}{c}{\tablename\ \thetable{} continued}\\\toprule
+Dataset & Pipeline & Macro F1 & 95\% CI & Accuracy & Bal. acc. & ECE & Adapt. & Classwise & Brier & NLL \\
+\midrule\endhead
+\midrule\multicolumn{11}{r}{Continued on next page}\\\endfoot
+\bottomrule\endlastfoot
+TNBC & scGPT emb. + LR & 0.978 & 0.977--0.980 & 0.974 & 0.974 & 0.010 & 0.010 & 0.003 & 0.040 & 0.081 \\
+TNBC & scGPT emb. + RF & 0.968 & 0.966--0.969 & 0.965 & 0.952 & 0.043 & 0.043 & 0.014 & 0.061 & 0.138 \\
+TNBC & scGPT emb. + XGB & 0.980 & 0.979--0.981 & 0.976 & 0.975 & 0.001 & 0.002 & 0.001 & 0.036 & 0.069 \\
+TNBC & Matched expr. + LR & 0.991 & 0.990--0.992 & 0.989 & 0.990 & 0.002 & 0.002 & 0.001 & 0.017 & 0.034 \\
+TNBC & Matched expr. + RF & 0.987 & 0.986--0.989 & 0.986 & 0.981 & 0.032 & 0.032 & 0.010 & 0.027 & 0.067 \\
+TNBC & Matched expr. + XGB & 0.992 & 0.991--0.992 & 0.990 & 0.990 & 0.002 & 0.002 & 0.001 & 0.015 & 0.030 \\
+\addlinespace
+Indonesia PBMC & scGPT emb. + LR & 0.929 & 0.926--0.932 & 0.924 & 0.916 & 0.021 & 0.021 & 0.004 & 0.114 & 0.210 \\
+Indonesia PBMC & scGPT emb. + RF & 0.912 & 0.909--0.915 & 0.906 & 0.893 & 0.074 & 0.074 & 0.012 & 0.154 & 0.293 \\
+Indonesia PBMC & scGPT emb. + XGB & 0.936 & 0.933--0.938 & 0.924 & 0.930 & 0.004 & 0.004 & 0.001 & 0.112 & 0.200 \\
+Indonesia PBMC & Matched expr. + LR & 0.956 & 0.953--0.958 & 0.953 & 0.957 & 0.009 & 0.008 & 0.001 & 0.072 & 0.133 \\
+Indonesia PBMC & Matched expr. + RF & 0.929 & 0.925--0.933 & 0.944 & 0.903 & 0.104 & 0.104 & 0.016 & 0.109 & 0.228 \\
+Indonesia PBMC & Matched expr. + XGB & 0.955 & 0.953--0.958 & 0.952 & 0.953 & 0.004 & 0.005 & 0.001 & 0.070 & 0.124 \\
+\addlinespace
+Brain atlas & scGPT emb. + LR & 0.871 & 0.831--0.902 & 0.984 & 0.812 & 0.025 & 0.025 & 0.006 & 0.029 & 0.082 \\
+Brain atlas & scGPT emb. + RF & 0.893 & 0.857--0.920 & 0.986 & 0.835 & 0.026 & 0.027 & 0.006 & 0.029 & 0.092 \\
+Brain atlas & scGPT emb. + XGB & 0.931 & 0.904--0.953 & 0.988 & 0.895 & 0.008 & 0.008 & 0.002 & 0.021 & 0.060 \\
+Brain atlas & Matched expr. + LR & 0.945 & 0.925--0.962 & 0.985 & 0.937 & 0.008 & 0.008 & 0.002 & 0.025 & 0.069 \\
+Brain atlas & Matched expr. + RF & 0.831 & 0.790--0.865 & 0.984 & 0.775 & 0.030 & 0.030 & 0.007 & 0.029 & 0.084 \\
+Brain atlas & Matched expr. + XGB & 0.952 & 0.929--0.970 & 0.988 & 0.924 & 0.005 & 0.005 & 0.001 & 0.019 & 0.043 \\
+\addlinespace
+Multi-tissue TME & scGPT emb. + LR & 0.321 & 0.318--0.325 & 0.493 & 0.306 & 0.016 & 0.017 & 0.006 & 0.667 & 1.500 \\
+Multi-tissue TME & scGPT emb. + RF & 0.334 & 0.325--0.345 & 0.500 & 0.306 & 0.056 & 0.055 & 0.012 & 0.660 & 1.568 \\
+Multi-tissue TME & scGPT emb. + XGB & 0.365 & 0.359--0.372 & 0.506 & 0.336 & 0.010 & 0.010 & 0.004 & 0.644 & 1.442 \\
+Multi-tissue TME & Matched expr. + LR & 0.357 & 0.351--0.364 & 0.501 & 0.330 & 0.012 & 0.013 & 0.007 & 0.655 & 1.463 \\
+Multi-tissue TME & Matched expr. + RF & 0.391 & 0.378--0.404 & 0.534 & 0.359 & 0.024 & 0.024 & 0.007 & 0.615 & 1.514 \\
+Multi-tissue TME & Matched expr. + XGB & 0.416 & 0.404--0.430 & 0.532 & 0.379 & 0.023 & 0.023 & 0.007 & 0.614 & 1.368 \\
+\addlinespace
+Human pancreas & scGPT emb. + LR & 0.722 & 0.717--0.727 & 0.977 & 0.713 & 0.050 & 0.050 & 0.028 & 0.044 & 0.110 \\
+Human pancreas & scGPT emb. + RF & 0.743 & 0.720--0.784 & 0.979 & 0.730 & 0.045 & 0.045 & 0.024 & 0.043 & 0.099 \\
+Human pancreas & scGPT emb. + XGB & 0.874 & 0.817--0.920 & 0.989 & 0.843 & 0.005 & 0.005 & 0.003 & 0.016 & 0.035 \\
+Human pancreas & Matched expr. + LR & 0.983 & 0.962--0.999 & 0.998 & 0.987 & 0.001 & 0.001 & 0.001 & 0.003 & 0.005 \\
+Human pancreas & Matched expr. + RF & 0.951 & 0.912--0.979 & 0.995 & 0.919 & 0.038 & 0.038 & 0.020 & 0.015 & 0.052 \\
+Human pancreas & Matched expr. + XGB & 0.982 & 0.962--0.997 & 0.997 & 0.996 & 0.001 & 0.001 & 0.001 & 0.005 & 0.009 \\
+\addlinespace
+Pig pancreas & scGPT emb. + LR & 0.601 & 0.583--0.619 & 0.941 & 0.545 & 0.044 & 0.044 & 0.037 & 0.088 & 0.187 \\
+Pig pancreas & scGPT emb. + RF & 0.596 & 0.577--0.614 & 0.938 & 0.536 & 0.052 & 0.051 & 0.038 & 0.097 & 0.198 \\
+Pig pancreas & scGPT emb. + XGB & 0.865 & 0.810--0.907 & 0.972 & 0.796 & 0.011 & 0.011 & 0.010 & 0.043 & 0.087 \\
+Pig pancreas & Matched expr. + LR & 0.993 & 0.989--0.997 & 0.998 & 0.996 & 0.002 & 0.001 & 0.001 & 0.004 & 0.011 \\
+Pig pancreas & Matched expr. + RF & 0.947 & 0.904--0.977 & 0.996 & 0.912 & 0.022 & 0.022 & 0.012 & 0.011 & 0.031 \\
+Pig pancreas & Matched expr. + XGB & 0.991 & 0.987--0.995 & 0.996 & 0.992 & 0.002 & 0.002 & 0.002 & 0.006 & 0.011 \\
+\addlinespace
+\end{longtable}
+\begin{minipage}{0.98\linewidth}\footnotesize ECE, equal-width ten-bin top-label expected calibration error; Adapt., adaptive ten-bin ECE; Classwise, classwise ten-bin ECE; Brier, multiclass Brier score; NLL, negative log-likelihood. Intervals are 5,000-draw cell-bootstrap percentile intervals conditional on the fitted model and fixed training partition.\end{minipage}
+\end{landscape}

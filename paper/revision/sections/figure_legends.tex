@@ -1,0 +1,10 @@
+\clearpage
+\section*{Figure legends}
+
+\paragraph{Figure 1. Controlled within-atlas benchmark across six datasets.} Heatmaps report Macro F1 and equal-width 10-bin ECE for official frozen scGPT embeddings and matched normalized expression features, each coupled to Logistic Regression, Random Forest, or XGBoost. Gene selection was learned from the training partition, and both representations used the same vocabulary-matched genes.
+
+\paragraph{Figure 2. Five donor-held-out folds on Indonesia PBMC.} Points show fold-specific Macro F1; diamonds and error bars show mean and sample standard deviation. All 199 donors contribute to exactly one test fold, and every fold recomputes feature selection and representation construction from outer-training donors.
+
+\paragraph{Figure 3. Donor-held-out label-scarcity analysis.} Curves show mean Macro F1 and standard deviation across five outer donor folds after averaging five sampling seeds within each fold. Training budgets range from 10 to 500 labelled cells per class; test donors are unchanged.
+
+\paragraph{Figure 4. Held-out-donor temperature scaling.} Paired points show probability metrics before and after scaling. One scalar temperature was fitted using only an inner split of outer-training donors and applied to the corresponding untouched outer-test donors. Temperature scaling does not change predicted classes.

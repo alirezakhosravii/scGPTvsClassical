@@ -1,0 +1,61 @@
+{
+  "dataset": "Brain_Atlas",
+  "path": "/vol/data/Brain_Atlas.h5ad",
+  "file_size_bytes": 1034127754,
+  "shape": [
+    75583,
+    35467
+  ],
+  "raw_present": true,
+  "raw_shape": [
+    75583,
+    35467
+  ],
+  "n_cell_types": 10,
+  "n_cell_types_more_than_five_cells": 10,
+  "cell_type_counts": {
+    "oligodendrocyte": 37431,
+    "glutamatergic neuron": 18177,
+    "GABAergic neuron": 8310,
+    "astrocyte": 5042,
+    "microglial cell": 3038,
+    "oligodendrocyte precursor cell": 3016,
+    "endothelial cell": 247,
+    "central nervous system macrophage": 113,
+    "perivascular cell": 105,
+    "pericyte": 104
+  },
+  "feature_name_present": true,
+  "obs_columns": [
+    "donor_id",
+    "development_stage_ontology_term_id",
+    "sex_ontology_term_id",
+    "self_reported_ethnicity_ontology_term_id",
+    "disease_ontology_term_id",
+    "tissue_type",
+    "tissue_ontology_term_id",
+    "cell_type_ontology_term_id",
+    "assay_ontology_term_id",
+    "suspension_type",
+    "PrimaryAnnotation",
+    "ThirdAnnotation",
+    "percent.mt",
+    "is_primary_data",
+    "cell_type",
+    "assay",
+    "disease",
+    "sex",
+    "tissue",
+    "self_reported_ethnicity",
+    "development_stage",
+    "observation_joinid"
+  ],
+  "var_columns": [
+    "feature_is_filtered",
+    "feature_name",
+    "feature_reference",
+    "feature_biotype",
+    "feature_length",
+    "feature_type"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "n_folds": 5,
+  "n_scarcity_seeds": 5,
+  "label_counts": [
+    10,
+    25,
+    50,
+    100,
+    250,
+    500
+  ],
+  "temperature_summary": [
+    {
+      "pipeline": "Matched HVGs plus Logistic Regression",
+      "calibrated": false,
+      "temperature_mean": 1.2326120835180465,
+      "temperature_sd": 0.01587629632336013,
+      "macro_f1_mean": 0.9555251740955306,
+      "macro_f1_sd": 0.0027543777049898526,
+      "ece_mean": 0.010183826485069662,
+      "ece_sd": 0.0008414369781134681,
+      "brier_mean": 0.07296811520903748,
+      "brier_sd": 0.003072982780110529,
+      "nll_mean": 0.13794582037895403,
+      "nll_sd": 0.005652951162612562
+    },
+    {
+      "pipeline": "Matched HVGs plus Logistic Regression",
+      "calibrated": true,
+      "temperature_mean": 1.2326120835180465,
+      "temperature_sd": 0.01587629632336013,
+      "macro_f1_mean": 0.9555251740955306,
+      "macro_f1_sd": 0.0027543777049898526,
+      "ece_mean": 0.0021986243646128,
+      "ece_sd": 0.000847860320125266,
+      "brier_mean": 0.07249384187050853,
+      "brier_sd": 0.0030085702404041128,
+      "nll_mean": 0.13401899740163173,
+      "nll_sd": 0.005331619183120772
+    },
+    {
+      "pipeline": "scGPT embeddings plus Logistic Regression",
+      "calibrated": false,
+      "temperature_mean": 0.8061983055338542,
+      "temperature_sd": 0.01224545298573078,
+      "macro_f1_mean": 0.925430027163382,
+      "macro_f1_sd": 0.0033521771248566177,
+      "ece_mean": 0.02404063184773256,
+      "ece_sd": 0.0015395159745495038,
+      "brier_mean": 0.1165206238779396,
+      "brier_sd": 0.00464798132684555,
+      "nll_mean": 0.21511845572253474,
+      "nll_sd": 0.008070508192013366
+    },
+    {
+      "pipeline": "scGPT embeddings plus Logistic Regression",
+      "calibrated": true,
+      "temperature_mean": 0.8061983055338542,
+      "temperature_sd": 0.01224545298573078,
+      "macro_f1_mean": 0.925430027163382,
+      "macro_f1_sd": 0.0033521771248566177,
+      "ece_mean": 0.0030373904670616602,
+      "ece_sd": 0.0013448578051662632,
+      "brier_mean": 0.11523964625539496,
+      "brier_sd": 0.004775491070211949,
+      "nll_mean": 0.20653025747832218,
+      "nll_sd": 0.0084766651861618
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+\begin{table}[p]\centering\scriptsize
+\caption{Donor-cluster uncertainty and paired donor-bootstrap comparisons.}\label{tab:s4}
+\begin{threeparttable}\begin{tabular}{lccccc}
+\toprule Pipeline & F1 & Cell CI & Donor CI & Donor ECE CI & Donor NLL CI \\\midrule
+scGPT emb. + LR & 0.928 & 0.926--0.929 & 0.924--0.931 & 0.020--0.023 & 0.201--0.219 \\
+scGPT emb. + RF & 0.912 & 0.910--0.913 & 0.907--0.916 & 0.070--0.075 & 0.284--0.307 \\
+scGPT emb. + XGB & 0.934 & 0.933--0.935 & 0.931--0.937 & 0.003--0.005 & 0.191--0.210 \\
+Matched expr. + LR & 0.956 & 0.955--0.958 & 0.954--0.958 & 0.008--0.010 & 0.126--0.140 \\
+Matched expr. + RF & 0.925 & 0.923--0.927 & 0.921--0.928 & 0.103--0.109 & 0.222--0.240 \\
+Matched expr. + XGB & 0.955 & 0.954--0.956 & 0.953--0.958 & 0.004--0.005 & 0.119--0.132 \\
+\midrule
+\multicolumn{6}{l}{\textbf{Paired Macro F1 differences}}\\
+Matched pipeline & scGPT pipeline & Difference & \multicolumn{2}{c}{Donor-bootstrap 95\% CI} & $P_{boot}(>0)$ \\\midrule
+Matched expr. + LR & scGPT emb. + LR & 0.029 & \multicolumn{2}{c}{0.027--0.031} & 1.000 \\
+Matched expr. + RF & scGPT emb. + RF & 0.013 & \multicolumn{2}{c}{0.010--0.015} & 1.000 \\
+Matched expr. + XGB & scGPT emb. + XGB & 0.021 & \multicolumn{2}{c}{0.019--0.023} & 1.000 \\
+Matched expr. + LR & scGPT emb. + XGB & 0.022 & \multicolumn{2}{c}{0.021--0.024} & 1.000 \\
+\bottomrule\end{tabular}\begin{tablenotes}[flushleft]\footnotesize\item All intervals use 5,000 percentile-bootstrap draws. Donor resampling carries all cells from a selected donor together.\end{tablenotes}\end{threeparttable}\end{table}

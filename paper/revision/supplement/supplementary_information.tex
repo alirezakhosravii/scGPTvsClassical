@@ -1,0 +1,169 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{threeparttable}
+\usepackage{pdflscape}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{microtype}
+\graphicspath{{../figures/supplementary/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\captionsetup{font=small,labelfont=bf}
+\renewcommand{\tablename}{Supplementary Table}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\figurename}{Supplementary Figure}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Supplementary Information\par}
+\vspace{8pt}
+{\large An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation\par}
+\vspace{8pt}
+Alireza Khosravi et al.
+\end{center}
+
+\section*{Contents and scope}
+
+This document reports the complete numerical outputs underlying the revised manuscript. It includes all 36 within-atlas pipelines, paired differences, every donor-fold result, donor- and cell-bootstrap comparisons, all label-scarcity settings, temperature-scaling results, computational identifiers, and reliability diagrams with bin counts and uncertainty. Results derived from the superseded custom wrapper, end-to-end fine-tuning, or embedding-based gene-similarity analysis are not included.
+
+\begin{itemize}
+\item Supplementary Table S1: all within-atlas discrimination and calibration metrics.
+\item Supplementary Table S2: paired within-atlas Macro F1 differences.
+\item Supplementary Table S3: all five donor-held-out folds and six pipelines.
+\item Supplementary Table S4: donor versus cell uncertainty and paired donor differences.
+\item Supplementary Table S5: complete label-scarcity results.
+\item Supplementary Table S6: complete temperature-scaling results.
+\item Supplementary Tables S7--S8: dataset, checkpoint, and software audit.
+\item Supplementary Figures S1--S6: within-atlas reliability diagrams.
+\item Supplementary Figure S7: donor-held-out reliability diagrams.
+\end{itemize}
+
+\input{tables/table_s1_atlas_all}
+
+\clearpage
+\input{tables/table_s2_atlas_pairs}
+
+\clearpage
+\input{tables/table_s3_donor_folds}
+
+\clearpage
+\input{tables/table_s4_donor_uncertainty}
+
+\clearpage
+\input{tables/table_s5_scarcity}
+
+\clearpage
+\input{tables/table_s6_temperature}
+
+\clearpage
+\begin{table}[p]
+\centering
+\caption{Dataset and shared-input audit.}
+\label{tab:s7}
+\small
+\resizebox{0.98\textwidth}{!}{\begin{tabular}{lrrrrrr}
+\toprule
+Dataset & Source cells & Final cells & Classes & Source genes & Matched genes & Zero-input exclusions \\
+\midrule
+TNBC & 427,823 & 427,802 & 7 & 32,354 & 1,165 & 21 \\
+Indonesia PBMC & 462,034 & 462,034 & 13 & 36,030 & 1,135 & 0 \\
+Brain atlas & 75,583 & 75,580 & 10 & 35,467 & 939 & 3 \\
+Multi-tissue TME & 391,963 & 390,582 & 11 & 44,649 & 1,067 & 1,381 \\
+Human pancreas & 26,474 & 26,474 & 4 & 30,172 & 1,149 & 0 \\
+Pig pancreas & 22,056 & 22,056 & 4 & 15,487 & 1,104 & 0 \\
+\bottomrule
+\end{tabular}}
+\vspace{3pt}
+\begin{minipage}{0.98\textwidth}\footnotesize
+\textit{Note.} Source genes are variables in the public H5AD object. Matched genes are the primary-split training-selected highly variable genes remaining after vocabulary matching. Donor folds used independently selected sets of 1,135--1,141 genes. All source labels had more than five cells.
+\end{minipage}
+\end{table}
+
+\begin{table}[p]
+\centering
+\caption{Computational environment and identity audit.}
+\label{tab:s8}
+\small
+\resizebox{0.98\textwidth}{!}{\begin{tabular}{ll}
+\toprule
+Component & Recorded value \\
+\midrule
+Python & 3.11.10 \\
+scGPT & 0.2.5; source commit \texttt{cebd6fa} \\
+PyTorch / CUDA & 2.5.1+cu124 / 12.4 \\
+GPU & NVIDIA H100 80 GB HBM3 \\
+Scanpy / AnnData & 1.11.5 / 0.12.3 \\
+scikit-learn / XGBoost & 1.9.0 / 3.2.0 \\
+NumPy / SciPy / pandas & 1.26.4 / 1.13.1 / 2.3.3 \\
+scGPT \texttt{args.json} SHA-256 & \texttt{c18e075e018140cb8b2d9029387b9de26607a5ce6a8ccabd6ead70cd76b95d60} \\
+scGPT \texttt{vocab.json} SHA-256 & \texttt{acca93d114ca62c3f0f50debbd23e8c87f0714f4737764454f6b2b13f2e8580f} \\
+scGPT \texttt{best\_model.pt} SHA-256 & \texttt{6cb5d451ab5c4b33eb673adbe4fddc61d2389df1b89b7651a9fe2e557572b922} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\clearpage
+\section*{Supplementary reliability figures}
+
+Every reliability figure uses ten fixed confidence bins. The upper panel for each pipeline plots observed accuracy against mean winning-class confidence; the lower panel reports the number of cells in each bin on a logarithmic scale. Within-atlas error bars are Wilson 95\% intervals. Donor-held-out error bars are 95\% donor-bootstrap percentile intervals. Empty bins remain visible as zero counts.
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S1_Reliability_TNBC.pdf}
+\caption{Reliability of all six pipelines in the TNBC within-atlas test partition.}
+\label{fig:s1}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S2_Reliability_Indonesia_PBMC.pdf}
+\caption{Reliability of all six pipelines in the Indonesia PBMC within-atlas test partition.}
+\label{fig:s2}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S3_Reliability_Brain_Atlas.pdf}
+\caption{Reliability of all six pipelines in the brain-atlas within-atlas test partition.}
+\label{fig:s3}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S4_Reliability_Multi_Tissue_TME.pdf}
+\caption{Reliability of all six pipelines in the multi-tissue TME within-atlas test partition.}
+\label{fig:s4}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S5_Reliability_Human_Pancreas.pdf}
+\caption{Reliability of all six pipelines in the human-pancreas within-atlas test partition.}
+\label{fig:s5}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S6_Reliability_Pig_Pancreas.pdf}
+\caption{Reliability of all six pipelines in the pig-pancreas within-atlas test partition.}
+\label{fig:s6}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.98\textwidth,height=0.84\textheight,keepaspectratio]{Figure_S7_Donor_Heldout_Reliability.pdf}
+\caption{Reliability of all six pipelines from pooled out-of-fold predictions on 199 Indonesia PBMC donors. Accuracy intervals resample donors and carry all cells belonging to the selected donors together.}
+\label{fig:s7}
+\end{figure}
+
+\end{document}

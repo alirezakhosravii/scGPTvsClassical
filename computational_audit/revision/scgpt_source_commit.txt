@@ -1,0 +1,6 @@
+scGPT version: 0.2.5
+Source commit: cebd6fa
+Embedding API: scgpt.tasks.embed_data
+Embedding dimension: 512
+Maximum input length: 1200 genes
+Checkpoint: whole-human model distributed by the scGPT authors

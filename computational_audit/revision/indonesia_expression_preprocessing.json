@@ -1,0 +1,8 @@
+{
+  "n_cells": 2048,
+  "n_genes": 1135,
+  "max_absolute_difference": 5.888080596923828,
+  "mean_absolute_difference": 0.2100736837686991,
+  "fraction_with_difference_gt_1e_6": 0.0971094610407489,
+  "allclose_rtol_1e_5_atol_1e_6": false
+}

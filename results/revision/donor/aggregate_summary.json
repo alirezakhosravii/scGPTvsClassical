@@ -1,0 +1,126 @@
+{
+  "n_cells": 462034,
+  "n_donors": 199,
+  "n_folds": 5,
+  "n_bootstrap": 5000,
+  "best_classical": "Matched HVGs plus Logistic Regression",
+  "best_scgpt": "scGPT embeddings plus XGBoost",
+  "pooled_metrics": [
+    {
+      "model": "scGPT embeddings plus Logistic Regression",
+      "n_cells": 462034,
+      "n_donors": 199,
+      "macro_f1": 0.9277484091948361,
+      "accuracy": 0.9242285199790492,
+      "balanced_accuracy": 0.9136503740846464,
+      "ece_equal_width_10": 0.02173660789633164,
+      "ece_adaptive_10": 0.021736607896331767,
+      "ece_classwise_10": 0.0035726158118723787,
+      "multiclass_brier": 0.11388508060128977,
+      "negative_log_likelihood": 0.20957611561043119
+    },
+    {
+      "model": "scGPT embeddings plus Random Forest",
+      "n_cells": 462034,
+      "n_donors": 199,
+      "macro_f1": 0.9119262440078616,
+      "accuracy": 0.9047494340243358,
+      "balanced_accuracy": 0.8910074648653237,
+      "ece_equal_width_10": 0.07226138098881299,
+      "ece_adaptive_10": 0.07230466784409009,
+      "ece_classwise_10": 0.011584273984226361,
+      "multiclass_brier": 0.15439581734315588,
+      "negative_log_likelihood": 0.29504010642866657
+    },
+    {
+      "model": "scGPT embeddings plus XGBoost",
+      "n_cells": 462034,
+      "n_donors": 199,
+      "macro_f1": 0.9340912501677651,
+      "accuracy": 0.9244492829532026,
+      "balanced_accuracy": 0.9268647750329078,
+      "ece_equal_width_10": 0.00318980832694216,
+      "ece_adaptive_10": 0.004329280051485231,
+      "ece_classwise_10": 0.0011942808288049485,
+      "multiclass_brier": 0.11208536798947749,
+      "negative_log_likelihood": 0.20074106583898746
+    },
+    {
+      "model": "Matched HVGs plus Logistic Regression",
+      "n_cells": 462034,
+      "n_donors": 199,
+      "macro_f1": 0.9564492427968889,
+      "accuracy": 0.9522913898111395,
+      "balanced_accuracy": 0.9555938185156427,
+      "ece_equal_width_10": 0.008746492514288728,
+      "ece_adaptive_10": 0.008693557638684407,
+      "ece_classwise_10": 0.0013640825625457972,
+      "multiclass_brier": 0.07155218328749016,
+      "negative_log_likelihood": 0.1330899158004854
+    },
+    {
+      "model": "Matched HVGs plus Random Forest",
+      "n_cells": 462034,
+      "n_donors": 199,
+      "macro_f1": 0.9247122741444412,
+      "accuracy": 0.9442616777120298,
+      "balanced_accuracy": 0.8963141866767218,
+      "ece_equal_width_10": 0.10567447388148357,
+      "ece_adaptive_10": 0.10567447388148342,
+      "ece_classwise_10": 0.016372639531113058,
+      "multiclass_brier": 0.11025765214725693,
+      "negative_log_likelihood": 0.23090086579542785
+    },
+    {
+      "model": "Matched HVGs plus XGBoost",
+      "n_cells": 462034,
+      "n_donors": 199,
+      "macro_f1": 0.955078466454172,
+      "accuracy": 0.9515966357454213,
+      "balanced_accuracy": 0.9502637175755985,
+      "ece_equal_width_10": 0.004164817287629191,
+      "ece_adaptive_10": 0.004025975792993486,
+      "ece_classwise_10": 0.0009538729406599882,
+      "multiclass_brier": 0.07080925696215223,
+      "negative_log_likelihood": 0.12529504768371658
+    }
+  ],
+  "paired_differences": [
+    {
+      "model_a": "Matched HVGs plus Logistic Regression",
+      "model_b": "scGPT embeddings plus Logistic Regression",
+      "difference_a_minus_b": 0.028700833602052778,
+      "donor_boot_ci_low": 0.026786106333025188,
+      "donor_boot_ci_high": 0.030816321422006392,
+      "probability_difference_gt_zero": 1.0,
+      "n_bootstrap": 5000
+    },
+    {
+      "model_a": "Matched HVGs plus Random Forest",
+      "model_b": "scGPT embeddings plus Random Forest",
+      "difference_a_minus_b": 0.01278603013657964,
+      "donor_boot_ci_low": 0.010328746081101972,
+      "donor_boot_ci_high": 0.01539225083231913,
+      "probability_difference_gt_zero": 1.0,
+      "n_bootstrap": 5000
+    },
+    {
+      "model_a": "Matched HVGs plus XGBoost",
+      "model_b": "scGPT embeddings plus XGBoost",
+      "difference_a_minus_b": 0.020987216286406984,
+      "donor_boot_ci_low": 0.01933134657860847,
+      "donor_boot_ci_high": 0.022839779794939535,
+      "probability_difference_gt_zero": 1.0,
+      "n_bootstrap": 5000
+    },
+    {
+      "model_a": "Matched HVGs plus Logistic Regression",
+      "model_b": "scGPT embeddings plus XGBoost",
+      "difference_a_minus_b": 0.022357992629123857,
+      "donor_boot_ci_low": 0.02065582886938553,
+      "donor_boot_ci_high": 0.0242301708758189,
+      "probability_difference_gt_zero": 1.0,
+      "n_bootstrap": 5000
+    }
+  ]
+}

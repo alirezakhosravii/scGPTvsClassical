@@ -1,0 +1,22 @@
+dataset,comparison,model_a,model_b,difference_a_minus_b,paired_cell_boot_ci_low,paired_cell_boot_ci_high,probability_difference_gt_zero,n_bootstrap
+TNBC_Breast_Cancer,Logistic Regression,Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.012517670481365428,0.011415894049929654,0.01367823118532766,1.0,5000
+TNBC_Breast_Cancer,Random Forest,Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,0.019843672173084026,0.018207394382722956,0.021555762608703975,1.0,5000
+TNBC_Breast_Cancer,XGBoost,Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.011651697443818776,0.010319672909231423,0.012948279192747068,1.0,5000
+Indonesia_PBMC,Logistic Regression,Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.027128509966472425,0.023962447070680758,0.030353621227937933,1.0,5000
+Indonesia_PBMC,Random Forest,Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,0.01679729331301716,0.013064073398873213,0.02040506375556088,1.0,5000
+Indonesia_PBMC,XGBoost,Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.019423477569071257,0.01651237356713123,0.022301141027105075,1.0,5000
+Indonesia_PBMC,Best observed pipeline,Matched HVGs plus Logistic Regression,scGPT embeddings plus XGBoost,0.02012067290228925,0.017032202696187864,0.02314578938459547,1.0,5000
+Brain_Atlas,Logistic Regression,Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.07474594946729907,0.044119937730191315,0.11124488204017939,1.0,5000
+Brain_Atlas,Random Forest,Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,-0.06164883285715983,-0.09618990438878532,-0.0277707642499638,0.0002,5000
+Brain_Atlas,XGBoost,Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.020585490482022406,-0.0009216795441543713,0.04426790829874032,0.9684,5000
+Multi_Tissue_TME,Logistic Regression,Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.03609856997819261,0.030285541242963662,0.041871491560497874,1.0,5000
+Multi_Tissue_TME,Random Forest,Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,0.057069392813611675,0.04904702935300486,0.06880798959822251,1.0,5000
+Multi_Tissue_TME,XGBoost,Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.050878064494639,0.03875718758865486,0.065170430622972,1.0,5000
+Human_Pancreas,Logistic Regression,Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.26072923995935426,0.23868046993624284,0.2770183769839967,1.0,5000
+Human_Pancreas,Random Forest,Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,0.20789481335699567,0.15504507676791954,0.2497290228734225,1.0,5000
+Human_Pancreas,XGBoost,Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.1088250930488669,0.06071333600229324,0.1638696578155869,1.0,5000
+Human_Pancreas,Best observed pipeline,Matched HVGs plus Logistic Regression,scGPT embeddings plus XGBoost,0.10941341461642451,0.06386217364160808,0.16644426114096955,1.0,5000
+Pig_Pancreas,Logistic Regression,Matched HVGs plus Logistic Regression,scGPT embeddings plus Logistic Regression,0.39207197566571617,0.37394831734565886,0.41117474156325856,1.0,5000
+Pig_Pancreas,Random Forest,Matched HVGs plus Random Forest,scGPT embeddings plus Random Forest,0.35061477535272223,0.30557163874164966,0.38627890953821736,1.0,5000
+Pig_Pancreas,XGBoost,Matched HVGs plus XGBoost,scGPT embeddings plus XGBoost,0.12624084871931673,0.08497351119521487,0.18240088916029493,1.0,5000
+Pig_Pancreas,Best observed pipeline,Matched HVGs plus Logistic Regression,scGPT embeddings plus XGBoost,0.12843326979065794,0.08707282148223237,0.18443477842990608,1.0,5000

@@ -1,0 +1,80 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{lineno}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\graphicspath{{figures/}{figures/supplementary/}}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation},
+  pdfauthor={Alireza Khosravi et al.}
+}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\vspace*{0.8cm}
+{\LARGE\bfseries An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation\par}
+\vspace{1.2cm}
+{\large
+Alireza Khosravi$^{1,2,3}$, Arshia Khosravi$^{3}$, Kamil {\L}angowski$^{1}$, Micha{\l} Sieczczy{\'n}ski$^{1,5}$,\\[4pt]
+Krzysztof Pastuszak$^{1,2,4}$, Anna Supernat$^{1,2,*}$, Anna J.~{\.Z}aczek$^{1,2}$\par}
+\vspace{0.8cm}
+\begin{minipage}{0.92\textwidth}
+\small
+$^{1}$Laboratory of Translational Oncology, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{2}$Centre of Biostatistics and Bioinformatics Analysis, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{3}$Scientific Circle of Artificial Intelligence in Medicine, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{4}$Department of Algorithms and System Modeling, Gda\'nsk University of Technology, Gda\'nsk, Poland\\
+$^{5}$Department of Software Engineering, Gda\'nsk University of Technology, Gda\'nsk, Poland\\[5pt]
+$^{*}$Correspondence: Anna Supernat, \href{mailto:abednarz@gumed.edu.pl}{abednarz@gumed.edu.pl}
+\end{minipage}
+\vspace{1.0cm}
+\end{center}
+
+\section*{Abstract}
+Pretrained single-cell models are intended to provide transferable representations, but their advantage over supervised baselines and the reliability of probabilities produced by downstream annotation pipelines remain uncertain. We compared official frozen scGPT cell embeddings with normalized expression of the same training-selected and vocabulary-matched genes. Each representation was paired with Logistic Regression, Random Forest, and XGBoost across six public atlases containing 1,405,933 cells. We used training-only feature selection, five donor-held-out folds in 199 Indonesian donors, cell and donor bootstrap analyses, five calibration measures, a 10--500-label-per-class scarcity experiment, and held-out-donor temperature scaling. The strongest matched-expression pipeline achieved higher observed Macro F1 than the strongest frozen-scGPT pipeline in all six atlases. In donor-held-out evaluation, pooled Macro F1 was 0.956 for matched expression and 0.934 for scGPT embeddings; the paired difference was 0.022 with a donor-bootstrap 95\% interval of 0.021--0.024. Matched expression remained stronger throughout the tested label range. Temperature scaling reduced calibration error and negative log-likelihood without changing class predictions. These results establish a pipeline-specific advantage for matched classical models under the tested supervised within-atlas conditions, while leaving zero-shot, external-atlas, rare-cell, and fine-grained transfer settings unresolved.
+
+\textbf{Keywords:} single-cell RNA sequencing; scGPT; cell type annotation; calibration; donor-held-out validation; benchmarking
+\end{titlepage}
+
+\onehalfspacing
+\linenumbers
+
+\input{sections/introduction}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/methods}
+\input{sections/data_availability}
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\input{sections/declarations}
+
+\end{document}

@@ -1,0 +1,33 @@
+\begin{table}[p]
+\centering
+\caption{Label scarcity and held-out-donor temperature scaling on Indonesia PBMC.}
+\label{tab:secondary}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{threeparttable}
+\begin{tabular}{rcccc}
+\toprule
+\multicolumn{5}{l}{\textbf{A. Logistic Regression label-scarcity analysis}}\\
+Labels per class & scGPT F1 & Matched F1 & Difference & scGPT / matched ECE \\
+\midrule
+10  & $0.679\pm0.013$ & $0.856\pm0.014$ & 0.177 & 0.537 / 0.065 \\
+25  & $0.738\pm0.011$ & $0.893\pm0.002$ & 0.155 & 0.532 / 0.014 \\
+50  & $0.784\pm0.008$ & $0.905\pm0.006$ & 0.122 & 0.494 / 0.016 \\
+100 & $0.817\pm0.010$ & $0.913\pm0.003$ & 0.096 & 0.430 / 0.029 \\
+250 & $0.848\pm0.009$ & $0.914\pm0.002$ & 0.066 & 0.323 / 0.043 \\
+500 & $0.863\pm0.008$ & $0.915\pm0.003$ & 0.052 & 0.246 / 0.050 \\
+\midrule
+\multicolumn{5}{l}{\textbf{B. Temperature scaling of donor-held-out Logistic Regression}}\\
+Pipeline and state & Macro F1 & ECE & Brier & NLL \\
+\midrule
+scGPT embeddings before & $0.925\pm0.003$ & 0.024 & 0.117 & 0.215 \\
+scGPT embeddings after & $0.925\pm0.003$ & \textbf{0.003} & 0.115 & \textbf{0.207} \\
+Matched expression before & $0.956\pm0.003$ & 0.010 & 0.073 & 0.138 \\
+Matched expression after & $0.956\pm0.003$ & \textbf{0.002} & 0.072 & \textbf{0.134} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item Scarcity values are fold means $\pm$ standard deviations after averaging five sampling seeds within each of five outer donor folds; each budget was capped by available cells without replacement. Temperature scaling used an inner donor split from outer-training donors only. Complete scarcity results for Logistic Regression and XGBoost are in Supplementary Table S3.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

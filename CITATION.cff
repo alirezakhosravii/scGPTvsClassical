@@ -1,7 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this code or data, please cite the accompanying paper."
-title: "scGPTvsClassical: A calibration-aware benchmark of scGPT against classical machine learning for single-cell cell-type annotation"
+title: "scGPTvsClassical: An accuracy and calibration benchmark of scGPT pipelines and matched classical models"
 type: software
+version: "2.0.0"
+date-released: 2026-08-09
 authors:
   - family-names: Khosravi
     given-names: Alireza
@@ -29,7 +31,7 @@ repository-code: "https://github.com/alirezakhosravii/scGPTvsClassical"
 license: MIT
 preferred-citation:
   type: article
-  title: "Classical Machine Learning Outperforms and Excels in Calibration Compared to Single-Cell Large Language Models for Cell-Type Annotation at Scale"
+  title: "An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation"
   authors:
     - family-names: Khosravi
       given-names: Alireza
@@ -46,4 +48,4 @@ preferred-citation:
     - family-names: Zaczek
       given-names: Anna J.
   year: 2026
-  journal: "BMC Bioinformatics (under review)"
+  journal: "Scientific Reports (revision under review)"

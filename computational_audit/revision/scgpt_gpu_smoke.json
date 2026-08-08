@@ -1,0 +1,19 @@
+{
+  "scgpt_version": "0.2.5",
+  "scgpt_source_commit": "cebd6fa",
+  "torch_version": "2.5.1+cu124",
+  "cuda_version": "12.4",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "input_shape": [
+    512,
+    36030
+  ],
+  "embedding_shape": [
+    512,
+    512
+  ],
+  "embedding_finite": true,
+  "embedding_norm_mean": 1.0,
+  "embedding_norm_min": 0.9999998211860657,
+  "embedding_norm_max": 1.0000001192092896
+}

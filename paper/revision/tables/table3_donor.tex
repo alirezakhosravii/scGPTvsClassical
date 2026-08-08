@@ -1,0 +1,24 @@
+\begin{table}[p]
+\centering
+\caption{Five-fold donor-held-out evaluation on Indonesia PBMC.}
+\label{tab:donor}
+\scriptsize
+\setlength{\tabcolsep}{2.7pt}
+\begin{threeparttable}
+\begin{tabular}{lccccccc}
+\toprule
+Pipeline & Pooled F1 & Fold F1 & Donor CI & Cell CI & ECE & Brier & NLL \\
+\midrule
+scGPT embeddings + LR & 0.928 & $0.928\pm0.003$ & 0.924--0.931 & 0.926--0.929 & 0.022 & 0.114 & 0.210 \\
+scGPT embeddings + RF & 0.912 & $0.912\pm0.005$ & 0.907--0.916 & 0.910--0.913 & 0.072 & 0.154 & 0.295 \\
+scGPT embeddings + XGB & 0.934 & $0.934\pm0.005$ & 0.931--0.937 & 0.933--0.935 & 0.003 & 0.112 & 0.201 \\
+Matched expression + LR & \textbf{0.956} & $\mathbf{0.956\pm0.003}$ & 0.954--0.958 & 0.955--0.958 & 0.009 & 0.072 & 0.133 \\
+Matched expression + RF & 0.925 & $0.925\pm0.003$ & 0.921--0.928 & 0.923--0.927 & 0.106 & 0.110 & 0.231 \\
+Matched expression + XGB & 0.955 & $0.955\pm0.003$ & 0.953--0.958 & 0.954--0.956 & 0.004 & \textbf{0.071} & \textbf{0.125} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\scriptsize
+\item Fold F1 is mean $\pm$ standard deviation across five outer donor folds. Donor and cell CIs are 5,000-draw bootstrap intervals for pooled Macro F1. Donor resampling carries all cells from a selected donor together. LR, Logistic Regression; RF, Random Forest; XGB, XGBoost.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

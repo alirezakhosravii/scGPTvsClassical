@@ -1,0 +1,56 @@
+{
+  "shape": [
+    462034,
+    36030
+  ],
+  "x_type": "_CSRDataset",
+  "layers": [],
+  "raw_present": true,
+  "uns_keys": [
+    "citation",
+    "default_embedding",
+    "organism",
+    "organism_ontology_term_id",
+    "schema_reference",
+    "schema_version",
+    "title"
+  ],
+  "sample_nonzero_values": 518257,
+  "sample_min_positive": 0.35553860664367676,
+  "sample_max": 7.758762836456299,
+  "sample_fraction_noninteger": 1.0,
+  "sample_quantiles_positive": {
+    "0.0": 0.35553860664367676,
+    "0.25": 0.9961350560188293,
+    "0.5": 1.2390066385269165,
+    "0.75": 1.6308985948562622,
+    "0.95": 2.764888048171997,
+    "0.99": 3.929565906524658,
+    "1.0": 7.758762836456299
+  },
+  "sample_row_sums_quantiles": {
+    "0.0": 1698.8953994862084,
+    "0.25": 2571.835390646949,
+    "0.5": 2795.460459012349,
+    "0.75": 3058.485552489684,
+    "1.0": 4065.3573837857743
+  },
+  "raw_summary": {
+    "shape": [
+      462034,
+      36030
+    ],
+    "x_type": "_CSRDataset",
+    "sample_nonzero_values": 524224,
+    "sample_min_positive": 1.0,
+    "sample_max": 3750.0,
+    "sample_fraction_noninteger": 0.0,
+    "sample_row_sums_quantiles": {
+      "0.0": 1142.0,
+      "0.25": 3631.0,
+      "0.5": 4449.5,
+      "0.75": 6205.75,
+      "1.0": 23396.0
+    }
+  }
+}

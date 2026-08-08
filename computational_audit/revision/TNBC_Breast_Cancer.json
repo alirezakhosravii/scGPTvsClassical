@@ -1,0 +1,70 @@
+{
+  "dataset": "TNBC_Breast_Cancer",
+  "path": "/vol/data/TNBC_Breast_Cancer.h5ad",
+  "file_size_bytes": 4522979904,
+  "shape": [
+    427823,
+    32354
+  ],
+  "raw_present": true,
+  "raw_shape": [
+    427823,
+    32354
+  ],
+  "n_cell_types": 7,
+  "n_cell_types_more_than_five_cells": 7,
+  "cell_type_counts": {
+    "T cell": 254315,
+    "lymphocyte of B lineage": 51998,
+    "abnormal cell": 49275,
+    "myeloid leukocyte": 48987,
+    "fibroblast": 14182,
+    "endothelial cell": 5927,
+    "perivascular cell": 3139
+  },
+  "feature_name_present": true,
+  "obs_columns": [
+    "orig.ident",
+    "nCount_RNA",
+    "nFeature_RNA",
+    "cell_state",
+    "pCR_status",
+    "cell_type_ontology_term_id",
+    "assay_ontology_term_id",
+    "development_stage_ontology_term_id",
+    "self_reported_ethnicity_ontology_term_id",
+    "sex_ontology_term_id",
+    "tissue_ontology_term_id",
+    "disease_ontology_term_id",
+    "suspension_type",
+    "tissue_type",
+    "donor_id",
+    "is_primary_data",
+    "author_cell_type",
+    "cell_type",
+    "assay",
+    "disease",
+    "sex",
+    "tissue",
+    "self_reported_ethnicity",
+    "development_stage",
+    "observation_joinid"
+  ],
+  "var_columns": [
+    "vf_vst_counts_mean",
+    "vf_vst_counts_variance",
+    "vf_vst_counts_variance.expected",
+    "vf_vst_counts_variance.standardized",
+    "vf_vst_counts_variable",
+    "vf_vst_counts_rank",
+    "var.features",
+    "var.features.rank",
+    "gene_symbols",
+    "feature_is_filtered",
+    "feature_name",
+    "feature_reference",
+    "feature_biotype",
+    "feature_length",
+    "feature_type"
+  ]
+}

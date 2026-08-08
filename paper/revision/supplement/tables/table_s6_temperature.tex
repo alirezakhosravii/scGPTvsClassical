@@ -1,0 +1,10 @@
+\begin{table}[p]\centering\scriptsize
+\caption{Complete held-out-donor temperature-scaling results.}\label{tab:s6}
+\resizebox{0.98\textwidth}{!}{\begin{tabular}{llcccccccccc}
+\toprule Pipeline & State & $T$ mean & $T$ SD & F1 mean & F1 SD & ECE mean & ECE SD & Brier mean & Brier SD & NLL mean & NLL SD \\\midrule
+Matched expr. + LR & Uncalibrated & 1.233 & 0.016 & 0.956 & 0.003 & 0.0102 & 0.0008 & 0.0730 & 0.0031 & 0.1379 & 0.0057 \\
+Matched expr. + LR & Calibrated & 1.233 & 0.016 & 0.956 & 0.003 & 0.0022 & 0.0008 & 0.0725 & 0.0030 & 0.1340 & 0.0053 \\
+scGPT emb. + LR & Uncalibrated & 0.806 & 0.012 & 0.925 & 0.003 & 0.0240 & 0.0015 & 0.1165 & 0.0046 & 0.2151 & 0.0081 \\
+scGPT emb. + LR & Calibrated & 0.806 & 0.012 & 0.925 & 0.003 & 0.0030 & 0.0013 & 0.1152 & 0.0048 & 0.2065 & 0.0085 \\
+\bottomrule\end{tabular}}
+\vspace{3pt}\begin{minipage}{0.96\linewidth}\footnotesize One temperature was fitted per fold using an inner donor split from outer-training donors. Reported values are means and sample standard deviations across outer folds.\end{minipage}\end{table}
