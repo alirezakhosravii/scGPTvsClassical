@@ -1,0 +1,335 @@
+{
+  "TNBC_Breast_Cancer": {
+    "n_cells": 427823,
+    "available_grouping_columns": {
+      "donor_id": {
+        "n_nonmissing_cells": 427823,
+        "n_missing_cells": 0,
+        "n_unique": 101,
+        "min_cells_per_group": 516,
+        "max_cells_per_group": 14781,
+        "classes_per_group_min": 2,
+        "classes_per_group_max": 7,
+        "groups_per_class": {
+          "T cell": 101,
+          "abnormal cell": 97,
+          "endothelial cell": 35,
+          "fibroblast": 29,
+          "lymphocyte of B lineage": 82,
+          "myeloid leukocyte": 98,
+          "perivascular cell": 30
+        }
+      },
+      "orig.ident": {
+        "n_nonmissing_cells": 427823,
+        "n_missing_cells": 0,
+        "n_unique": 7,
+        "min_cells_per_group": 3139,
+        "max_cells_per_group": 254315,
+        "classes_per_group_min": 1,
+        "classes_per_group_max": 1,
+        "groups_per_class": {
+          "T cell": 1,
+          "abnormal cell": 1,
+          "endothelial cell": 1,
+          "fibroblast": 1,
+          "lymphocyte of B lineage": 1,
+          "myeloid leukocyte": 1,
+          "perivascular cell": 1
+        }
+      }
+    }
+  },
+  "Indonesia_PBMC": {
+    "n_cells": 462034,
+    "available_grouping_columns": {
+      "donor_id": {
+        "n_nonmissing_cells": 462034,
+        "n_missing_cells": 0,
+        "n_unique": 199,
+        "min_cells_per_group": 283,
+        "max_cells_per_group": 5277,
+        "classes_per_group_min": 12,
+        "classes_per_group_max": 13,
+        "groups_per_class": {
+          "CD14-positive monocyte": 199,
+          "CD14-positive, CD16-positive monocyte": 199,
+          "CD4-positive, alpha-beta T cell": 199,
+          "CD8-positive, alpha-beta T cell": 199,
+          "dendritic cell, human": 199,
+          "lymphocyte": 196,
+          "memory B cell": 199,
+          "naive B cell": 199,
+          "naive thymus-derived CD8-positive, alpha-beta T cell": 199,
+          "natural killer cell": 199,
+          "plasma cell": 193,
+          "plasmacytoid dendritic cell": 198,
+          "platelet": 199
+        }
+      },
+      "sample_id": {
+        "n_nonmissing_cells": 462034,
+        "n_missing_cells": 0,
+        "n_unique": 199,
+        "min_cells_per_group": 283,
+        "max_cells_per_group": 5277,
+        "classes_per_group_min": 12,
+        "classes_per_group_max": 13,
+        "groups_per_class": {
+          "CD14-positive monocyte": 199,
+          "CD14-positive, CD16-positive monocyte": 199,
+          "CD4-positive, alpha-beta T cell": 199,
+          "CD8-positive, alpha-beta T cell": 199,
+          "dendritic cell, human": 199,
+          "lymphocyte": 196,
+          "memory B cell": 199,
+          "naive B cell": 199,
+          "naive thymus-derived CD8-positive, alpha-beta T cell": 199,
+          "natural killer cell": 199,
+          "plasma cell": 193,
+          "plasmacytoid dendritic cell": 198,
+          "platelet": 199
+        }
+      },
+      "batch": {
+        "n_nonmissing_cells": 462034,
+        "n_missing_cells": 0,
+        "n_unique": 27,
+        "min_cells_per_group": 8122,
+        "max_cells_per_group": 22923,
+        "classes_per_group_min": 13,
+        "classes_per_group_max": 13,
+        "groups_per_class": {
+          "CD14-positive monocyte": 27,
+          "CD14-positive, CD16-positive monocyte": 27,
+          "CD4-positive, alpha-beta T cell": 27,
+          "CD8-positive, alpha-beta T cell": 27,
+          "dendritic cell, human": 27,
+          "lymphocyte": 27,
+          "memory B cell": 27,
+          "naive B cell": 27,
+          "naive thymus-derived CD8-positive, alpha-beta T cell": 27,
+          "natural killer cell": 27,
+          "plasma cell": 27,
+          "plasmacytoid dendritic cell": 27,
+          "platelet": 27
+        }
+      },
+      "orig.ident": {
+        "n_nonmissing_cells": 462034,
+        "n_missing_cells": 0,
+        "n_unique": 27,
+        "min_cells_per_group": 8122,
+        "max_cells_per_group": 22923,
+        "classes_per_group_min": 13,
+        "classes_per_group_max": 13,
+        "groups_per_class": {
+          "CD14-positive monocyte": 27,
+          "CD14-positive, CD16-positive monocyte": 27,
+          "CD4-positive, alpha-beta T cell": 27,
+          "CD8-positive, alpha-beta T cell": 27,
+          "dendritic cell, human": 27,
+          "lymphocyte": 27,
+          "memory B cell": 27,
+          "naive B cell": 27,
+          "naive thymus-derived CD8-positive, alpha-beta T cell": 27,
+          "natural killer cell": 27,
+          "plasma cell": 27,
+          "plasmacytoid dendritic cell": 27,
+          "platelet": 27
+        }
+      },
+      "library_id": {
+        "n_nonmissing_cells": 462034,
+        "n_missing_cells": 0,
+        "n_unique": 27,
+        "min_cells_per_group": 8122,
+        "max_cells_per_group": 22923,
+        "classes_per_group_min": 13,
+        "classes_per_group_max": 13,
+        "groups_per_class": {
+          "CD14-positive monocyte": 27,
+          "CD14-positive, CD16-positive monocyte": 27,
+          "CD4-positive, alpha-beta T cell": 27,
+          "CD8-positive, alpha-beta T cell": 27,
+          "dendritic cell, human": 27,
+          "lymphocyte": 27,
+          "memory B cell": 27,
+          "naive B cell": 27,
+          "naive thymus-derived CD8-positive, alpha-beta T cell": 27,
+          "natural killer cell": 27,
+          "plasma cell": 27,
+          "plasmacytoid dendritic cell": 27,
+          "platelet": 27
+        }
+      }
+    }
+  },
+  "Brain_Atlas": {
+    "n_cells": 75583,
+    "available_grouping_columns": {
+      "donor_id": {
+        "n_nonmissing_cells": 75583,
+        "n_missing_cells": 0,
+        "n_unique": 12,
+        "min_cells_per_group": 3004,
+        "max_cells_per_group": 11034,
+        "classes_per_group_min": 8,
+        "classes_per_group_max": 10,
+        "groups_per_class": {
+          "GABAergic neuron": 12,
+          "astrocyte": 12,
+          "central nervous system macrophage": 12,
+          "endothelial cell": 11,
+          "glutamatergic neuron": 12,
+          "microglial cell": 12,
+          "oligodendrocyte": 12,
+          "oligodendrocyte precursor cell": 12,
+          "pericyte": 10,
+          "perivascular cell": 11
+        }
+      }
+    }
+  },
+  "Multi_Tissue_TME": {
+    "n_cells": 391963,
+    "available_grouping_columns": {
+      "donor_id": {
+        "n_nonmissing_cells": 391963,
+        "n_missing_cells": 0,
+        "n_unique": 132,
+        "min_cells_per_group": 6,
+        "max_cells_per_group": 26204,
+        "classes_per_group_min": 2,
+        "classes_per_group_max": 11,
+        "groups_per_class": {
+          "B cell": 118,
+          "T cell": 119,
+          "endothelial cell": 94,
+          "epithelial cell": 103,
+          "fibroblast": 108,
+          "malignant cell": 94,
+          "mast cell": 61,
+          "megakaryocyte": 18,
+          "mononuclear phagocyte": 96,
+          "neutrophil": 16,
+          "plasmacytoid dendritic cell": 87
+        }
+      },
+      "batch": {
+        "n_nonmissing_cells": 391963,
+        "n_missing_cells": 0,
+        "n_unique": 9,
+        "min_cells_per_group": 2463,
+        "max_cells_per_group": 161242,
+        "classes_per_group_min": 5,
+        "classes_per_group_max": 11,
+        "groups_per_class": {
+          "B cell": 9,
+          "T cell": 9,
+          "endothelial cell": 8,
+          "epithelial cell": 8,
+          "fibroblast": 8,
+          "malignant cell": 7,
+          "mast cell": 8,
+          "megakaryocyte": 6,
+          "mononuclear phagocyte": 9,
+          "neutrophil": 5,
+          "plasmacytoid dendritic cell": 9
+        }
+      },
+      "harm_study": {
+        "n_nonmissing_cells": 391963,
+        "n_missing_cells": 0,
+        "n_unique": 13,
+        "min_cells_per_group": 999,
+        "max_cells_per_group": 141696,
+        "classes_per_group_min": 5,
+        "classes_per_group_max": 11,
+        "groups_per_class": {
+          "B cell": 13,
+          "T cell": 13,
+          "endothelial cell": 12,
+          "epithelial cell": 10,
+          "fibroblast": 12,
+          "malignant cell": 8,
+          "mast cell": 11,
+          "megakaryocyte": 5,
+          "mononuclear phagocyte": 13,
+          "neutrophil": 5,
+          "plasmacytoid dendritic cell": 13
+        }
+      }
+    }
+  },
+  "Human_Pancreas": {
+    "n_cells": 26474,
+    "available_grouping_columns": {
+      "donor_id": {
+        "n_nonmissing_cells": 26474,
+        "n_missing_cells": 0,
+        "n_unique": 5,
+        "min_cells_per_group": 3913,
+        "max_cells_per_group": 8150,
+        "classes_per_group_min": 4,
+        "classes_per_group_max": 4,
+        "groups_per_class": {
+          "pancreatic A cell": 5,
+          "pancreatic D cell": 5,
+          "pancreatic PP cell": 5,
+          "type B pancreatic cell": 5
+        }
+      },
+      "sample": {
+        "n_nonmissing_cells": 26474,
+        "n_missing_cells": 0,
+        "n_unique": 5,
+        "min_cells_per_group": 3913,
+        "max_cells_per_group": 8150,
+        "classes_per_group_min": 4,
+        "classes_per_group_max": 4,
+        "groups_per_class": {
+          "pancreatic A cell": 5,
+          "pancreatic D cell": 5,
+          "pancreatic PP cell": 5,
+          "type B pancreatic cell": 5
+        }
+      }
+    }
+  },
+  "Pig_Pancreas": {
+    "n_cells": 22056,
+    "available_grouping_columns": {
+      "donor_id": {
+        "n_nonmissing_cells": 22056,
+        "n_missing_cells": 0,
+        "n_unique": 1,
+        "min_cells_per_group": 22056,
+        "max_cells_per_group": 22056,
+        "classes_per_group_min": 4,
+        "classes_per_group_max": 4,
+        "groups_per_class": {
+          "pancreatic A cell": 1,
+          "pancreatic D cell": 1,
+          "pancreatic PP cell": 1,
+          "type B pancreatic cell": 1
+        }
+      },
+      "sample": {
+        "n_nonmissing_cells": 22056,
+        "n_missing_cells": 0,
+        "n_unique": 2,
+        "min_cells_per_group": 10689,
+        "max_cells_per_group": 11367,
+        "classes_per_group_min": 4,
+        "classes_per_group_max": 4,
+        "groups_per_class": {
+          "pancreatic A cell": 2,
+          "pancreatic D cell": 2,
+          "pancreatic PP cell": 2,
+          "type B pancreatic cell": 2
+        }
+      }
+    }
+  }
+}

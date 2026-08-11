@@ -1,0 +1,44 @@
+dataset,representation,classifier,selected_parameters,fold_frequency
+Brain_Atlas,matched_expression,logreg,"{""C"": 1.0, ""scale"": false}",1
+Brain_Atlas,matched_expression,logreg,"{""C"": 0.001, ""scale"": false}",3
+Brain_Atlas,matched_expression,logreg,"{""C"": 0.01, ""scale"": false}",1
+Brain_Atlas,matched_expression,random_forest,"{""max_features"": 0.25, ""min_samples_leaf"": 1}",5
+Brain_Atlas,matched_expression,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 6, ""n_estimators"": 500}",1
+Brain_Atlas,matched_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 3, ""n_estimators"": 300}",2
+Brain_Atlas,matched_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}",1
+Brain_Atlas,matched_expression,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 9, ""n_estimators"": 400}",1
+Brain_Atlas,scgpt_embeddings,logreg,"{""C"": 100.0, ""scale"": false}",1
+Brain_Atlas,scgpt_embeddings,logreg,"{""C"": 0.01, ""scale"": true}",2
+Brain_Atlas,scgpt_embeddings,logreg,"{""C"": 10.0, ""scale"": false}",1
+Brain_Atlas,scgpt_embeddings,logreg,"{""C"": 1000.0, ""scale"": false}",1
+Brain_Atlas,scgpt_embeddings,random_forest,"{""max_features"": 0.25, ""min_samples_leaf"": 1}",4
+Brain_Atlas,scgpt_embeddings,random_forest,"{""max_features"": ""sqrt"", ""min_samples_leaf"": 5}",1
+Brain_Atlas,scgpt_embeddings,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 3, ""n_estimators"": 300}",2
+Brain_Atlas,scgpt_embeddings,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}",1
+Brain_Atlas,scgpt_embeddings,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 6, ""n_estimators"": 500}",2
+Brain_Atlas,svd512_expression,logreg,"{""C"": 1.0, ""scale"": false}",1
+Brain_Atlas,svd512_expression,logreg,"{""C"": 0.001, ""scale"": false}",1
+Brain_Atlas,svd512_expression,logreg,"{""C"": 0.01, ""scale"": false}",2
+Brain_Atlas,svd512_expression,logreg,"{""C"": 0.01, ""scale"": true}",1
+Brain_Atlas,svd512_expression,random_forest,"{""max_features"": 0.25, ""min_samples_leaf"": 1}",5
+Brain_Atlas,svd512_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}",3
+Brain_Atlas,svd512_expression,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 6, ""n_estimators"": 500}",2
+TNBC_Breast_Cancer,matched_expression,logreg,"{""C"": 0.01, ""scale"": false}",3
+TNBC_Breast_Cancer,matched_expression,logreg,"{""C"": 0.001, ""scale"": true}",1
+TNBC_Breast_Cancer,matched_expression,logreg,"{""C"": 0.1, ""scale"": false}",1
+TNBC_Breast_Cancer,matched_expression,random_forest,"{""max_features"": ""sqrt"", ""min_samples_leaf"": 1}",5
+TNBC_Breast_Cancer,matched_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}",2
+TNBC_Breast_Cancer,matched_expression,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 6, ""n_estimators"": 500}",1
+TNBC_Breast_Cancer,matched_expression,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 9, ""n_estimators"": 400}",1
+TNBC_Breast_Cancer,matched_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 3, ""n_estimators"": 300}",1
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,"{""C"": 0.01, ""scale"": true}",1
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,"{""C"": 0.1, ""scale"": true}",4
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,"{""max_features"": 0.25, ""min_samples_leaf"": 1}",5
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}",2
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,"{""learning_rate"": 0.05, ""max_depth"": 6, ""n_estimators"": 500}",1
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 3, ""n_estimators"": 300}",2
+TNBC_Breast_Cancer,svd512_expression,logreg,"{""C"": 0.01, ""scale"": false}",4
+TNBC_Breast_Cancer,svd512_expression,logreg,"{""C"": 0.1, ""scale"": false}",1
+TNBC_Breast_Cancer,svd512_expression,random_forest,"{""max_features"": 0.25, ""min_samples_leaf"": 1}",5
+TNBC_Breast_Cancer,svd512_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 3, ""n_estimators"": 300}",4
+TNBC_Breast_Cancer,svd512_expression,xgboost,"{""learning_rate"": 0.1, ""max_depth"": 6, ""n_estimators"": 300}",1

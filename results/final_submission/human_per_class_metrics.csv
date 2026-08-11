@@ -1,0 +1,245 @@
+dataset,representation,classifier,class_index,class_name,precision,recall,f1,support
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,0,T cell,0.9801982519135568,0.9864886651855056,0.9833333986618115,254305
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,1,abnormal cell,0.999085403032397,0.9976052765093861,0.9983447911695117,49275
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,2,endothelial cell,0.9986493331082222,0.9979753669647377,0.9983122362869198,5927
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,3,fibroblast,0.9975235264982665,0.9940769990128332,0.9957972805933251,14182
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,4,lymphocyte of B lineage,0.9362598770851625,0.9228816492942036,0.9295226288824537,51998
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,5,myeloid leukocyte,0.9856911783003608,0.9702982423908384,0.9779341419004414,48987
+TNBC_Breast_Cancer,scgpt_embeddings,logreg,6,perivascular cell,0.9952244508118434,0.9958585536795158,0.9955414012738854,3139
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,0,T cell,0.954033660897346,0.9899058217494741,0.9716387608747674,254305
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,1,abnormal cell,0.9988549462233672,0.991374936580416,0.9951008850999684,49275
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,2,endothelial cell,1.0,0.9751982453180361,0.9874434099256855,5927
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,3,fibroblast,0.9973486205661053,0.9813848540403328,0.9893023421118101,14182
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,4,lymphocyte of B lineage,0.9427244247596414,0.8391476595253664,0.88792568399418,51998
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,5,myeloid leukocyte,0.9924759709476797,0.9316757507093719,0.9611152643382856,48987
+TNBC_Breast_Cancer,scgpt_embeddings,random_forest,6,perivascular cell,0.9983520105471325,0.9649569926728258,0.9813704843674065,3139
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,0,T cell,0.9724347199293139,0.9867246023475748,0.9795275467603011,254305
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,1,abnormal cell,0.9987183399450718,0.9962861491628615,0.9975007619628162,49275
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,2,endothelial cell,0.9991512476659311,0.9930825037961869,0.9961076324251142,5927
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,3,fibroblast,0.9960945821202869,0.9891411648568608,0.9926056960905714,14182
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,4,lymphocyte of B lineage,0.9340718670639285,0.898342243932459,0.9158587155783426,51998
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,5,myeloid leukocyte,0.9877127648383093,0.9583154714516096,0.9727920759252352,48987
+TNBC_Breast_Cancer,scgpt_embeddings,xgboost,6,perivascular cell,0.9964561855670103,0.9853456514813634,0.9908697741470447,3139
+TNBC_Breast_Cancer,matched_expression,logreg,0,T cell,0.988706852299578,0.9921826153634415,0.9904416844617511,254305
+TNBC_Breast_Cancer,matched_expression,logreg,1,abnormal cell,0.9994305586626263,0.9973211567732115,0.9983747435142108,49275
+TNBC_Breast_Cancer,matched_expression,logreg,2,endothelial cell,0.999830852503383,0.9973004892863169,0.9985640679111412,5927
+TNBC_Breast_Cancer,matched_expression,logreg,3,fibroblast,0.9990076552310746,0.9937949513467776,0.9963944856839873,14182
+TNBC_Breast_Cancer,matched_expression,logreg,4,lymphocyte of B lineage,0.9628517169211689,0.95555598292242,0.9591899770274706,51998
+TNBC_Breast_Cancer,matched_expression,logreg,5,myeloid leukocyte,0.9902234636871509,0.98417947618756,0.987192219093934,48987
+TNBC_Breast_Cancer,matched_expression,logreg,6,perivascular cell,0.9993612264452252,0.996814272061166,0.9980861244019139,3139
+TNBC_Breast_Cancer,matched_expression,random_forest,0,T cell,0.9788859408250202,0.9966772183008592,0.9877014683418025,254305
+TNBC_Breast_Cancer,matched_expression,random_forest,1,abnormal cell,0.9995917367518576,0.99376966007103,0.996672196045307,49275
+TNBC_Breast_Cancer,matched_expression,random_forest,2,endothelial cell,0.9998295260825094,0.9895393959844778,0.9946578478758585,5927
+TNBC_Breast_Cancer,matched_expression,random_forest,3,fibroblast,0.996859386152748,0.9847694260329996,0.9907775255391601,14182
+TNBC_Breast_Cancer,matched_expression,random_forest,4,lymphocyte of B lineage,0.9790475043651032,0.9381706988730336,0.9581733366069236,51998
+TNBC_Breast_Cancer,matched_expression,random_forest,5,myeloid leukocyte,0.9982167876703605,0.9598873170432972,0.9786769067465892,48987
+TNBC_Breast_Cancer,matched_expression,random_forest,6,perivascular cell,0.9993525412754937,0.983434214718063,0.9913294797687862,3139
+TNBC_Breast_Cancer,matched_expression,xgboost,0,T cell,0.9877957337790657,0.994604903560685,0.9911886245672198,254305
+TNBC_Breast_Cancer,matched_expression,xgboost,1,abnormal cell,0.9995911441830039,0.9923287671232877,0.9959467166367932,49275
+TNBC_Breast_Cancer,matched_expression,xgboost,2,endothelial cell,0.9988165680473373,0.9967943310275013,0.9978044249282216,5927
+TNBC_Breast_Cancer,matched_expression,xgboost,3,fibroblast,0.997872340425532,0.9921026653504442,0.9949791386747755,14182
+TNBC_Breast_Cancer,matched_expression,xgboost,4,lymphocyte of B lineage,0.9728240767778232,0.961056194469018,0.9669043311695222,51998
+TNBC_Breast_Cancer,matched_expression,xgboost,5,myeloid leukocyte,0.993503403471748,0.9802396554187846,0.9868269625976162,48987
+TNBC_Breast_Cancer,matched_expression,xgboost,6,perivascular cell,0.9967958987504005,0.9910799617712648,0.9939297124600639,3139
+TNBC_Breast_Cancer,svd512_expression,logreg,0,T cell,0.9884357929657936,0.9911798824246476,0.989805935804098,254305
+TNBC_Breast_Cancer,svd512_expression,logreg,1,abnormal cell,0.9994506947693935,0.9969761542364282,0.9982118909253465,49275
+TNBC_Breast_Cancer,svd512_expression,logreg,2,endothelial cell,0.9994929863106304,0.9978066475451325,0.9986491050320837,5927
+TNBC_Breast_Cancer,svd512_expression,logreg,3,fibroblast,0.9990078662036709,0.9940064870963192,0.9965009012830028,14182
+TNBC_Breast_Cancer,svd512_expression,logreg,4,lymphocyte of B lineage,0.9589692075879921,0.9546905650217316,0.9568251031186153,51998
+TNBC_Breast_Cancer,svd512_expression,logreg,5,myeloid leukocyte,0.9891014326177087,0.9837507910261907,0.9864188559907481,48987
+TNBC_Breast_Cancer,svd512_expression,logreg,6,perivascular cell,0.999042451324609,0.9971328448550494,0.9980867346938775,3139
+TNBC_Breast_Cancer,svd512_expression,random_forest,0,T cell,0.9764822609275322,0.9907394663887851,0.9835591999578391,254305
+TNBC_Breast_Cancer,svd512_expression,random_forest,1,abnormal cell,0.9990616649327867,0.9939523084728564,0.9965004374453194,49275
+TNBC_Breast_Cancer,svd512_expression,random_forest,2,endothelial cell,0.9998302495331862,0.9937573814746077,0.9967845659163987,5927
+TNBC_Breast_Cancer,svd512_expression,random_forest,3,fibroblast,0.9975201927164518,0.9927372725990693,0.9951229855810009,14182
+TNBC_Breast_Cancer,svd512_expression,random_forest,4,lymphocyte of B lineage,0.9489925937723979,0.9166891034270549,0.9325611879560973,51998
+TNBC_Breast_Cancer,svd512_expression,random_forest,5,myeloid leukocyte,0.992786636294609,0.9608671688407129,0.9765661469517318,48987
+TNBC_Breast_Cancer,svd512_expression,random_forest,6,perivascular cell,0.9971218420211065,0.9933099713284486,0.995212256623045,3139
+TNBC_Breast_Cancer,svd512_expression,xgboost,0,T cell,0.9855936374502926,0.9921550893612001,0.9888634791486627,254305
+TNBC_Breast_Cancer,svd512_expression,xgboost,1,abnormal cell,0.9992675185155042,0.9966920345002537,0.9979781148715239,49275
+TNBC_Breast_Cancer,svd512_expression,xgboost,2,endothelial cell,0.9988185654008439,0.9984815252235533,0.998650016874789,5927
+TNBC_Breast_Cancer,svd512_expression,xgboost,3,fibroblast,0.9981598131502584,0.9944295585954026,0.9962911942354562,14182
+TNBC_Breast_Cancer,svd512_expression,xgboost,4,lymphocyte of B lineage,0.959846102767416,0.9451709681141582,0.9524520111239232,51998
+TNBC_Breast_Cancer,svd512_expression,xgboost,5,myeloid leukocyte,0.9923781119257694,0.9780962296119379,0.9851854136466911,48987
+TNBC_Breast_Cancer,svd512_expression,xgboost,6,perivascular cell,0.9977621483375959,0.9942656897100988,0.9960108504866763,3139
+Indonesia_PBMC,scgpt_embeddings,logreg,0,CD14-positive monocyte,0.9884749344499667,0.9897725268912009,0.9891233051054873,51039
+Indonesia_PBMC,scgpt_embeddings,logreg,1,"CD14-positive, CD16-positive monocyte",0.9763177431328879,0.9739317188772866,0.9751232714195677,13503
+Indonesia_PBMC,scgpt_embeddings,logreg,2,"CD4-positive, alpha-beta T cell",0.9536533926976083,0.9613763371007154,0.9574992923288447,135461
+Indonesia_PBMC,scgpt_embeddings,logreg,3,"CD8-positive, alpha-beta T cell",0.9055870143810035,0.902345327352694,0.9039632646367463,91629
+Indonesia_PBMC,scgpt_embeddings,logreg,4,"dendritic cell, human",0.9621646411373538,0.959304983996342,0.9607326846021752,4374
+Indonesia_PBMC,scgpt_embeddings,logreg,5,lymphocyte,0.9566563467492261,0.9473684210526315,0.95198973042362,1957
+Indonesia_PBMC,scgpt_embeddings,logreg,6,memory B cell,0.9551907719609583,0.9508317385543942,0.9530062707488012,27172
+Indonesia_PBMC,scgpt_embeddings,logreg,7,naive B cell,0.9389925287619746,0.9452750092284976,0.9421232955460002,21672
+Indonesia_PBMC,scgpt_embeddings,logreg,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.9000080573684635,0.8470142180094786,0.8727073851983514,26375
+Indonesia_PBMC,scgpt_embeddings,logreg,9,natural killer cell,0.9253896601652329,0.9342333157267624,0.9297904594244358,81409
+Indonesia_PBMC,scgpt_embeddings,logreg,10,plasma cell,0.9942220387948824,0.9934020618556701,0.9938118811881188,2425
+Indonesia_PBMC,scgpt_embeddings,logreg,11,plasmacytoid dendritic cell,0.9885229540918163,0.9880299251870324,0.9882763781491644,2005
+Indonesia_PBMC,scgpt_embeddings,logreg,12,platelet,0.9273091030343448,0.9230003318951211,0.9251497005988024,3013
+Indonesia_PBMC,scgpt_embeddings,random_forest,0,CD14-positive monocyte,0.9816167897396035,0.9897137483101158,0.9856486404745413,51039
+Indonesia_PBMC,scgpt_embeddings,random_forest,1,"CD14-positive, CD16-positive monocyte",0.9696947133283693,0.9644523439235725,0.967066424089407,13503
+Indonesia_PBMC,scgpt_embeddings,random_forest,2,"CD4-positive, alpha-beta T cell",0.8971120507692201,0.9569544001594555,0.9260674815508041,135461
+Indonesia_PBMC,scgpt_embeddings,random_forest,3,"CD8-positive, alpha-beta T cell",0.8678888532602086,0.8566174464416287,0.8622163147834875,91629
+Indonesia_PBMC,scgpt_embeddings,random_forest,4,"dendritic cell, human",0.9679169615475348,0.9380429812528578,0.9527458492975734,4374
+Indonesia_PBMC,scgpt_embeddings,random_forest,5,lymphocyte,0.9775349119611415,0.8226877874297394,0.8934517203107658,1957
+Indonesia_PBMC,scgpt_embeddings,random_forest,6,memory B cell,0.9228039041703638,0.9185926689238922,0.9206934710438952,27172
+Indonesia_PBMC,scgpt_embeddings,random_forest,7,naive B cell,0.9008814617574143,0.905454042081949,0.9031619643761218,21672
+Indonesia_PBMC,scgpt_embeddings,random_forest,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.9013482772013538,0.6159241706161137,0.7317897202576693,26375
+Indonesia_PBMC,scgpt_embeddings,random_forest,9,natural killer cell,0.8994516426457029,0.9107101180459163,0.905045868759804,81409
+Indonesia_PBMC,scgpt_embeddings,random_forest,10,plasma cell,0.9970625262274444,0.9797938144329897,0.9883527454242929,2425
+Indonesia_PBMC,scgpt_embeddings,random_forest,11,plasmacytoid dendritic cell,0.9928789420142421,0.97356608478803,0.9831276756484513,2005
+Indonesia_PBMC,scgpt_embeddings,random_forest,12,platelet,0.9275631500742942,0.8287421174908729,0.8753724802804558,3013
+Indonesia_PBMC,scgpt_embeddings,xgboost,0,CD14-positive monocyte,0.985526495693107,0.9885773624091381,0.9870495715794828,51039
+Indonesia_PBMC,scgpt_embeddings,xgboost,1,"CD14-positive, CD16-positive monocyte",0.9704049844236761,0.968895800933126,0.9696498054474708,13503
+Indonesia_PBMC,scgpt_embeddings,xgboost,2,"CD4-positive, alpha-beta T cell",0.9363028276071754,0.9548061803766398,0.9454639819589984,135461
+Indonesia_PBMC,scgpt_embeddings,xgboost,3,"CD8-positive, alpha-beta T cell",0.8837402916077864,0.8804417815320477,0.8820879529401474,91629
+Indonesia_PBMC,scgpt_embeddings,xgboost,4,"dendritic cell, human",0.9629802095459837,0.9455875628715135,0.954204637213058,4374
+Indonesia_PBMC,scgpt_embeddings,xgboost,5,lymphocyte,0.9575596816976127,0.9223300970873787,0.939614783966684,1957
+Indonesia_PBMC,scgpt_embeddings,xgboost,6,memory B cell,0.9410410633400164,0.9327984690122184,0.9369016375263371,27172
+Indonesia_PBMC,scgpt_embeddings,xgboost,7,naive B cell,0.9180178122859101,0.9274640088593576,0.922716735143572,21672
+Indonesia_PBMC,scgpt_embeddings,xgboost,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.8908048473265865,0.7775924170616114,0.830357504352403,26375
+Indonesia_PBMC,scgpt_embeddings,xgboost,9,natural killer cell,0.9087836200629997,0.9214091808031053,0.9150528518014749,81409
+Indonesia_PBMC,scgpt_embeddings,xgboost,10,plasma cell,0.9912863070539419,0.9851546391752577,0.9882109617373319,2425
+Indonesia_PBMC,scgpt_embeddings,xgboost,11,plasmacytoid dendritic cell,0.9904185577407968,0.9795511221945137,0.9849548645937813,2005
+Indonesia_PBMC,scgpt_embeddings,xgboost,12,platelet,0.9092748735244519,0.894789246598075,0.9019739043158247,3013
+Indonesia_PBMC,matched_expression,logreg,0,CD14-positive monocyte,0.9901408450704225,0.9917122200670075,0.990925909611488,51039
+Indonesia_PBMC,matched_expression,logreg,1,"CD14-positive, CD16-positive monocyte",0.9808306709265175,0.977634599718581,0.9792300274460352,13503
+Indonesia_PBMC,matched_expression,logreg,2,"CD4-positive, alpha-beta T cell",0.9667181865018032,0.9696370172964912,0.9681754019997715,135461
+Indonesia_PBMC,matched_expression,logreg,3,"CD8-positive, alpha-beta T cell",0.922305353197261,0.9202217638520556,0.9212623804294978,91629
+Indonesia_PBMC,matched_expression,logreg,4,"dendritic cell, human",0.9672318973418882,0.9650205761316872,0.966124971389334,4374
+Indonesia_PBMC,matched_expression,logreg,5,lymphocyte,0.9669984284965951,0.9432805314256515,0.9549922400413865,1957
+Indonesia_PBMC,matched_expression,logreg,6,memory B cell,0.9683509365914694,0.9683865744148388,0.9683687551752691,27172
+Indonesia_PBMC,matched_expression,logreg,7,naive B cell,0.9607399889278465,0.9609173126614987,0.9608286426132694,21672
+Indonesia_PBMC,matched_expression,logreg,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.920195250455197,0.9005876777251185,0.910285889476508,26375
+Indonesia_PBMC,matched_expression,logreg,9,natural killer cell,0.9393239477929315,0.944158508273041,0.9417350233096663,81409
+Indonesia_PBMC,matched_expression,logreg,10,plasma cell,0.9933719966859983,0.9888659793814433,0.9911138665013433,2425
+Indonesia_PBMC,matched_expression,logreg,11,plasmacytoid dendritic cell,0.9939668174962293,0.9860349127182045,0.9899849774661993,2005
+Indonesia_PBMC,matched_expression,logreg,12,platelet,0.928928928928929,0.9239960172585463,0.9264559068219634,3013
+Indonesia_PBMC,matched_expression,random_forest,0,CD14-positive monocyte,0.981108997010057,0.9900860126569878,0.9855770637281194,51039
+Indonesia_PBMC,matched_expression,random_forest,1,"CD14-positive, CD16-positive monocyte",0.9769009391093608,0.9552691994371622,0.965963979481035,13503
+Indonesia_PBMC,matched_expression,random_forest,2,"CD4-positive, alpha-beta T cell",0.9640120870920791,0.963229268940876,0.9636205190316529,135461
+Indonesia_PBMC,matched_expression,random_forest,3,"CD8-positive, alpha-beta T cell",0.9015918958031838,0.9042879437732596,0.9029379072859229,91629
+Indonesia_PBMC,matched_expression,random_forest,4,"dendritic cell, human",0.967810650887574,0.9348422496570644,0.9510408186998488,4374
+Indonesia_PBMC,matched_expression,random_forest,5,lymphocyte,0.9912043301759134,0.7485947879407256,0.8529839883551674,1957
+Indonesia_PBMC,matched_expression,random_forest,6,memory B cell,0.9533646206718155,0.9494700426910054,0.9514133461176775,27172
+Indonesia_PBMC,matched_expression,random_forest,7,naive B cell,0.9414297620150014,0.9382152085640457,0.9398197365380171,21672
+Indonesia_PBMC,matched_expression,random_forest,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.9028989906655536,0.9021800947867299,0.9025393995713934,26375
+Indonesia_PBMC,matched_expression,random_forest,9,natural killer cell,0.9185304286854131,0.9332997580120134,0.9258561967257063,81409
+Indonesia_PBMC,matched_expression,random_forest,10,plasma cell,0.9974789915966387,0.9789690721649484,0.9881373569198751,2425
+Indonesia_PBMC,matched_expression,random_forest,11,plasmacytoid dendritic cell,0.9958049292081804,0.9471321695760598,0.9708588957055214,2005
+Indonesia_PBMC,matched_expression,random_forest,12,platelet,0.9489144316730523,0.7397942250248921,0.8314061917195077,3013
+Indonesia_PBMC,matched_expression,xgboost,0,CD14-positive monocyte,0.9878605722315469,0.9917122200670075,0.9897826490804384,51039
+Indonesia_PBMC,matched_expression,xgboost,1,"CD14-positive, CD16-positive monocyte",0.980868395486137,0.9720062208398134,0.9764171998214551,13503
+Indonesia_PBMC,matched_expression,xgboost,2,"CD4-positive, alpha-beta T cell",0.9686535194622942,0.9681458131860831,0.9683995997799528,135461
+Indonesia_PBMC,matched_expression,xgboost,3,"CD8-positive, alpha-beta T cell",0.921599140812502,0.917777122963254,0.9196841610253831,91629
+Indonesia_PBMC,matched_expression,xgboost,4,"dendritic cell, human",0.9684527951751334,0.9545038866026521,0.9614277489925158,4374
+Indonesia_PBMC,matched_expression,xgboost,5,lymphocyte,0.9730021598272138,0.9207971384772611,0.9461800997637175,1957
+Indonesia_PBMC,matched_expression,xgboost,6,memory B cell,0.9699889258028793,0.9670616811423525,0.9685230916663595,27172
+Indonesia_PBMC,matched_expression,xgboost,7,naive B cell,0.9605463522680079,0.9605020302694721,0.9605241907574464,21672
+Indonesia_PBMC,matched_expression,xgboost,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.9147357607579043,0.9115450236966824,0.913137604922329,26375
+Indonesia_PBMC,matched_expression,xgboost,9,natural killer cell,0.9355317414944472,0.9447481236718299,0.9401173450678402,81409
+Indonesia_PBMC,matched_expression,xgboost,10,plasma cell,0.9950207468879668,0.9888659793814433,0.9919338159255429,2425
+Indonesia_PBMC,matched_expression,xgboost,11,plasmacytoid dendritic cell,0.994413407821229,0.9765586034912718,0.9854051333668847,2005
+Indonesia_PBMC,matched_expression,xgboost,12,platelet,0.9241356159785162,0.913707268503153,0.9188918558077437,3013
+Indonesia_PBMC,svd512_expression,logreg,0,CD14-positive monocyte,0.9899021526418786,0.9910852485354337,0.9904933473012267,51039
+Indonesia_PBMC,svd512_expression,logreg,1,"CD14-positive, CD16-positive monocyte",0.980834942801961,0.9778567725690587,0.9793435935471908,13503
+Indonesia_PBMC,svd512_expression,logreg,2,"CD4-positive, alpha-beta T cell",0.9663697415942744,0.9698511010549161,0.9681072915515272,135461
+Indonesia_PBMC,svd512_expression,logreg,3,"CD8-positive, alpha-beta T cell",0.9191716766867067,0.9160418644752207,0.9176041017568025,91629
+Indonesia_PBMC,svd512_expression,logreg,4,"dendritic cell, human",0.9624628061341268,0.9613625971650663,0.9619123870524992,4374
+Indonesia_PBMC,svd512_expression,logreg,5,lymphocyte,0.9636075949367089,0.9335717935615738,0.9483519335582663,1957
+Indonesia_PBMC,svd512_expression,logreg,6,memory B cell,0.9680956761729531,0.9682025614603268,0.9681491158665612,27172
+Indonesia_PBMC,svd512_expression,logreg,7,naive B cell,0.9601567904081162,0.9607327427094869,0.9604446802131144,21672
+Indonesia_PBMC,svd512_expression,logreg,8,"naive thymus-derived CD8-positive, alpha-beta T cell",0.9201626961069146,0.9006255924170616,0.9102893274573673,26375
+Indonesia_PBMC,svd512_expression,logreg,9,natural killer cell,0.93477703272141,0.9401049024063678,0.9374333974351122,81409
+Indonesia_PBMC,svd512_expression,logreg,10,plasma cell,0.9933966157655798,0.9925773195876288,0.9929867986798679,2425
+Indonesia_PBMC,svd512_expression,logreg,11,plasmacytoid dendritic cell,0.9914744232698094,0.9860349127182045,0.9887471867966992,2005
+Indonesia_PBMC,svd512_expression,logreg,12,platelet,0.9301075268817204,0.9186856953202788,0.9243613291033561,3013
+Brain_Atlas,scgpt_embeddings,logreg,0,GABAergic neuron,0.9883427472659536,0.9896510228640193,0.9889964524081535,8310
+Brain_Atlas,scgpt_embeddings,logreg,1,astrocyte,0.9930362116991643,0.989884966283221,0.9914580850218514,5042
+Brain_Atlas,scgpt_embeddings,logreg,2,central nervous system macrophage,0.9397590361445783,0.6902654867256637,0.7959183673469388,113
+Brain_Atlas,scgpt_embeddings,logreg,3,endothelial cell,0.9698275862068966,0.9109311740890689,0.9394572025052192,247
+Brain_Atlas,scgpt_embeddings,logreg,4,glutamatergic neuron,0.994263967789973,0.9917478131704902,0.9930042965737579,18177
+Brain_Atlas,scgpt_embeddings,logreg,5,microglial cell,0.9808067664281067,0.9924292297564187,0.9865837696335078,3038
+Brain_Atlas,scgpt_embeddings,logreg,6,oligodendrocyte,0.9829012540836758,0.9967138658829816,0.989759371766641,37430
+Brain_Atlas,scgpt_embeddings,logreg,7,oligodendrocyte precursor cell,0.9761811792268645,0.8294625082946251,0.8968609865470852,3014
+Brain_Atlas,scgpt_embeddings,logreg,8,pericyte,0.9313725490196079,0.9134615384615384,0.9223300970873787,104
+Brain_Atlas,scgpt_embeddings,logreg,9,perivascular cell,0.9468085106382979,0.8476190476190476,0.8944723618090452,105
+Brain_Atlas,scgpt_embeddings,random_forest,0,GABAergic neuron,0.9906326034063261,0.9799037304452467,0.9852389594676346,8310
+Brain_Atlas,scgpt_embeddings,random_forest,1,astrocyte,0.9936012797440512,0.9855216184053947,0.9895449566862491,5042
+Brain_Atlas,scgpt_embeddings,random_forest,2,central nervous system macrophage,0.9135802469135802,0.6548672566371682,0.7628865979381443,113
+Brain_Atlas,scgpt_embeddings,random_forest,3,endothelial cell,0.975609756097561,0.8097165991902834,0.8849557522123894,247
+Brain_Atlas,scgpt_embeddings,random_forest,4,glutamatergic neuron,0.9936414906557558,0.9886669967541398,0.9911480020958001,18177
+Brain_Atlas,scgpt_embeddings,random_forest,5,microglial cell,0.9823413996075867,0.9888084265964451,0.9855643044619422,3038
+Brain_Atlas,scgpt_embeddings,random_forest,6,oligodendrocyte,0.9765825100622028,0.998290141597649,0.987317021613909,37430
+Brain_Atlas,scgpt_embeddings,random_forest,7,oligodendrocyte precursor cell,0.992466296590008,0.8304578633045786,0.9042630057803468,3014
+Brain_Atlas,scgpt_embeddings,random_forest,8,pericyte,0.9733333333333334,0.7019230769230769,0.8156424581005587,104
+Brain_Atlas,scgpt_embeddings,random_forest,9,perivascular cell,0.9714285714285714,0.6476190476190476,0.7771428571428571,105
+Brain_Atlas,scgpt_embeddings,xgboost,0,GABAergic neuron,0.9899927658548349,0.988086642599278,0.9890387858347386,8310
+Brain_Atlas,scgpt_embeddings,xgboost,1,astrocyte,0.9938148443735035,0.9879016263387544,0.990849413168888,5042
+Brain_Atlas,scgpt_embeddings,xgboost,2,central nervous system macrophage,0.8681318681318682,0.6991150442477876,0.7745098039215687,113
+Brain_Atlas,scgpt_embeddings,xgboost,3,endothelial cell,0.9684684684684685,0.8704453441295547,0.9168443496801706,247
+Brain_Atlas,scgpt_embeddings,xgboost,4,glutamatergic neuron,0.9946984758117959,0.9909225944875392,0.9928069450186028,18177
+Brain_Atlas,scgpt_embeddings,xgboost,5,microglial cell,0.9820026178010471,0.9878209348255431,0.9849031834591402,3038
+Brain_Atlas,scgpt_embeddings,xgboost,6,oligodendrocyte,0.9806878793452272,0.9971680470211061,0.9888593040045569,37430
+Brain_Atlas,scgpt_embeddings,xgboost,7,oligodendrocyte precursor cell,0.984313725490196,0.8327803583278036,0.9022286125089863,3014
+Brain_Atlas,scgpt_embeddings,xgboost,8,pericyte,0.9387755102040817,0.8846153846153846,0.9108910891089109,104
+Brain_Atlas,scgpt_embeddings,xgboost,9,perivascular cell,0.9222222222222223,0.7904761904761904,0.8512820512820513,105
+Brain_Atlas,matched_expression,logreg,0,GABAergic neuron,0.989174885734905,0.9896510228640193,0.9894128970163619,8310
+Brain_Atlas,matched_expression,logreg,1,astrocyte,0.9952143569292123,0.989884966283221,0.9925425077060753,5042
+Brain_Atlas,matched_expression,logreg,2,central nervous system macrophage,0.7692307692307693,0.6194690265486725,0.6862745098039216,113
+Brain_Atlas,matched_expression,logreg,3,endothelial cell,0.967741935483871,0.8502024291497976,0.9051724137931034,247
+Brain_Atlas,matched_expression,logreg,4,glutamatergic neuron,0.9940430226144512,0.9914727402761732,0.9927562178092378,18177
+Brain_Atlas,matched_expression,logreg,5,microglial cell,0.9819316688567674,0.9838709677419355,0.9829003617231173,3038
+Brain_Atlas,matched_expression,logreg,6,oligodendrocyte,0.9810888403086891,0.9951643067058509,0.9880764486650663,37430
+Brain_Atlas,matched_expression,logreg,7,oligodendrocyte precursor cell,0.9500756429652042,0.8334439283344393,0.8879462707670555,3014
+Brain_Atlas,matched_expression,logreg,8,pericyte,0.975609756097561,0.7692307692307693,0.8602150537634409,104
+Brain_Atlas,matched_expression,logreg,9,perivascular cell,0.9868421052631579,0.7142857142857143,0.8287292817679558,105
+Brain_Atlas,matched_expression,random_forest,0,GABAergic neuron,0.985981308411215,0.9902527075812274,0.9881123919308358,8310
+Brain_Atlas,matched_expression,random_forest,1,astrocyte,0.9947989597919584,0.9863149543831813,0.990538790957076,5042
+Brain_Atlas,matched_expression,random_forest,2,central nervous system macrophage,0.9583333333333334,0.40707964601769914,0.5714285714285714,113
+Brain_Atlas,matched_expression,random_forest,3,endothelial cell,0.9625668449197861,0.728744939271255,0.8294930875576036,247
+Brain_Atlas,matched_expression,random_forest,4,glutamatergic neuron,0.9969914758482367,0.9844858887605216,0.9906992193987709,18177
+Brain_Atlas,matched_expression,random_forest,5,microglial cell,0.9737694300518135,0.9897959183673469,0.9817172706496898,3038
+Brain_Atlas,matched_expression,random_forest,6,oligodendrocyte,0.9751565762004175,0.9983435746727224,0.9866138613861386,37430
+Brain_Atlas,matched_expression,random_forest,7,oligodendrocyte precursor cell,0.9908730158730159,0.8284671532846716,0.9024213950126491,3014
+Brain_Atlas,matched_expression,random_forest,8,pericyte,0.9848484848484849,0.625,0.7647058823529411,104
+Brain_Atlas,matched_expression,random_forest,9,perivascular cell,0.9824561403508771,0.5333333333333333,0.691358024691358,105
+Brain_Atlas,matched_expression,xgboost,0,GABAergic neuron,0.9890769415436322,0.9915764139590855,0.9903251006550087,8310
+Brain_Atlas,matched_expression,xgboost,1,astrocyte,0.9942277070063694,0.9906783022610075,0.9924498311146434,5042
+Brain_Atlas,matched_expression,xgboost,2,central nervous system macrophage,0.9375,0.6637168141592921,0.7772020725388601,113
+Brain_Atlas,matched_expression,xgboost,3,endothelial cell,0.9695652173913043,0.902834008097166,0.9350104821802935,247
+Brain_Atlas,matched_expression,xgboost,4,glutamatergic neuron,0.9959104725062172,0.9914177256973098,0.9936590207322452,18177
+Brain_Atlas,matched_expression,xgboost,5,microglial cell,0.9820143884892086,0.988479262672811,0.985236220472441,3038
+Brain_Atlas,matched_expression,xgboost,6,oligodendrocyte,0.981499001366551,0.9978092439219877,0.989586921385231,37430
+Brain_Atlas,matched_expression,xgboost,7,oligodendrocyte precursor cell,0.9842829076620825,0.8311214333112144,0.901241230437129,3014
+Brain_Atlas,matched_expression,xgboost,8,pericyte,0.9418604651162791,0.7788461538461539,0.8526315789473684,104
+Brain_Atlas,matched_expression,xgboost,9,perivascular cell,0.9746835443037974,0.7333333333333333,0.8369565217391305,105
+Brain_Atlas,svd512_expression,logreg,0,GABAergic neuron,0.9885734904979553,0.9890493381468111,0.9888113570741097,8310
+Brain_Atlas,svd512_expression,logreg,1,astrocyte,0.9954064309966048,0.9884966283220944,0.9919394964673102,5042
+Brain_Atlas,svd512_expression,logreg,2,central nervous system macrophage,0.7040816326530612,0.6106194690265486,0.6540284360189573,113
+Brain_Atlas,svd512_expression,logreg,3,endothelial cell,0.9626168224299065,0.8340080971659919,0.8937093275488069,247
+Brain_Atlas,svd512_expression,logreg,4,glutamatergic neuron,0.9939862068965517,0.9911426528029927,0.9925623932565699,18177
+Brain_Atlas,svd512_expression,logreg,5,microglial cell,0.9812191103789127,0.9802501645819618,0.9807343981557715,3038
+Brain_Atlas,svd512_expression,logreg,6,oligodendrocyte,0.9809706795809865,0.9957520705316592,0.9883061094611795,37430
+Brain_Atlas,svd512_expression,logreg,7,oligodendrocyte precursor cell,0.9544072948328267,0.8334439283344393,0.889833510449876,3014
+Brain_Atlas,svd512_expression,logreg,8,pericyte,0.9540229885057471,0.7980769230769231,0.8691099476439791,104
+Brain_Atlas,svd512_expression,logreg,9,perivascular cell,0.9864864864864865,0.6952380952380952,0.8156424581005587,105
+Brain_Atlas,svd512_expression,random_forest,0,GABAergic neuron,0.9877741819489392,0.9916967509025271,0.9897315798955143,8310
+Brain_Atlas,svd512_expression,random_forest,1,astrocyte,0.9928684627575277,0.9940499801666005,0.9934588701684837,5042
+Brain_Atlas,svd512_expression,random_forest,2,central nervous system macrophage,0.92,0.20353982300884957,0.3333333333333333,113
+Brain_Atlas,svd512_expression,random_forest,3,endothelial cell,0.9685534591194969,0.6234817813765182,0.7586206896551724,247
+Brain_Atlas,svd512_expression,random_forest,4,glutamatergic neuron,0.9948106437010047,0.9913627111184464,0.9930836846601085,18177
+Brain_Atlas,svd512_expression,random_forest,5,microglial cell,0.9644230769230769,0.9904542462146149,0.9772653458915233,3038
+Brain_Atlas,svd512_expression,random_forest,6,oligodendrocyte,0.9803473971452561,0.9982099919850388,0.9891980620052421,37430
+Brain_Atlas,svd512_expression,random_forest,7,oligodendrocyte precursor cell,0.9976209357652657,0.8347710683477106,0.9089595375722543,3014
+Brain_Atlas,svd512_expression,random_forest,8,pericyte,0.9710144927536232,0.6442307692307693,0.7745664739884393,104
+Brain_Atlas,svd512_expression,random_forest,9,perivascular cell,0.9705882352941176,0.6285714285714286,0.7630057803468208,105
+Brain_Atlas,svd512_expression,xgboost,0,GABAergic neuron,0.9890782525204033,0.9916967509025271,0.9903857709409927,8310
+Brain_Atlas,svd512_expression,xgboost,1,astrocyte,0.9946290033817387,0.9916699722332408,0.993147283742179,5042
+Brain_Atlas,svd512_expression,xgboost,2,central nervous system macrophage,0.9206349206349206,0.5132743362831859,0.6590909090909091,113
+Brain_Atlas,svd512_expression,xgboost,3,endothelial cell,0.9701492537313433,0.7894736842105263,0.8705357142857143,247
+Brain_Atlas,svd512_expression,xgboost,4,glutamatergic neuron,0.9949266571081945,0.9925730318534411,0.9937484508826526,18177
+Brain_Atlas,svd512_expression,xgboost,5,microglial cell,0.9751291989664083,0.9937458854509545,0.9843495272253016,3038
+Brain_Atlas,svd512_expression,xgboost,6,oligodendrocyte,0.9826642815804704,0.9979962596847448,0.9902709294311012,37430
+Brain_Atlas,svd512_expression,xgboost,7,oligodendrocyte precursor cell,0.9863013698630136,0.836098208360982,0.9050098760998384,3014
+Brain_Atlas,svd512_expression,xgboost,8,pericyte,0.9764705882352941,0.7980769230769231,0.8783068783068783,104
+Brain_Atlas,svd512_expression,xgboost,9,perivascular cell,0.9452054794520548,0.6571428571428571,0.7752808988764045,105

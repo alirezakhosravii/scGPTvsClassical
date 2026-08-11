@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this code or data, please cite the accompanying paper."
 title: "scGPTvsClassical: An accuracy and calibration benchmark of scGPT pipelines and matched classical models"
 type: software
-version: "2.0.0"
-date-released: 2026-08-09
+version: "3.0.0"
+date-released: 2026-08-11
 authors:
   - family-names: Khosravi
     given-names: Alireza

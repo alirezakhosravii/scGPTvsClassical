@@ -1,0 +1,4 @@
+dataset,group_column,n_unique_groups,n_outer_folds,n_classes,n_oof_test_cells,matched_hvgs_min,matched_hvgs_max
+TNBC_Breast_Cancer,donor_id,101,5,7,427813,1167,1172
+Indonesia_PBMC,donor_id,199,5,13,462034,1132,1141
+Brain_Atlas,donor_id,12,5,10,75580,930,953

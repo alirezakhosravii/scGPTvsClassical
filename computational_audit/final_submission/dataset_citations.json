@@ -1,0 +1,38 @@
+{
+  "TNBC_Breast_Cancer": {
+    "title": "Single-cell RNA-seq data from untreated tissue samples of treatment-naive triple-negative breast cancer patients",
+    "citation": "Dataset Version: https://datasets.cellxgene.cziscience.com/af8c4fce-4c63-4671-b339-91a383cf36f6.h5ad curated and distributed by CZ CELLxGENE Discover in Collection: https://cellxgene.cziscience.com/collections/ceef2841-5333-46ac-92ef-ccbe0c20fe55",
+    "organism": "Homo sapiens",
+    "schema_version": "7.0.0"
+  },
+  "Indonesia_PBMC": {
+    "title": "All cells from human PBMC samples collected in Indonesia",
+    "citation": "Publication: https://doi.org/10.64898/2026.02.15.704933 Dataset Version: https://datasets.cellxgene.cziscience.com/665714af-4be5-49a3-913b-5ab5ac25620d.h5ad curated and distributed by CZ CELLxGENE Discover in Collection: https://cellxgene.cziscience.com/collections/d1e0e64d-6d2a-4a3e-b7f4-43ed909a9d9c",
+    "organism": "Homo sapiens",
+    "schema_version": "7.0.0"
+  },
+  "Brain_Atlas": {
+    "title": "Brain dataset",
+    "citation": "Publication: https://doi.org/10.1093/brain/awaf426 Dataset Version: https://datasets.cellxgene.cziscience.com/0ab54d91-066c-4223-a9ea-6a3b0d1adef4.h5ad curated and distributed by CZ CELLxGENE Discover in Collection: https://cellxgene.cziscience.com/collections/0986e4cd-7a58-405d-9b91-4b199bb4124e",
+    "organism": "Homo sapiens",
+    "schema_version": "7.0.0"
+  },
+  "Multi_Tissue_TME": {
+    "title": "A multi-tissue single-cell tumor microenvironment atlas",
+    "citation": "Publication: https://doi.org/10.1038/s41467-024-49916-4 Dataset Version: https://datasets.cellxgene.cziscience.com/921d46a3-69b4-44a8-b2d6-9ef5c7803bc3.h5ad curated and distributed by CZ CELLxGENE Discover in Collection: https://cellxgene.cziscience.com/collections/3f7c572c-cd73-4b51-a313-207c7f20f188",
+    "organism": "Homo sapiens",
+    "schema_version": "7.0.0"
+  },
+  "Human_Pancreas": {
+    "title": "Human pancreatic islet cells",
+    "citation": "Publication: https://doi.org/10.1016/j.molmet.2022.101595 Dataset Version: https://datasets.cellxgene.cziscience.com/00d88707-e33a-4c2a-821a-cdc32a98d050.h5ad curated and distributed by CZ CELLxGENE Discover in Collection: https://cellxgene.cziscience.com/collections/0a77d4c0-d5d0-40f0-aa1a-5e1429bcbd7e",
+    "organism": "Homo sapiens",
+    "schema_version": "7.0.0"
+  },
+  "Pig_Pancreas": {
+    "title": "pig pancreatic islet cells",
+    "citation": "Publication: https://doi.org/10.1016/j.molmet.2022.101595 Dataset Version: https://datasets.cellxgene.cziscience.com/55cfae87-6348-44df-a4ed-c132569dea54.h5ad curated and distributed by CZ CELLxGENE Discover in Collection: https://cellxgene.cziscience.com/collections/0a77d4c0-d5d0-40f0-aa1a-5e1429bcbd7e",
+    "organism": "Sus scrofa domesticus",
+    "schema_version": "7.0.0"
+  }
+}

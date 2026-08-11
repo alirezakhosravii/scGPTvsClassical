@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{lineno}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\graphicspath{{../figures/}{../figures/supplementary/}}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black,
+  pdftitle={Marked manuscript: An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation},
+  pdfauthor={Alireza Khosravi et al.}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+{\small\bfseries MARKED MANUSCRIPT\par}
+\vspace{0.5cm}
+{\LARGE\bfseries An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation\par}
+\vspace{1.0cm}
+{\large
+Alireza Khosravi$^{1,2,3}$, Arshia Khosravi$^{3}$, Kamil {\L}angowski$^{1}$, Micha{\l} Sieczczy{\'n}ski$^{1,5}$,\\[4pt]
+Krzysztof Pastuszak$^{1,2,4}$, Anna Supernat$^{1,2,*}$, Anna J.~{\.Z}aczek$^{1,2}$\par}
+\vspace{0.7cm}
+\begin{minipage}{0.92\textwidth}\small
+$^{1}$Laboratory of Translational Oncology, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{2}$Centre of Biostatistics and Bioinformatics Analysis, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{3}$Scientific Circle of Artificial Intelligence in Medicine, Medical University of Gda\'nsk, Gda\'nsk, Poland\\
+$^{4}$Department of Algorithms and System Modeling, Gda\'nsk University of Technology, Gda\'nsk, Poland\\
+$^{5}$Department of Software Engineering, Gda\'nsk University of Technology, Gda\'nsk, Poland\\[5pt]
+$^{*}$Correspondence: Anna Supernat, \href{mailto:abednarz@gumed.edu.pl}{abednarz@gumed.edu.pl}
+\end{minipage}
+\vspace{0.8cm}
+
+\fbox{\begin{minipage}{0.88\textwidth}\small
+Blue text denotes manuscript content changed or added in the revision. Because the experimental design, analysis and interpretation were rebuilt, the substantive manuscript body is marked.
+\end{minipage}}
+\end{center}
+
+\color{blue!65!black}
+\input{sections/abstract}
+\end{titlepage}
+
+\onehalfspacing
+\linenumbers
+\color{blue!65!black}
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusions}
+
+\color{black}
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\color{blue!65!black}
+\input{sections/data_code_availability}
+\input{sections/declarations}
+
+\end{document}

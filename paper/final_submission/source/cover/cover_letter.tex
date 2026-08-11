@@ -1,0 +1,26 @@
+\documentclass[11pt,a4paper]{letter}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[colorlinks=true,urlcolor=blue!55!black]{hyperref}
+\usepackage{microtype}
+\setlength{\parskip}{5pt}
+\signature{Anna Supernat\\on behalf of all authors}
+\address{Laboratory of Translational Oncology\\Medical University of Gda\'nsk\\Gda\'nsk, Poland\\\href{mailto:abednarz@gumed.edu.pl}{abednarz@gumed.edu.pl}}
+\begin{document}
+\begin{letter}{Dr Pooja Jadhav\\Assistant Editor\\\textit{Scientific Reports}}
+\opening{Dear Dr Jadhav,}
+
+Please find enclosed the revised manuscript entitled ``An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation'' (submission ID 12ef9a8a-5497-4180-b23f-174604d3eec4). The title contains 16 words and no punctuation, in accordance with the editorial request.
+
+We have addressed the reports through a new donor-aware statistical design and a complete standalone rewrite. The primary analysis now uses five donor-held-out folds in three human atlases, covering 965,427 analysed cells and 312 donor identifiers. Frozen official scGPT 0.2.5 embeddings and normalized expression of the same training-selected genes are each paired with Logistic Regression, Random Forest and XGBoost. Hyperparameters are selected separately inside the training donors, and primary inference compares representations at a fixed classifier. SVD-512 provides a secondary dimensionality control for every atlas with Logistic Regression and for TNBC and brain with all three classifiers. We additionally provide donor-cluster bootstrap intervals, class-specific error analyses, labelled-only feature selection under scarcity, and held-out-donor temperature scaling for Logistic Regression and XGBoost in TNBC and brain. The human-checkpoint pig analysis is separated as a cross-species stress test and is not included in the primary claim.
+
+The manuscript consistently distinguishes a frozen scGPT representation from the downstream classifier that produces annotation probabilities. Its conclusions are limited to the evaluated pipelines, portal labels and within-atlas unseen-donor setting; they do not extend to official fine-tuning, other checkpoints, other foundation models, zero-shot discovery or external-atlas transfer.
+
+The submission includes a clean manuscript, a marked manuscript, Supplementary Information, a detailed point-by-point response, separate publication-quality figures, complete LaTeX source, compact numerical results and executable analysis code. Dataset identifiers, software versions, source commit, checkpoint hashes and exact five-fold pipeline coverage are recorded for reproducibility.
+
+Thank you for considering this revision. We believe the donor-held-out factorial design and expanded calibration analysis directly address the methodological concerns and substantially strengthen the paper.
+
+\closing{Sincerely,}
+\end{letter}
+\end{document}

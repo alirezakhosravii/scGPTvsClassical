@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Held-out-donor temperature scaling, averaged over TNBC and brain (ten outer folds). Lower values are better.}
+\label{tab:calibration}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrr}
+\toprule
+Representation & Classifier & ECE before & ECE after & Brier before & Brier after & NLL before & NLL after \\
+\midrule
+scGPT embeddings & Logistic regression & 0.0073 & 0.0060 & 0.0293 & 0.0294 & 0.0713 & 0.0708 \\
+scGPT embeddings & XGBoost & 0.0083 & 0.0062 & 0.0337 & 0.0333 & 0.0873 & 0.0758 \\
+Matched expression & Logistic regression & 0.0069 & 0.0051 & 0.0231 & 0.0230 & 0.0630 & 0.0528 \\
+Matched expression & XGBoost & 0.0069 & 0.0062 & 0.0221 & 0.0221 & 0.0602 & 0.0545 \\
+SVD-512 & Logistic regression & 0.0066 & 0.0048 & 0.0239 & 0.0238 & 0.0673 & 0.0542 \\
+SVD-512 & XGBoost & 0.0070 & 0.0056 & 0.0242 & 0.0239 & 0.0696 & 0.0576 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

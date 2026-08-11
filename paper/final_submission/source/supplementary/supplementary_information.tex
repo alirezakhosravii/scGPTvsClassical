@@ -1,0 +1,45 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=2.0cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{threeparttable}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\graphicspath{{../figures/}{../figures/supplementary/}}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{3em}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Supplementary Information\par}
+\vspace{0.5cm}
+{\large An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation\par}
+\vspace{0.4cm}
+{\normalsize Alireza Khosravi et al.\par}
+\end{center}
+
+\section*{Contents}
+This file reports the complete outer-fold results, pooled out-of-fold metrics, paired donor-cluster bootstrap comparisons, hyperparameter selections, calibration sensitivity, strict label-scarcity analysis, per-class error analysis, and the separately designated pig-pancreas cross-species stress test. The machine-readable source tables and prediction-level audit files are included in the accompanying reproducibility archive.
+
+\input{generated/supplementary_body}
+
+\end{document}

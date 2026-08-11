@@ -1,0 +1,90 @@
+\section{Results}
+
+\subsection{A donor-held-out benchmark across three human atlases}
+
+The primary analysis comprised 965,440 cells from three human atlases and 312 donor identifiers before shared-input quality control (Figure~\ref{fig:design}; Table~\ref{tab:datasets}). Five outer folds were completed per dataset. The aligned out-of-fold set contained 965,427 cells: 427,813 from TNBC, 462,034 from Indonesia PBMC and 75,580 from brain. Thirteen outer-test cells had zero counts across the fold-specific shared input genes and were excluded symmetrically before representation construction. No donor occurred in both training and test cells within a fold, every retained portal class was represented on both sides of every split, and the five test sets contained each retained cell once. Fold-specific vocabulary matching retained 1,167--1,172 genes in TNBC, 1,132--1,141 in PBMC and 930--953 in brain (Table~\ref{tab:design-audit}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figure_1_study_design.pdf}
+\caption{\textbf{Study design.} Three human atlases were evaluated with donor-held-out outer folds. Highly variable gene selection, vocabulary matching, SVD fitting, representation-specific hyperparameter selection and classifier fitting were restricted to outer-training donors. The primary contrasts compared frozen scGPT embeddings with matched expression at the same downstream classifier. Pig pancreas was excluded from the human summary and retained as a separate stress test.}
+\label{fig:design}
+\end{figure}
+
+\input{generated/table_design_audit}
+
+\subsection{Representation effects depend on atlas and classifier}
+
+Matched expression had higher pooled out-of-fold Macro F1 than scGPT embeddings in six of the nine prespecified classifier-matched comparisons (Figure~\ref{fig:primary}; Table~\ref{tab:primary}). All six occurred in TNBC and PBMC. In TNBC, matched-expression Macro F1 was 0.990, 0.985 and 0.990 with Logistic Regression, Random Forest and XGBoost, compared with 0.983, 0.968 and 0.978 for scGPT embeddings. In PBMC, the corresponding values were 0.959, 0.933 and 0.957 for matched expression and 0.949, 0.915 and 0.935 for scGPT embeddings.
+
+The ordering reversed in brain. scGPT embeddings achieved Macro F1 values of 0.940, 0.908 and 0.930 with Logistic Regression, Random Forest and XGBoost, whereas matched expression achieved 0.911, 0.870 and 0.925. The pooled brain accuracies were nevertheless 0.983--0.987, illustrating the sensitivity of Macro F1 to rare classes in this imbalanced atlas. No classifier was selected from these results: every value is one member of a prespecified fixed-classifier comparison. Complete accuracy, balanced accuracy, probability metrics and outer-fold results are reported in Supplementary Tables~S3 and S4.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figure_2_primary_performance.pdf}
+\caption{\textbf{Donor-held-out annotation performance.} Pooled out-of-fold Macro F1 for frozen scGPT embeddings, matched normalized expression and available SVD-512 controls. Frozen scGPT and matched expression were evaluated with all three classifiers in all three atlases. SVD-512 was evaluated with Logistic Regression in all three atlases and with all classifiers in TNBC and brain. A missing point denotes that a complete five-fold pipeline was not available and was not included.}
+\label{fig:primary}
+\end{figure}
+
+\input{generated/table_primary_performance}
+
+\subsection{SVD-512 preserves most expression performance}
+
+The same-dimensional expression control remained close to matched expression. With Logistic Regression, SVD-512 reached Macro F1 values of 0.989 in TNBC, 0.958 in PBMC and 0.906 in brain, compared with 0.990, 0.959 and 0.911 for the uncompressed matched-expression input. The corresponding expression-minus-SVD differences were 0.0005, 0.0016 and 0.0049. Donor-bootstrap intervals excluded zero for TNBC and PBMC but included zero for brain. Across the seven classifier--atlas comparisons for which both matched expression and SVD-512 had five complete folds, matched expression was higher in all seven; six conditional intervals excluded zero.
+
+SVD-512 also preserved the atlas-specific ordering relative to scGPT. It exceeded scGPT with Logistic Regression in TNBC and PBMC, whereas scGPT exceeded SVD-512 in brain. Fold-specific SVD explained-variance ratios were 0.954--0.956 in TNBC, 0.958--0.959 in PBMC and 0.934--0.942 in brain (Supplementary Table~S5); all SVD contrasts are reported in Supplementary Table~S6. These results do not support dimensionality alone as an explanation for the TNBC and PBMC differences, although they also show that a simple linear compression retained most of the matched-expression signal.
+
+\subsection{Donor-level intervals distinguish stable and uncertain orderings}
+
+The paired donor-cluster bootstrap sampled all cells from a donor together and retained the pairing between representations (Figure~\ref{fig:bootstrap}; Table~\ref{tab:bootstrap}). In TNBC, the matched-expression advantages were 0.0071, 0.0177 and 0.0118 for Logistic Regression, Random Forest and XGBoost; the conditional 95\% intervals were [0.0060, 0.0084], [0.0145, 0.0217] and [0.0099, 0.0141]. In PBMC, the differences were 0.0097 [0.0085, 0.0109], 0.0183 [0.0162, 0.0205] and 0.0217 [0.0199, 0.0236].
+
+In brain, matched expression minus scGPT was $-0.0285$ [$-0.0720$, 0.0039] for Logistic Regression, $-0.0387$ [$-0.0662$, $-0.0143$] for Random Forest and $-0.0048$ [$-0.0241$, 0.0138] for XGBoost. Thus, the observed scGPT advantage was donor-bootstrap-secure for Random Forest but not for the other two classifiers. These intervals condition on the fitted out-of-fold pipelines; they do not incorporate rebuilding feature selection, decomposition, tuning and model fitting.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{figure_3_group_bootstrap.pdf}
+\caption{\textbf{Paired donor-cluster bootstrap contrasts.} Macro F1 difference between matched expression and frozen scGPT embeddings at a fixed classifier. Points are observed out-of-fold differences and bars are percentile intervals from 5,000 paired donor resamples. The resampling unit is the donor; fitted models are held fixed.}
+\label{fig:bootstrap}
+\end{figure}
+
+\input{generated/table_bootstrap}
+
+\subsection{Calibration is a property of the complete pipeline}
+
+Uncalibrated probability quality differed more strongly by classifier than by representation. Random Forest had the largest pooled equal-width ECE in TNBC and PBMC (0.037--0.059), whereas Logistic Regression and XGBoost were generally below 0.01. This pattern was visible for both scGPT embeddings and matched expression, arguing against assigning calibration behaviour to the encoder alone.
+
+Held-out-donor temperature scaling was evaluated for Logistic Regression and XGBoost in TNBC and brain across all three representations (Figure~\ref{fig:calibration}; Table~\ref{tab:calibration}). Across the 60 outer-fold pipeline evaluations, mean equal-width ECE decreased from 0.0072 to 0.0057 and improved in 41 evaluations. Mean multiclass Brier score decreased from 0.02605 to 0.02591 and improved in 42 evaluations; mean NLL decreased from 0.0698 to 0.0610 and improved in 39. The remaining evaluations were unchanged or worsened, particularly where the unscaled predictions were already close to calibrated. Scalar temperature scaling preserved every predicted class, so discrimination was unchanged by construction. The Macro F1 values in the calibration supplement differ from the primary table because the calibration-evaluation classifiers deliberately exclude the inner calibration donors rather than being refitted on all outer-training donors.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figure_4_temperature_scaling.pdf}
+\caption{\textbf{Held-out-donor temperature scaling.} Fold-level changes after scalar temperature scaling for equal-width expected calibration error (ECE), multiclass Brier score and negative log-likelihood (NLL). Small points are individual outer folds; large points are dataset means. Negative differences indicate improvement. Circles denote TNBC and squares denote brain. LR, Logistic Regression; XGB, XGBoost.}
+\label{fig:calibration}
+\end{figure}
+
+\input{generated/table_calibration}
+
+\subsection{Matched expression retains an advantage under strict label scarcity}
+
+The Indonesia-PBMC sensitivity recomputed gene selection and vocabulary matching from the labelled subset alone. With 10 labelled cells per class, matched expression reached a mean donor-held-out Macro F1 of 0.818 (SD 0.025), compared with 0.779 (SD 0.032) for scGPT embeddings. At 50, 100, 250 and 500 labels per class, the corresponding values were 0.886 versus 0.841, 0.904 versus 0.855, 0.922 versus 0.872 and 0.930 versus 0.881 (Figure~\ref{fig:scarcity}; Table~\ref{tab:scarcity}). The fold-mean matched-expression difference ranged from 0.040 at 10 labels per class to approximately 0.051 at 250 labels per class and was positive in every outer fold at every budget. This discrimination advantage did not imply uniformly better uncalibrated ECE: at 100--500 labels per class, the scGPT-embedding Logistic Regression pipelines had lower mean top-label ECE.
+
+\input{generated/table_scarcity}
+
+\subsection{Class-level errors reveal distinct biological regimes}
+
+The TNBC XGBoost pipelines performed strongly across all seven portal categories, but most remaining errors involved lymphocyte boundaries. scGPT embeddings assigned 9.9\% of B-lineage lymphocytes to the T-cell class, compared with 3.7\% for matched expression; the corresponding B-lineage F1 values were 0.916 and 0.967. Myeloid-to-T-cell confusion was 3.3\% with scGPT and 1.5\% with matched expression. These differences account for much of the aggregate TNBC advantage while showing that the broad stromal and endothelial categories were already near saturation.
+
+PBMC contained more closely related immune categories. With XGBoost, scGPT embeddings confused 19.7\% of naive CD8 T cells with CD4 T cells, whereas matched expression reduced this to 7.0\%. Reciprocal CD8--natural-killer confusion remained prominent in both representations. The lowest scGPT class F1 was 0.830 for naive CD8 T cells, compared with 0.913 for matched expression. These errors are biologically plausible at broad portal boundaries but also show that a pooled accuracy can conceal systematic redistribution among related lymphocyte states.
+
+Brain showed the opposite representation ordering and the strongest class imbalance. The rare central-nervous-system macrophage, perivascular-cell and pericyte categories each contained only 104--113 cells. Their XGBoost F1 values ranged from 0.775 to 0.911 with scGPT embeddings and from 0.777 to 0.853 with matched expression. Central-nervous-system macrophages were frequently assigned to microglia, while perivascular cells, pericytes and oligodendrocyte precursor cells were frequently assigned to oligodendrocytes. These rare-class errors explain why pooled accuracy exceeded 0.98 even when Macro F1 was substantially lower. Full class metrics and row-normalized confusion matrices are provided in Supplementary Figures~S3--S4 and Tables~S10--S11.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figure_5_scarcity_and_per_class.pdf}
+\caption{\textbf{Strict scarcity and class-level performance.} (A) Indonesia-PBMC Macro F1 when feature selection and model selection use only the indicated labelled cells. Points are means across five outer donor folds after averaging two sampling seeds within fold; bars are fold SD. (B--C) XGBoost F1 for the six lowest-performing portal classes by mean representation-level F1 in PBMC and brain.}
+\label{fig:scarcity}
+\end{figure}
+
+\subsection{Pig pancreas remains a cross-species stress test}
+
+The porcine object contained one donor ID, so donor-held-out evaluation was impossible. Under the separate random-cell stress test, matched expression produced Macro F1 values of 0.988, 0.989 and 0.992 with Logistic Regression, Random Forest and XGBoost, respectively. Frozen human-scGPT embeddings produced 0.966, 0.613 and 0.888, while SVD-512 produced 0.987, 0.938 and 0.967. These high values partly reflect interpolation among randomly separated cells from the same object. Because the whole-human checkpoint was applied through direct/uppercase symbol matching without an orthology map, these results are not included in the primary evidence and do not evaluate a principled cross-species scGPT workflow.

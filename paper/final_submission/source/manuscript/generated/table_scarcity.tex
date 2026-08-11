@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{Strict Indonesia-PBMC label scarcity. Feature selection and tuning used only the labelled cells. Macro F1 is mean $\pm$ SD across five donor-held-out folds after averaging the two sampling seeds within fold.}
+\label{tab:scarcity}
+\small
+\begin{tabular}{rrrr}
+\toprule
+Labels per class & scGPT embeddings & Matched expression & Mean matched HVGs \\
+\midrule
+10 & 0.779 $\pm$ 0.032 & 0.818 $\pm$ 0.025 & 1169 \\
+50 & 0.841 $\pm$ 0.013 & 0.886 $\pm$ 0.019 & 1160 \\
+100 & 0.855 $\pm$ 0.009 & 0.904 $\pm$ 0.013 & 1156 \\
+250 & 0.872 $\pm$ 0.006 & 0.922 $\pm$ 0.006 & 1154 \\
+500 & 0.881 $\pm$ 0.008 & 0.930 $\pm$ 0.008 & 1149 \\
+\bottomrule
+\end{tabular}
+\end{table}

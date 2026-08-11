@@ -1,0 +1,26 @@
+{
+  "primary_human_datasets": [
+    "TNBC_Breast_Cancer",
+    "Indonesia_PBMC",
+    "Brain_Atlas"
+  ],
+  "primary_oof_cells": 965427,
+  "unique_donor_ids": 312,
+  "outer_folds_per_dataset": 5,
+  "included_primary_comparisons": 9,
+  "observed_matched_expression_wins": 6,
+  "observed_scgpt_embedding_wins": 3,
+  "incomplete_pipelines_omitted": [
+    "Indonesia_PBMC / SVD-512 / Random Forest",
+    "Indonesia_PBMC / SVD-512 / XGBoost"
+  ],
+  "separate_stress_test": "Pig pancreas with a random cell split and no orthology map",
+  "not_evaluated": [
+    "official scGPT end-to-end fine-tuning",
+    "newer scGPT checkpoints",
+    "other foundation models",
+    "scVI-style generative baseline",
+    "independently annotated cross-cohort transfer"
+  ],
+  "paid_compute_status": "stopped; no additional cloud analysis was launched for final packaging"
+}

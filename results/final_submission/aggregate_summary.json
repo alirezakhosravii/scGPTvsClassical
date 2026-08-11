@@ -1,0 +1,15 @@
+{
+  "human_datasets": [
+    "TNBC_Breast_Cancer",
+    "Indonesia_PBMC",
+    "Brain_Atlas"
+  ],
+  "n_human_datasets": 3,
+  "n_outer_folds_per_dataset": 5,
+  "n_primary_expression_scgpt_comparisons": 9,
+  "n_bootstrap": 5000,
+  "n_human_oof_cells_total": 965427,
+  "strict_scarcity_rows": 100,
+  "pig_analysis_role": "cross-species stress test",
+  "compute_policy": "existing completed predictions only; no additional GPU jobs"
+}
