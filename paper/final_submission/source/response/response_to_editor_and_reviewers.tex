@@ -1,0 +1,132 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage[colorlinks=true,urlcolor=blue!55!black]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\definecolor{responseblue}{HTML}{1F4E79}
+\newcommand{\commenttext}[1]{\begin{quote}\colorbox{gray!15}{\parbox{0.91\linewidth}{\itshape #1}}\end{quote}}
+\begin{document}
+\begin{center}
+{\Large\bfseries Response to the Editor and Reviewers\par}
+\vspace{0.35cm}
+{\large\bfseries An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation\par}
+\vspace{0.25cm}
+{Submission ID: 12ef9a8a-5497-4180-b23f-174604d3eec4\par}
+\end{center}
+\vspace{0.35cm}
+
+Dear Dr Jadhav and Reviewers,
+
+
+Thank you for the careful and constructive assessment. We revised the manuscript in response to each comment and identify the exact line numbers of the corresponding changes below. We supply both a clean Word manuscript and a Word manuscript with Track Changes for direct comparison.
+
+
+\section*{Editor comments}
+
+\commenttext{Please ensure the results are accurately reported, any overstated conclusions are rewritten and the limitations of the work fully explained.}
+
+\textcolor{responseblue}{\textbf{Response.}} We addressed this request by rebuilding the primary evidence around donor-held-out human analyses and by narrowing every conclusion to the evaluated frozen-scGPT representation--classifier pipelines. The revised manuscript distinguishes within-atlas unseen-donor prediction from external validation, reports the brain counterexample rather than claiming one-directional superiority, and states that official fine-tuning, newer checkpoints, other foundation models and external-cohort transfer were not tested. The revised conclusion now states: ``The practical lesson is that the best representation depends on the tissue, the label structure and the intended use; it cannot be chosen from the reputation or scale of the underlying model alone.'' It then frames frozen scGPT embeddings as one candidate representation and explains the evidence required before claiming an advantage. \textbf{Location in the revised manuscript:} Abstract, lines 12--27; estimands, lines 103--119; primary results, lines 307--454; interpretation and limitations, lines 455--556; revised Conclusions, lines 557--572.
+
+
+\commenttext{The title should have a clear precise scientific meaning and should not contain punctuation and it should not exceed 20 words.}
+
+\textcolor{responseblue}{\textbf{Response.}} We revised the title to ``An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation''. It contains 16 words, has no punctuation, identifies the tested scGPT pipelines and matched classical comparators, and does not state the result in the title. \textbf{Location in the revised manuscript:} Title, lines 1--2.
+
+
+\section*{Reviewer 1}
+
+\textit{We thank Reviewer 1 for the focused recommendations concerning biological dependence and split variability.}
+
+
+\subsection*{Comment 1 --- dependence among cells}
+
+\commenttext{Bootstrap confidence intervals are obtained by resampling individual cells. Because cells originating from the same donor or biological sample are correlated this approach may underestimate uncertainty. It would therefore be helpful to repeat the bootstrap at the donor or sample level for one representative analysis.}
+
+\textcolor{responseblue}{\textbf{Response.}} We replaced cell-level resampling with a paired donor-cluster bootstrap in every primary human dataset. One confusion matrix is constructed per donor, 5,000 replicates resample donors with replacement, and both representations use the same donor multiplicities. This directly preserves within-donor dependence and produces intervals for the fixed-classifier difference. We also added the requested limitation: the bootstrap resamples fixed out-of-fold predictions and does not refit feature selection, SVD, tuning or classifiers, so its intervals are explicitly described as conditional on the completed fits. \textbf{Location in the revised manuscript:} Bootstrap method and limitation, lines 235--247; paired results, lines 362--379; Discussion of conditional uncertainty, lines 531--537.
+
+
+\subsection*{Comment 2 --- variability across train--test splits}
+
+\commenttext{I recommend repeating one representative analysis across approximately five independently generated train--test splits. If feasible it would be particularly informative to perform these follow-up splits at the donor or sample level.}
+
+\textcolor{responseblue}{\textbf{Response.}} We implemented five-fold stratified group cross-validation by donor in all three primary human atlases. Each donor is tested exactly once, train and test donor sets are disjoint within every fold, and the five test sets form a complete non-overlapping out-of-fold partition. The manuscript now uses the precise term ``five cross-validation folds'' and explicitly notes that the training sets overlap and are not five independent training samples. Fold-level values and pooled out-of-fold values are reported separately. \textbf{Location in the revised manuscript:} Outer-fold construction, lines 143--153; pooled-versus-fold definition, lines 224--226; completed-fold audit and cell counts, lines 307--322.
+
+
+\section*{Reviewer 2}
+
+\textit{We thank Reviewer 2 for identifying the central issues concerning biological holdout, fairness of the comparator, calibration attribution and scope.}
+
+
+\subsection*{Major concern 1 --- realistic cross-sample annotation}
+
+\commenttext{The datasets are split randomly at the cell level rather than by donor sample or batch. Consequently cells from the same biological sample may appear in both training and test sets introducing information leakage and producing an overly optimistic estimate of generalization.}
+
+\textcolor{responseblue}{\textbf{Response.}} We replaced the primary human random-cell evaluation with five donor-held-out outer folds in TNBC, Indonesia PBMC and brain. Feature selection, vocabulary matching, SVD fitting, hyperparameter selection and classifier fitting use outer-training donors only. The 965,427 aligned out-of-fold cells represent 312 donor identifiers, and no donor appears on both sides of any fold. The manuscript calls this within-atlas unseen-donor performance---not external validation---because processing, curation and label definitions remain shared within each atlas. Pig pancreas is separated from the human benchmark because it has only one donor identifier. \textbf{Location in the revised manuscript:} Estimand, lines 103--119; donor metadata, lines 120--142; splitting and leakage controls, lines 143--166; completed audit, lines 307--322; interpretation, lines 466--473; pig stress test, lines 446--454.
+
+
+\subsection*{Major concern 2 --- label-rich broad classes}
+
+\commenttext{The benchmark setting may not represent the scenarios in which foundation models are expected to provide the greatest value. Evaluation on label-scarce settings rare or fine-grained populations and external-atlas transfer would be needed to support broader conclusions.}
+
+\textcolor{responseblue}{\textbf{Response.}} We added a strict PBMC label-scarcity analysis using 10, 50, 100, 250 or 500 labelled cells per class within the same donor-held-out outer folds. Gene filtering, HVG selection and vocabulary matching are recomputed from the labelled cells alone; unlabelled training cells do not contribute to representation construction or model fitting. Matched expression remained higher at every tested budget. We describe this only as supervised few-label adaptation to known broad portal categories. Rare-state discovery, unseen classes and external-atlas transfer remain outside scope, and the broader claims were removed. \textbf{Location in the revised manuscript:} Scarcity design and scope, lines 262--277; scarcity results, lines 404--416; interpretation, lines 499--506; evidence boundary, lines 538--549.
+
+
+\subsection*{Major concern 3 --- calibration and the downstream head}
+
+\commenttext{The probabilities used to calculate calibration are generated by classifiers fitted on scGPT embeddings rather than by scGPT itself. The conclusions should therefore be framed as applying to specific scGPT-based pipelines rather than to scGPT intrinsically. Post-hoc calibration and additional complementary calibration analyses would further strengthen this assessment.}
+
+\textcolor{responseblue}{\textbf{Response.}} We now attach every probability result to a complete representation--classifier pipeline. The Methods define top-label ECE together with adaptive ECE, classwise ECE, multiclass Brier score, NLL and bin counts. Held-out-donor temperature scaling was added for Logistic Regression and XGBoost with scGPT embeddings, matched expression and SVD-512 in TNBC and brain. The calibration donor group is disjoint from the fitting and validation groups, and the temperature is evaluated only on the untouched outer-test donors. The Results show that calibration depended strongly on the classifier and that temperature scaling improved averages but not every fold; the Discussion states explicitly that the probability comes from the supervised head, not scGPT alone. \textbf{Location in the revised manuscript:} Pipeline definition, lines 103--119 and 173--180; metrics and bin counts, lines 220--234; temperature-scaling protocol, lines 248--261; calibration results and Figure 4/Table 5, lines 380--403; interpretation, lines 507--515.
+
+
+\subsection*{Minor concern 1 --- promote the matched benchmark}
+
+\commenttext{Figure 1 and Table 2 emphasize the initial less controlled comparison whereas the vocabulary- and learner-matched analysis is the more appropriate primary benchmark.}
+
+\textcolor{responseblue}{\textbf{Response.}} We addressed this concern by removing the unmatched comparison from the primary evidence. Revised Figure 1 now shows training-only vocabulary matching, separately tuned representations and fixed-classifier contrasts. Revised Table 2 is a completed design audit, and the main performance display is revised Figure 2 with revised Table 3, which reports the nine prespecified scGPT-embedding versus matched-expression comparisons at the same classifier. The caption also identifies the exact SVD-512 coverage and leaves unavailable PBMC tree pipelines unfilled rather than imputing them. \textbf{Location in the revised manuscript:} Figure 1 and Table 2, lines 317--322; Figure 2 and Table 3, lines 338--345; matched-input construction, lines 154--166; fixed-classifier selection rule, lines 203--219.
+
+
+\subsection*{Minor concern 2 --- inconsistent values and protocol names}
+
+\commenttext{The reported scGPT plus Logistic Regression values differ between Tables 2 and 3. The protocol difference should be stated more prominently and pipelines should be named consistently.}
+
+\textcolor{responseblue}{\textbf{Response.}} The revised manuscript uses one official scGPT embedding path and consistent representation--classifier names. Table 3 reports pooled out-of-fold Macro F1, where each retained cell contributes exactly once. Supplementary fold tables report the unweighted mean and standard deviation of five fold-level Macro F1 values. The Methods now state explicitly that pooled values need not equal the unweighted fold mean; these are two summaries of the same out-of-fold predictions, not different fitting protocols. \textbf{Location in the revised manuscript:} Pooled-versus-fold explanation, lines 224--226; primary Table 3 caption and note, lines 343--345; fixed pipeline names in the primary results, lines 323--345.
+
+
+\subsection*{Minor concern 3 --- gene regulatory network terminology}
+
+\commenttext{The term GRN inference may be too strong because the analysis is based on cosine similarity between gene embeddings and lacks comparison with simpler expression-based or network baselines.}
+
+\textcolor{responseblue}{\textbf{Response.}} We removed the gene-similarity/GRN analysis, its figure, its terminology and all regulatory-inference claims. The title and study aim now define the paper as an accuracy-and-calibration benchmark for cell-type annotation. The limitations explicitly state that regulatory inference is not evaluated. This avoids renaming an uncontrolled network analysis while retaining it as evidence. \textbf{Location in the revised manuscript:} Study question and scope, lines 89--101; evaluated estimands, lines 103--119; explicit exclusion of regulatory inference, lines 543--549.
+
+
+\subsection*{Minor concern 4 --- reliability-bin counts and uncertainty}
+
+\commenttext{The reliability diagrams do not show the number of observations or uncertainty within each confidence bin.}
+
+\textcolor{responseblue}{\textbf{Response.}} Reliability data now retain the bin edges, number of observations, mean confidence and empirical accuracy for every bin. The main calibration figure presents outer-fold values and dataset means for ECE, Brier score and NLL, while the supplementary reliability diagrams and accompanying CSV tables provide the full bin counts. Donor-cluster intervals are used for biological pipeline contrasts; cell-level bin counts are not presented as independent biological replicates. \textbf{Location in the revised manuscript:} Calibration metrics and retained bin fields, lines 227--234; donor-level uncertainty, lines 235--247; Figure 4 and Table 5, lines 386--403; calibration interpretation, lines 507--515.
+
+
+\subsection*{Minor concern 5 --- distinguish scGPT from the complete pipeline}
+
+\commenttext{Throughout the text and figures scGPT should be distinguished consistently from scGPT embeddings plus downstream classifier.}
+
+\textcolor{responseblue}{\textbf{Response.}} We addressed this concern by naming the representation and the supervised head separately. The Methods state that scGPT returns a frozen vector and that the downstream classifier generates the annotation probabilities. Figure 1 shows the representation and classifiers as separate stages; Figures 2--4 and Tables 3--5 label the evaluated representation--classifier combinations. The Results subsection is titled ``Calibration is a property of the complete pipeline'', and the Discussion explains that confidence is shaped by the supervised head and its regularization. \textbf{Location in the revised manuscript:} Pipeline definition, lines 103--119 and 173--180; Figure 1, lines 317--321; primary performance displays, lines 338--345; calibration attribution, lines 380--403 and 507--515; practical conclusion, lines 564--572.
+
+
+We hope that these revisions address the Editor's and Reviewers' concerns satisfactorily. We would be happy to introduce any further changes that may be needed.
+
+
+\vspace{0.5em}
+
+Sincerely,\\
+
+Alireza Khosravi and Arshia Khosravi
+
+
+on behalf of all authors
+\end{document}

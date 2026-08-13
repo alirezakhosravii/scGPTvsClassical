@@ -39,7 +39,7 @@ The evidence is deliberately scoped to the tested frozen-scGPT pipeline in withi
 
 | Path | Purpose |
 |---|---|
-| `paper/final_submission/` | Clean and marked manuscripts, Supplementary Information, response, cover letter, and complete LaTeX source. |
+| `paper/final_submission/` | Clean and Track Changes Word manuscripts, proof PDFs, Supplementary Information, point-by-point response, dated cover letter, and unified LaTeX source. |
 | `results/final_submission/` | Compact aggregate CSV/JSON files underlying every reported result and figure. |
 | `analysis/final_submission/` | Donor-held-out analysis, aggregation, figure/table generation, and environment requirements. |
 | `computational_audit/final_submission/` | Donor-group audit, dataset citations, software versions, checkpoint hashes, pipeline coverage, and computational scope. |

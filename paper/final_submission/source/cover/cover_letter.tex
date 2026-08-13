@@ -1,26 +1,37 @@
-\documentclass[11pt,a4paper]{letter}
+\documentclass[11pt,a4paper]{article}
 \usepackage[margin=2.5cm]{geometry}
-\usepackage{xcolor}
+\usepackage{microtype}
 \usepackage{xurl}
 \usepackage[colorlinks=true,urlcolor=blue!55!black]{hyperref}
-\usepackage{microtype}
-\setlength{\parskip}{5pt}
-\signature{Anna Supernat\\on behalf of all authors}
-\address{Laboratory of Translational Oncology\\Medical University of Gda\'nsk\\Gda\'nsk, Poland\\\href{mailto:abednarz@gumed.edu.pl}{abednarz@gumed.edu.pl}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\setlength{\emergencystretch}{3em}
 \begin{document}
-\begin{letter}{Dr Pooja Jadhav\\Assistant Editor\\\textit{Scientific Reports}}
-\opening{Dear Dr Jadhav,}
+\begin{flushright}13 August 2026\end{flushright}
 
-Please find enclosed the revised manuscript entitled ``An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation'' (submission ID 12ef9a8a-5497-4180-b23f-174604d3eec4). The title contains 16 words and no punctuation, in accordance with the editorial request.
+Dr Jadhav\\
+Editorial Board Member\\
+Scientific Reports
 
-We have addressed the reports through a new donor-aware statistical design and a complete standalone rewrite. The primary analysis now uses five donor-held-out folds in three human atlases, covering 965,427 analysed cells and 312 donor identifiers. Frozen official scGPT 0.2.5 embeddings and normalized expression of the same training-selected genes are each paired with Logistic Regression, Random Forest and XGBoost. Hyperparameters are selected separately inside the training donors, and primary inference compares representations at a fixed classifier. SVD-512 provides a secondary dimensionality control for every atlas with Logistic Regression and for TNBC and brain with all three classifiers. We additionally provide donor-cluster bootstrap intervals, class-specific error analyses, labelled-only feature selection under scarcity, and held-out-donor temperature scaling for Logistic Regression and XGBoost in TNBC and brain. The human-checkpoint pig analysis is separated as a cross-species stress test and is not included in the primary claim.
+\vspace{0.4cm}
+\textbf{Subject:} Revision of manuscript ``An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation'' (Submission ID 12ef9a8a-5497-4180-b23f-174604d3eec4)
 
-The manuscript consistently distinguishes a frozen scGPT representation from the downstream classifier that produces annotation probabilities. Its conclusions are limited to the evaluated pipelines, portal labels and within-atlas unseen-donor setting; they do not extend to official fine-tuning, other checkpoints, other foundation models, zero-shot discovery or external-atlas transfer.
+Dear Dr Jadhav,
 
-The submission includes a clean manuscript, a marked manuscript, Supplementary Information, a detailed point-by-point response, separate publication-quality figures, complete LaTeX source, compact numerical results and executable analysis code. Dataset identifiers, software versions, source commit, checkpoint hashes and exact five-fold pipeline coverage are recorded for reproducibility.
+Thank you for the opportunity to revise our manuscript, ``An Accuracy and Calibration Benchmark of scGPT Pipelines and Matched Classical Models for Cell Type Annotation''. We appreciate the careful and constructive comments, which helped us strengthen the biological validation, comparator design, uncertainty analysis and interpretation of the study.
 
-Thank you for considering this revision. We believe the donor-held-out factorial design and expanded calibration analysis directly address the methodological concerns and substantially strengthen the paper.
+We have responded to every comment individually in the accompanying point-by-point response and identified the exact manuscript line numbers for each change. We also provide a clean Word manuscript and a Word manuscript with Track Changes so the revisions can be reviewed directly.
 
-\closing{Sincerely,}
-\end{letter}
+The revised analysis now uses donor-held-out evaluation for the three human atlases, representation-specific training-only tuning, fixed classifier-matched comparisons, donor-cluster uncertainty, a dimensionality-matched expression control, expanded calibration analyses and class-specific biological error analyses. The conclusions have been narrowed to the evaluated frozen-scGPT pipelines and no longer imply general superiority over scGPT fine-tuning, other checkpoints or other foundation models.
+
+We hope that the revised manuscript addresses the Editor's and Reviewers' concerns satisfactorily and is now suitable for publication in Scientific Reports. We would be happy to make any further changes that may be required.
+
+Sincerely,\\
+Alireza Khosravi and Arshia Khosravi\\
+on behalf of all authors
+
+$^{1}$Laboratory of Translational Oncology, Medical University of Gda{\'n}sk, Gda{\'n}sk, Poland\\
+$^{2}$Centre of Biostatistics and Bioinformatics Analysis, Medical University of Gda{\'n}sk, Gda{\'n}sk, Poland\\
+$^{3}$Scientific Circle of Artificial Intelligence in Medicine, Medical University of Gda{\'n}sk, Gda{\'n}sk, Poland
+
 \end{document}
